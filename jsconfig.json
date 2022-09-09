@@ -1,0 +1,11 @@
+{
+	"headers": {
+        "X-Frame-Options": "SAMEORIGIN"
+    },
+	"compilerOptions": {
+		"module": "commonjs",
+		"target": "ES6",
+		"baseUrl": "./src"
+	},
+	"include": ["src/**/*"]
+}

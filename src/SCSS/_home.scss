@@ -1,0 +1,297 @@
+.wrap-management {
+	padding: 32px 24px;
+	.wrap-management-header {
+		display: flex;
+		justify-content: space-between;
+		align-items: center;
+		margin-bottom: 32px;
+
+		.wrap-management-header-title {
+			font-weight: 700;
+			font-size: 24px;
+			line-height: 140%;
+			color: #042d41;
+			text-transform: uppercase;
+		}
+
+		.wrap-management-header-buttons {
+			a {
+				&:hover {
+					text-decoration: none;
+				}
+			}
+
+			.btn.add-new-jobpost {
+				display: inline-flex;
+				align-items: center;
+				gap: 8px;
+				width: 132px;
+				height: 48px !important;
+				font-weight: 600;
+				font-size: 15px;
+				line-height: 140%;
+			}
+		}
+	}
+
+	.wrap-content {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+
+		/* Wrap left */
+		.wrap-left {
+			width: calc(100% - 486px);
+
+			&.w-100 {
+				width: 100%;
+
+				.card-header-left {
+					.total-items {
+						.total-item {
+							.total-item-content {
+								.total-item-title {
+									font-weight: 700;
+									font-size: 24px;
+								}
+							}
+						}
+					}
+				}
+			}
+
+			.card-header-left {
+				.total-items {
+					display: flex;
+					gap: 24px;
+
+					.total-item {
+						display: flex;
+						flex-direction: row;
+						justify-content: space-between;
+						gap: 24px;
+						width: calc(33.3333333% - 48px / 3);
+						box-shadow: 0px 4px 8px rgba(4, 45, 65, 0.1);
+						border-radius: 4px;
+						background: #ffffff;
+						padding: 32px;
+
+						.total-item-content {
+							display: flex;
+							flex-direction: column;
+							justify-content: space-between;
+							width: calc(100% - 72px - 24px / 2);
+
+							.total-item-title {
+								width: 100%;
+								font-weight: 600;
+								font-size: 18px;
+								line-height: 25px;
+								color: #042d41;
+								margin-bottom: 8px;
+							}
+
+							.total-item-value {
+								font-weight: 700;
+								font-size: 36px;
+								line-height: 140%;
+								color: #ff9242;
+							}
+						}
+						.total-item-icon {
+							display: flex;
+							align-items: center;
+							width: 72px;
+						}
+					}
+				}
+			}
+
+			/* Latest jobs */
+			.latest-jobs {
+				margin: 24px 24px 24px 0;
+				width: 100%;
+				border-radius: 4px;
+				box-shadow: 0px 4px 8px rgba(4, 45, 65, 0.1);
+				background: white;
+				padding: 32px;
+
+				/* Latest jobs header */
+				.latest-jobs-header {
+					display: flex;
+					align-items: center;
+					gap: 12px;
+					margin-bottom: 24px;
+
+					.latest-jobs-header-tab {
+						width: 4px;
+						height: 24px;
+						border-radius: 4px;
+						background: #108fcf;
+					}
+					.latest-jobs-header-title {
+						font-weight: 700;
+						font-size: 24px;
+						line-height: 140%;
+						color: #0c557a;
+						text-transform: uppercase;
+					}
+				}
+
+				/* Latest jobs body */
+				.latest-jobs-body {
+					display: flex;
+					flex-wrap: wrap;
+					gap: 32px 32px;
+
+					/* Latest job */
+					.latest-job {
+						width: calc(33.3333333% - 64px / 3);
+						border-radius: 4px;
+						box-shadow: 0px 4px 8px rgba(4, 45, 65, 0.1);
+						background: #fafafa;
+						padding: 24px;
+
+						/* Latest job header */
+						.latest-job-header {
+							display: flex;
+							align-items: center;
+							justify-content: space-between;
+							gap: 10px;
+							margin-bottom: 8px;
+
+							.latest-job-title {
+								font-weight: 700;
+								font-size: 24px;
+								line-height: 140%;
+								color: #0c557a;
+							}
+
+							.latest-job-total {
+								font-weight: 400;
+								font-size: 16px;
+								line-height: 140%;
+								color: #108fcf;
+							}
+						}
+
+						/* Latest job id */
+						.latest-job-id {
+							font-weight: 600;
+							font-size: 20px;
+							line-height: 140%;
+							color: #042d41;
+						}
+
+						/* Latest job address */
+						.latest-job-address {
+							display: flex;
+							align-items: center;
+							gap: 12px;
+							margin-top: 24px;
+
+							.latest-job-address-value {
+								font-weight: 700;
+								font-size: 16px;
+								line-height: 140%;
+								color: #042d41;
+							}
+						}
+					}
+				}
+			}
+		}
+
+		/* Wrap right */
+		.wrap-right {
+			flex: 468px;
+			font-family: 'Nunito Sans';
+			font-style: normal;
+			margin-left: 24px;
+			.card-header-right {
+				.card-style {
+					// display: flex;
+					margin-bottom: 24px;
+					flex-direction: column;
+					width: 468px;
+					height: auto;
+					background: #ffffff;
+					/* Drop Shadow */
+					box-shadow: 0px 4px 8px rgba(4, 45, 65, 0.1);
+					border-radius: 4px;
+					.header-table {
+						display: flex;
+						padding: 32px 51px 16px 25px;
+						.img-top {
+							padding-right: 24px;
+						}
+						.title {
+							width: 317px;
+							height: 68px;
+							font-weight: 700;
+							font-size: 24px;
+							line-height: 140%;
+							color: #0c557a;
+
+							.text-orange {
+								color: #ff9242;
+							}
+						}
+					}
+					.datatable {
+						table {
+							background: #ffffff;
+							height: 100%;
+							thead {
+								tr {
+									th {
+										border-radius: 0px;
+										padding: 16px 16px 16px 24px;
+										width: 53px;
+										font-weight: 400;
+										font-size: 14px;
+										/* identical to box height, or 143% */
+										letter-spacing: 0.5px;
+										/* Body text */
+										color: #042d41;
+									}
+								}
+							}
+							tbody {
+								tr {
+									background: #ffffff;
+									td {
+										padding: 8px 8px 8px 24px;
+										font-family: 'Nunito Sans';
+										font-style: normal;
+										line-height: 140%;
+										height: 100%;
+										.title {
+											//height: 22px;
+											font-weight: 700;
+											font-size: 16px;
+											color: #0c557a;
+										}
+										.name-corp {
+											//height: 17px;
+											font-weight: 400;
+											font-size: 12px;
+											color: #042d41;
+										}
+									}
+								}
+							}
+						}
+						table > :not(:first-child) > * > * {
+							border-bottom: 1px solid #ddd;
+						}
+						table tbody tr:last-child > * {
+							border-bottom-color: transparent;
+							padding-bottom: 16px !important;
+						}
+					}
+				}
+			}
+		}
+	}
+}

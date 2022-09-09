@@ -1,0 +1,597 @@
+.wrap-detail {
+  padding: 16px 24px 24px 24px;
+  font-family: "Nunito Sans";
+  .header-detail {
+    .breadcrumb {
+      margin-bottom: 0px;
+    }
+    .bread-crumb {
+      a {
+        font-weight: 400;
+        font-size: 14px;
+        line-height: 20px;
+        text-decoration: none;
+        color: #042d41;
+      }
+      .first-breadcrumb {
+        a {
+          color: #108fcf;
+          text-decoration: underline;
+        }
+      }
+      .breadcrumb-item + .breadcrumb-item::before {
+        content: url("../../public/Assets/images/jobpost/angle-small-right.png");
+        position: relative;
+        top: 3px;
+        color: #108fcf;
+      }
+    }
+    .title {
+      display: flex;
+      justify-content: space-between;
+      margin: 24px 0px;
+      .title-page {
+        font-weight: 700;
+        font-size: 24px;
+        color: #042d41;
+      }
+      .title-action {
+        display: grid;
+        grid-template-columns: auto auto auto;
+        button {
+          background: #ffffff;
+          box-sizing: border-box;
+          border-radius: 4px;
+          border: none;
+          font-weight: 600;
+          font-size: 15px;
+          line-height: 21px;
+          padding: 10px 35px;
+          margin-right: 16px;
+        }
+        button:last-child {
+          margin-right: 0;
+        }
+        .btn-block {
+          justify-content: center;
+          align-items: center;
+          font-weight: 600;
+          font-size: 15px;
+          line-height: 140%;
+          height: 40px;
+
+          /* Red */
+          background: #ef3737;
+          color: #ef3737;
+          padding: 9px 17px 9px 17px;
+        }
+        .btn-unblock {
+          color: #108fcf;
+          border: 1px solid #108fcf;
+        }
+        .btn-block {
+          background: #fafafa;
+          border: 1px solid #ef3737;
+        }
+        .edit {
+          background: #108fcf;
+          color: #ffffff;
+
+          a {
+            color: #ffffff;
+            text-decoration: none;
+          }
+        }
+        .block {
+          display: inherit;
+        }
+        .none {
+          display: none;
+        }
+      }
+    }
+  }
+  .body-detail {
+    display: flex;
+    justify-content: space-between;
+    > div:last-child {
+      flex: 10%;
+    }
+    .body-right-detail {
+      .card-recruit {
+        background: #ffffff;
+        box-shadow: 0px 4px 8px rgba(4, 45, 65, 0.1);
+        border-radius: 4px;
+        flex: 0%;
+        padding: 24px;
+        margin-bottom: 30px;
+        // height: 420px;
+        .sub-title {
+          padding-left: 12px !important;
+          font-style: Bold;
+          font-size: 14px;
+          line-height: 20px;
+          line-height: 140%;
+          vertical-align: Top;
+          color: #042d41;
+        }
+        .recruit-filename {
+          font-style: normal;
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 19.6px;
+          color: #042d41;
+          .recruit-link {
+            text-decoration: none;
+            color: #042d41;
+          }
+        }
+        .block {
+          display: block !important;
+        }
+        .none {
+          display: none !important;
+        }
+        .datatable {
+          background: #ffffff;
+          //box-shadow: 0px 4px 8px rgba(4, 45, 65, 0.1);
+          border-radius: 4px 4px 4px 4px;
+          overflow-x: auto;
+          .block {
+            display: block;
+          }
+          .none {
+            display: none;
+          }
+          table {
+            width: 100%;
+            thead {
+              background: #e2f2f9;
+              position: sticky;
+              margin: 0;
+              th {
+                border-bottom: none;
+                font-weight: 700;
+                font-size: 14px;
+                line-height: 140%;
+                color: #042d41;
+                padding: 18px 16px;
+              }
+              th:nth-child(1) {
+                width: 10%;
+              }
+              th:nth-child(2) {
+                padding-left: 0;
+                width: 28% !important;
+              }
+              th:nth-child(3) {
+                padding-left: 0;
+                width: 25% !important;
+              }
+              th:nth-child(4) {
+                padding-left: 0;
+                width: 20% !important;
+              }
+              th:last-child {
+                padding-left: 0;
+                width: 12%;
+                position: sticky;
+                z-index: 1;
+                background: #e2f2f9;
+                text-align: center;
+              }
+            }
+
+            tbody {
+              th {
+                padding-left: 20px;
+              }
+              tr {
+                .width-256 {
+                  width: 256px;
+                }
+                .width-320 {
+                  width: 340px;
+                }
+                > td {
+                  padding: 15px 30px 15px 0;
+                }
+                > td:first-child {
+                  padding-left: 20px;
+                  padding-top: 20px;
+                }
+                > td:last-child {
+                  position: sticky;
+                  right: -200px;
+                  z-index: 1;
+                  background: #ffffff;
+                  text-align: center;
+                  padding-right: 16px;
+                }
+                .right {
+                  right: -45px !important;
+                }
+              }
+              tr:last-child {
+                padding-bottom: 20px;
+              }
+              tr:nth-child(even) td,
+              tr:nth-child(even) th {
+                background: #fafafa;
+              }
+              td {
+                border-bottom: none;
+                font-weight: 400;
+                font-size: 14px;
+                line-height: 140%;
+                color: #042d41;
+              }
+              .action {
+                height: 24px;
+                width: 24px;
+                margin-right: 10px;
+                cursor: pointer;
+              }
+              .action:last-child {
+                margin-right: -4px;
+              }
+            }
+          }
+        }
+      }
+    }
+    .datatable {
+      background: #ffffff;
+      .table-detail {
+        color: #042d41;
+        tr:first-child {
+          font-size: 14px;
+          line-height: 30px;
+          font-weight: 700;
+          border-bottom: 1px solid #e3e2e2;
+        }
+        tr:nth-child(even) td {
+          background: #fafafa;
+        }
+        .table-detail-td {
+          border-bottom: none;
+          font-size: 14px;
+          line-height: 140%;
+          color: #042d41;
+          padding: 16px !important;
+        }
+      }
+    }
+    .content-sub-title {
+      display: flex;
+      flex-direction: row;
+      padding-bottom: 24px;
+      .img-sub-title {
+        width: 4px;
+        background: #108fcf;
+        border-radius: 1px;
+      }
+      .sub-title {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 20px;
+        color: #042d41;
+        padding-left: 20px;
+        margin: 0;
+      }
+    }
+    .item-title {
+      font-family: "Nunito Sans", sans-serif !important;
+      font-weight: 700;
+      font-size: 13px;
+      margin-bottom: 12px;
+      line-height: 140%;
+      font-style: normal;
+      color: #042d41;
+      margin-right: -25px;
+    }
+    .item-infor {
+      font-weight: 400;
+      font-size: 14px;
+      padding-bottom: 20px;
+      word-break: break-word;
+    }
+    .information {
+      background: #ffffff;
+      box-shadow: 0px 4px 8px rgba(4, 45, 65, 0.1);
+      border-radius: 4px;
+      padding: 24px;
+      margin-right: 20px;
+      color: #042d41;
+      width: 1020px;
+      .candidate-info {
+        padding-bottom: 30px;
+        display: flex;
+        flex-direction: row;
+        .candidate-title {
+          background: #fafafa;
+          box-sizing: border-box;
+          border: 1px solid #efefef;
+          border-radius: 4px;
+          width: 100%;
+          height: 120px;
+          vertical-align: middle;
+          margin-left: 24px;
+          .candidate-name {
+            font-weight: 700;
+            font-size: 24px;
+            padding-top: 26px;
+            padding-left: 25px;
+            line-height: 10px;
+          }
+          .candidate-position {
+            font-weight: 700;
+            font-size: 16px;
+            line-height: 15px;
+            padding-left: 25px;
+            margin-top: 10px;
+          }
+          .candidate-status {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 17px;
+            padding-left: 25px;
+            margin-bottom: 5px;
+            color: #27ae60;
+          }
+        }
+      }
+      .info-bg {
+        background: #fafafa;
+      }
+      button {
+        box-sizing: border-box;
+        border-radius: 4px;
+        padding: 4px 8px;
+      }
+      .descrip {
+        text-align: center;
+        height: 220px;
+        overflow: hidden;
+
+        p {
+          font-weight: 700;
+          font-size: 13px;
+          line-height: 18px;
+          letter-spacing: 0.02em;
+          text-align: left;
+        }
+        .desc-detail {
+          p {
+            font-size: 14px;
+            font-weight: 400;
+          }
+        }
+        button {
+          background: #ffffff;
+          border: 1px solid #108fcf;
+          box-sizing: border-box;
+          border-radius: 4px;
+          padding: 3px 8px;
+          color: #108fcf;
+          font-weight: 700;
+          font-size: 14px;
+          span {
+            margin-right: 5px;
+          }
+        }
+      }
+    }
+    .timelineBody {
+      max-height: 400px;
+      overflow: hidden;
+      .timeline {
+        padding: 3.3rem 2rem 3rem 2rem !important;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        position: relative;
+        z-index: 2;
+        .timelineDot {
+          border-radius: 2rem;
+          margin-right: auto;
+          left: -16px;
+          position: absolute;
+          margin-top: -50px;
+          .timelineDot-img {
+            width: 20px;
+          }
+        }
+        .timelineDate {
+          font-size: 13px;
+          position: absolute;
+          font-family: Nunito Sans;
+          top: -57px;
+          left: 9px;
+          font-weight: 400;
+          line-height: 18.2px;
+          color: #042d41;
+          padding: 11px;
+        }
+        .timelineWork {
+          font-family: "Nunito Sans";
+          font-size: 16px;
+          font-weight: 700;
+          line-height: 22.4px;
+          top: -27px;
+          left: 11px;
+          padding: 11px;
+          position: relative;
+          color: #0c557a;
+          .timelineDescription {
+            display: flex;
+            .timelineDescriptionInfRight {
+              max-width: 81%;
+            }
+            .timelineDescriptionInf {
+              padding-left: 5px;
+            }
+          }
+        }
+        .timelineWork small {
+          display: block;
+          color: #042d41;
+          font-weight: 400;
+          font-size: 14px;
+          font-style: normal;
+          line-height: 30px;
+          padding-left: 0px;
+          padding-top: 8px;
+          //width: 400px;
+        }
+      }
+      .timeline:before {
+        content: "";
+        position: absolute;
+        width: 0px;
+        top: 0;
+        right: auto;
+        left: 25px;
+        height: 100%;
+        z-index: 0;
+        box-shadow: 0 0 8px rgb(0 0 0 / 9%), 0 1px 0 rgb(0 0 0 / 2%);
+        border: 1px dashed #108fcf;
+        transform: rotate(0deg);
+        margin-top: 5px;
+      }
+      .timeline li {
+        display: flex;
+        align-items: flex-start;
+        justify-content: flex-start;
+        margin-bottom: -3rem;
+        position: relative;
+      }
+    }
+    .note {
+      font-style: italic;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 22px;
+      color: #042d41;
+      margin-top: 8px;
+    }
+    .row-edit {
+      display: flex;
+      vertical-align: top;
+      width: 100%;
+      flex-direction: row;
+      padding-bottom: 40px;
+      .left-timeline {
+        width: 120%;
+      }
+    }
+    .export-url {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      .recruit-action {
+        width: 180px;
+        cursor: pointer;
+        text-align: right;
+        display: flex;
+        justify-content: flex-end;
+        img {
+          height: 24px;
+          width: 24px;
+          cursor: pointer;
+        }
+        .file-detail {
+          margin-right: 12px;
+        }
+      }
+    }
+  }
+  .title-detail-candidate {
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 140%;
+    color: #042d41;
+    padding-top: 24px;
+  }
+  .card-detail {
+    //position: absolute;
+    //width: 100%;
+    background: #ffffff;
+    box-shadow: 0px 4px 8px rgba(4, 45, 65, 0.1);
+    border-radius: 4px;
+    color: #042d41;
+    margin: 24px 0px 0px;
+    //margin: 24px;
+    .item-title {
+      font-weight: 700;
+      font-size: 13px;
+      line-height: 140%;
+      letter-spacing: 0.02em;
+      margin: 0px;
+      padding: 24px 0 4px 24px;
+    }
+    .item-infor {
+      font-weight: 400;
+      font-size: 14px;
+      line-height: 140%;
+      letter-spacing: 0.02em;
+      padding: 0px 0px 24px 24px;
+      margin: 0px;
+    }
+    .content-sub-title {
+      display: flex;
+      flex-direction: row;
+      padding: 26px 0px 10px 24px;
+      .img-sub-title {
+        width: 4px;
+        background: #108fcf;
+        border-radius: 1px;
+      }
+      .sub-title {
+        font-weight: 700;
+        font-size: 14px;
+        line-height: 20px;
+        color: #042d41;
+        padding-left: 12px;
+        margin: 0;
+      }
+    }
+    .recruit-action {
+      cursor: pointer;
+      text-align: right;
+      display: flex;
+      .view-detail {
+        display: flex;
+        padding-left: 4rem;
+        img {
+          height: 24px;
+          width: 24px;
+          cursor: pointer;
+        }
+        .file-detail {
+          margin-right: 12px;
+        }
+      }
+    }
+  }
+}
+#btn-block {
+  background-color: #ef3737 !important;
+  border: 1px solid #ef3737 !important;
+}
+
+.fade.modal.show {
+  top: 0 !important;
+}
+.approve-modal {
+  padding-top: 14rem;
+}
+canvas.react-pdf__Page__canvas {
+  height: auto !important;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.candidate-profile {
+  overflow-y: auto;
+}

@@ -1,0 +1,586 @@
+.wrap-management {
+	padding: 32px 24px;
+	.wrap-management-header {
+		display: flex;
+		justify-content: space-between;
+	}
+	.management-title {
+		font-weight: 700;
+		font-size: 24px;
+		line-height: 140%;
+		color: #042d41;
+		margin-bottom: 32px;
+	}
+	.react-tabs__tab-list {
+		padding-left: 0;
+		li {
+			list-style-type: none;
+			cursor: pointer;
+			padding: 15px 24px;
+		}
+	}
+	.create-new-job-post-btn {
+		font-weight: 600;
+		font-size: 15px;
+		color: #ffffff;
+		padding: 10px 11.5px;
+		margin-left: 32px;
+		background: #108fcf;
+		gap: 8px;
+		.img {
+			width: 16px;
+			height: 16px;
+			margin-right: 8px;
+			margin-top: -5px;
+		}
+	}
+	.tab-content.react-tabs__tab-panel--selected {
+		outline: none;
+		background: #ffffff;
+		box-shadow: 0px 4px 8px rgba(4, 45, 65, 0.1);
+		border-radius: 0px 4px 4px 4px;
+		z-index: 1;
+		position: relative;
+		.feature {
+			padding: 8px 0 12px 0;
+			.feature-header {
+				display: flex;
+				justify-content: space-between;
+				padding-bottom: 8px;
+				.form-group.search {
+					width: 360px;
+					margin-bottom: 0;
+				}
+				.controls {
+					button {
+						display: inline-flex;
+						align-items: center;
+						gap: 8px;
+						font-weight: 600;
+						font-size: 15px;
+						color: #ffffff;
+						border-radius: 4px;
+						height: 40px;
+						margin-left: 24px;
+						position: relative;
+						&.refresh-btn {
+							background: white !important;
+							color: #108fcf;
+						}
+						&.filter-btn {
+							&.show {
+								background-color: #0c557a !important;
+								border-color: #0c557a !important;
+								color: #fff !important;
+								.filter-arrow-down {
+									transform: scaleY(-1);
+								}
+								.filter-triangle {
+									display: block;
+								}
+							}
+							.filter-arrow-down {
+								display: inline-block;
+								width: 16px;
+								height: 16px;
+								background: url('../../public/Assets/images/jobpost/filter-arrow-down.png');
+								background-size: contain;
+							}
+							.filter-triangle {
+								position: absolute;
+								top: 40px;
+								right: 49px;
+								width: 18px;
+								height: 8px;
+								background: url('../../public/Assets/images/jobpost/filter-border-arrow-up.png');
+								background-size: cover;
+								display: none;
+							}
+							&.btn-secondary {
+								.filter-arrow-down {
+									background: url('../../public/Assets/images/jobpost/filter-arrow-down-primary.png');
+									background-size: contain;
+								}
+								&.show {
+									.filter-arrow-down {
+										background: url('../../public/Assets/images/jobpost/filter-arrow-down.png');
+										background-size: contain;
+									}
+								}
+							}
+						}
+						.img {
+							max-width: 16px;
+							min-width: 16px;
+							min-height: 16px;
+							max-height: 16px;
+						}
+						.badge.filter-quantity {
+							position: absolute;
+							top: -10px;
+							right: -10px;
+							border-radius: 100% !important;
+							width: 20px;
+							height: 20px;
+							font-weight: 400;
+							font-size: 14px;
+							padding: 4px;
+						}
+					}
+				}
+			}
+			.feature-body {
+				padding-bottom: 12px;
+				.filter {
+					border: 1px solid #108fcf;
+					border-radius: 4px;
+					padding: 24px;
+					position: relative;
+					.filter-header {
+						width: 100%;
+						.filter-close-btn {
+							position: absolute;
+							top: 8.6px;
+							right: 9.6px;
+							width: 16px;
+							height: 16px;
+							background: url('../../public/Assets/images/jobpost/filter-close-btn.png');
+							background-size: contain;
+							cursor: pointer;
+						}
+					}
+					.filter-body {
+						.row {
+							--cui-gutter-x: 28px;
+							--cui-gutter-y: 24px;
+							.form-group {
+								margin-bottom: 0;
+								.form-label {
+									font-weight: 600;
+									font-size: 13px;
+									color: #042d41;
+									margin-bottom: 4px;
+								}
+							}
+						}
+
+						.filter-controls {
+							display: flex;
+							align-items: flex-end;
+							justify-content: space-between;
+							height: 100%;
+							.btn {
+								font-weight: 600;
+								font-size: 15px;
+								color: #fff;
+								&.unselect-btn {
+									background-color: white !important;
+									border: 1px solid #ef3737 !important;
+									color: #ef3737 !important;
+								}
+							}
+						}
+					}
+				}
+			}
+			.approveButton {
+				background: #e2f2f9;
+				border-radius: 4px;
+				padding: 13px 24px;
+				width: max-content;
+				span {
+					font-weight: 600;
+					font-size: 16px;
+					line-height: 22px;
+					letter-spacing: 0.02em;
+					color: #042d41;
+					margin-right: 30px;
+				}
+				button {
+					background: #108fcf;
+					border-radius: 4px;
+					font-weight: 700;
+					font-size: 14px;
+					line-height: 20px;
+					letter-spacing: 0.02em;
+					color: #ffffff;
+					padding: 5.5px 16.5px;
+					border-color: #108fcf;
+					box-shadow: none;
+				}
+			}
+		}
+
+		.datatable {
+			background: #ffffff;
+			&.scroll {
+				overflow-x: auto;
+			}
+			&::-webkit-scrollbar {
+				height: 8px;
+				background-color: #f5f5f5;
+			}
+			&::-webkit-scrollbar-thumb {
+				background-color: #dddddd;
+			}
+			.block {
+				display: block;
+			}
+			.none {
+				display: none;
+			}
+			table {
+				border-spacing: 0;
+				&.w-2000 {
+					min-width: 2000px;
+				}
+				thead {
+					background: #e2f2f9;
+					th {
+						border-bottom: none;
+						font-weight: 700;
+						font-size: 14px;
+						line-height: 140%;
+						color: #042d41;
+						padding: 18px 16px;
+						cursor: pointer;
+						.item {
+							display: flex;
+							white-space: nowrap;
+						}
+						&.checkAll:first-child {
+							padding: 0 !important;
+							.checkAll {
+								padding: 18px;
+								input {
+									border: 1px solid #108fcf;
+									border-radius: 2px;
+									width: 20px;
+									height: 20px;
+									box-shadow: none;
+								}
+								.form-check-input:checked[type='checkbox'] {
+									border-radius: 3px;
+									background-image: url('../../public/Assets/images/jobpost/checked.png');
+								}
+							}
+						}
+						&.checkAll.sticky:first-child {
+							position: sticky;
+							left: 0;
+							padding: 0 !important;
+							width: 56px;
+							.checkAll {
+								border-radius: 4px 0 0 4px;
+								background-color: #e2f2f9;
+								padding: 18px;
+								box-shadow: 2px 2px 4px rgb(4 45 65 / 10%);
+								input {
+									border: 1px solid #108fcf;
+									border-radius: 2px;
+									width: 20px;
+									height: 20px;
+									box-shadow: none;
+								}
+								.form-check-input:checked[type='checkbox'] {
+									border-radius: 3px;
+									background-image: url('../../public/Assets/images/jobpost/checked.png');
+								}
+							}
+						}
+						&.th-2:last-child {
+							width: 80px !important;
+							.controls {
+								width: 80px !important;
+							}
+						}
+						&.sticky:last-child {
+							position: sticky;
+							right: 0px;
+							background: white;
+							border-radius: 0;
+							cursor: inherit;
+							.controls {
+								width: 112px;
+								border-radius: 0 4px 4px 0;
+								white-space: nowrap;
+								box-shadow: -2px 2px 2px rgb(4 45 65 / 10%);
+								background-color: #e2f2f9;
+								padding: 18px 12px;
+								position: absolute;
+								height: 100%;
+								bottom: 0;
+								right: 0;
+								align-items: center;
+								text-align: center;
+							}
+						}
+					}
+				}
+
+				tbody {
+					tr {
+						&:nth-child(even) {
+							background-color: #fafafa !important;
+						}
+						> td {
+							padding: 16px;
+							&.checkBox:first-child {
+								padding: 0 !important;
+								.checkBox {
+									padding: 16px;
+									input {
+										border: 1px solid #108fcf;
+										border-radius: 2px;
+										width: 20px;
+										height: 20px;
+										box-shadow: none;
+									}
+									.form-check-input:checked[type='checkbox'] {
+										border-radius: 3px;
+										background-image: url('../../public/Assets/images/jobpost/checked.png');
+									}
+								}
+							}
+							&.checkBox.sticky:first-child {
+								position: sticky;
+								left: 0;
+								padding: 0 !important;
+								.checkBox {
+									position: absolute;
+									padding: 16px 18px;
+									height: 100%;
+									bottom: 0;
+									display: flex;
+									align-items: center;
+									box-shadow: 2px 2px 4px rgb(4 45 65 / 10%);
+									&.bg-white {
+										background-color: white !important;
+									}
+									&.bg-gray {
+										background-color: #fafafa !important;
+									}
+								}
+							}
+							&.td-2 {
+								width: 80px !important;
+								.controls {
+									width: 80px !important;
+								}
+							}
+							&:last-child {
+								.controls {
+									display: flex;
+									white-space: nowrap;
+									justify-content: center;
+									.action {
+										height: 24px;
+										width: 24px;
+										margin-right: 10px;
+										cursor: pointer;
+									}
+									.action-detail {
+										height: 22px;
+										width: 22px;
+										margin-right: 10px;
+										cursor: pointer;
+									}
+								}
+							}
+							&.sticky:last-child {
+								position: sticky;
+								right: 0;
+								background: #ffffff;
+								padding: 0;
+								width: 112px;
+								.controls {
+									display: flex;
+									white-space: nowrap;
+									box-shadow: -2px 2px 2px rgb(4 45 65 / 10%);
+									background-color: white;
+									padding: 14px 12px;
+									position: absolute;
+									height: 100%;
+									bottom: 0;
+									right: 0;
+									width: 112px;
+									align-items: center;
+									&.bg-white {
+										background-color: white !important;
+									}
+									&.bg-gray {
+										background-color: #fafafa !important;
+									}
+								}
+							}
+
+							.hotjob,
+							.isExperience {
+								width: 20px;
+								height: 20px;
+							}
+							.interview-now {
+								.gray {
+									color: #c9c9c9;
+									&::before {
+										content: url('../../public/Assets/images/jobpost/inactive-bullet.png');
+										margin-right: 8px;
+									}
+								}
+								.orange {
+									color: #ff9242;
+									&::before {
+										content: url('../../public/Assets/images/jobpost/active-bullet.png');
+										margin-right: 8px;
+									}
+								}
+								.green {
+									color: #27ae60;
+									&::before {
+										content: url('../../public/Assets/images/jobpost/ready-bullet.png');
+										margin-right: 8px;
+									}
+								}
+								.blue {
+									color: #108fcf;
+									&::before {
+										content: url('../../public/Assets/images/jobpost/accepted-bullet.png');
+										margin-right: 8px;
+									}
+								}
+							}
+							.item {
+								display: flex;
+								white-space: nowrap;
+							}
+							.interview-status {
+								.orange {
+									color: #ff9242;
+								}
+								.green {
+									color: #27ae60;
+								}
+								.red {
+									color: #ef3737;
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+		.wrap-pagination {
+			font-family: 'Nunito Sans';
+			font-weight: 400;
+			font-style: normal;
+			display: flex;
+			color: #042d41 !important;
+			justify-content: space-between;
+			align-items: baseline;
+			padding-top: 16px;
+			.block {
+				display: block;
+			}
+			.none {
+				display: none;
+			}
+			.pagination {
+				background: #ffffff;
+				font-size: 16px;
+				color: #108fcf;
+				align-items: baseline;
+				margin: 0;
+			}
+
+			.page-item {
+				border: none;
+				margin-right: 10px;
+			}
+			.page-item.disabled .page-link {
+				color: #a19f9f !important;
+			}
+			.page-item.active {
+				.page-link {
+					background: #ffffff !important;
+					border-color: #108fcf !important;
+					border: 1px solid;
+					color: #108fcf !important;
+					padding: 5px 11px;
+				}
+			}
+			.page-link {
+				border: none;
+				border-radius: 4px 4px 4px 4px;
+				font-size: 16px;
+				color: #042d41 !important;
+
+				span {
+					font-size: 25px;
+				}
+			}
+
+			.itemPerPage {
+				padding: 5.5px 16px;
+				display: flex;
+				align-items: center;
+
+				.item {
+					font-weight: 400;
+					font-size: 14px;
+				}
+				.totalItem {
+					font-weight: 400;
+					font-size: 14px;
+					color: #a19f9f;
+				}
+				.react-select-container {
+					margin: 0 8px;
+					width: 62px;
+					height: 30px;
+					.react-select__control {
+						border-radius: 2px;
+						&--is-focused {
+							border-radius: 2px 2px 0 0 !important;
+						}
+						.react-select__value-container {
+							.react-select__single-value {
+								font-weight: 600;
+								font-size: 15px;
+								color: #042d41;
+							}
+						}
+					}
+				}
+			}
+			.export-btn {
+				border: none;
+				font-weight: 600;
+				font-size: 15px;
+				color: #ffffff;
+				padding: 10px 11.5px;
+				margin-left: 32px;
+				background: #108fcf;
+				border-radius: 4px;
+				gap: 8px;
+				.img-16 {
+					width: 16px;
+					height: 16px;
+					margin-right: 8px;
+					margin-top: -5px;
+				}
+			}
+		}
+		.notFound {
+			width: 100%;
+			text-align: center;
+			padding: 112px 0 243px 0;
+			p {
+				font-weight: 700;
+				font-size: 32px;
+				color: #0c557a;
+				margin-top: 32px;
+				margin-bottom: 0;
+			}
+		}
+	}
+}

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="76ae3796-706f-4687-8033-6b06914e7b7e" name="Default Changelist" comment="resolve conflict" />
+    <list id="206e2175-1300-4e09-9aa0-3843c49dc4d0" name="Revert &quot;Merge into main&quot;" comment="Revert &quot;Merge into main&quot;&#10;&#10;This reverts commit 4292bf78" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/../.." value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
+  </component>
+  <component name="NamedScopeManager">
+    <scope name="*.{tsx}" pattern="" />
+  </component>
+  <component name="ProjectId" id="2D1bEosahi12fddGx6DwCqv31r1" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">
+    <property name="Git.Branch.Popup.ShowAllRemotes" value="true" />
+    <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="node.js.detected.package.eslint" value="true" />
+    <property name="node.js.selected.package.eslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SvnConfiguration">
+    <configuration>C:\Users\bdphu\AppData\Roaming\Subversion</configuration>
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="76ae3796-706f-4687-8033-6b06914e7b7e" name="Default Changelist" comment="" />
+      <created>1659869438792</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1659869438792</updated>
+      <workItem from="1659869460625" duration="10893000" />
+      <workItem from="1659883711885" duration="24000" />
+      <workItem from="1660030385298" duration="5000" />
+      <workItem from="1660790583643" duration="1409000" />
+      <workItem from="1660875671880" duration="94000" />
+      <workItem from="1661225620469" duration="384000" />
+      <workItem from="1661226802376" duration="155000" />
+      <workItem from="1661414666953" duration="1787000" />
+      <workItem from="1661416494165" duration="90000" />
+      <workItem from="1661745732178" duration="468000" />
+    </task>
+    <task id="LOCAL-00001" summary="test compare">
+      <created>1659881049950</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1659881049950</updated>
+    </task>
+    <task id="LOCAL-00002" summary="test compare">
+      <created>1659881485057</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1659881485057</updated>
+    </task>
+    <task id="LOCAL-00003" summary="test compare">
+      <created>1659882260198</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1659882260198</updated>
+    </task>
+    <task id="LOCAL-00004" summary="resolve conflict main">
+      <created>1659883039100</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1659883039100</updated>
+    </task>
+    <task id="LOCAL-00005" summary="resolve conflict">
+      <created>1661414836651</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1661414836651</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="test compare" />
+    <MESSAGE value="resolve conflict main" />
+    <MESSAGE value="resolve conflict" />
+    <option name="LAST_COMMIT_MESSAGE" value="resolve conflict" />
+  </component>
+</project>
