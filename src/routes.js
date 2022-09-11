@@ -4,7 +4,6 @@ import CandidateDetail from 'Views/Admin/candidate/ManageCandidateDetail';
 import Home from 'Views/Admin/home/Home';
 import ManageInterview from 'Views/Admin/interview/ManageInterview';
 import JobPost from 'Views/Admin/jobpost/JobPost';
-import JobPostCreateNew from 'Views/Admin/jobpost/JobPostCreateNew';
 import JobPostDetail from 'Views/Admin/jobpost/JobPostDetail';
 import Profile from 'Views/Admin/profile/Profile';
 import ManageRecruiter from 'Views/Admin/recruiter/ManageRecruiter';

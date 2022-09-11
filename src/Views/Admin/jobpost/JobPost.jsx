@@ -442,18 +442,22 @@ const JobPost = ({ connection }) => {
 	return (
 		<div className="wrap-management">
 			<div className="wrap-management-header">
-				<p className="management-title">QUẢN LÝ TIN ĐĂNG TUYỂN</p>
-				<div>
-					<Link to={`/jobPost/CreateNew`}>
-						<Button className="create-new-job-post-btn">
-							<img
-								className="img"
-								src="/Assets/images/jobpost/CreateNewJobPost.png"
-								alt="Create new job post"
-							/>
-							Tạo tin mới
-						</Button>
-					</Link>
+				<div className="wrap-management-header-title">
+					QUẢN LÝ TIN ĐĂNG TUYỂN
+				</div>
+				<div className="wrap-management-header-buttons">
+					{!isAdmin && (
+						<Link to={`/jobPost/CreateNew`}>
+							<Button className="add-new-jobpost">
+								<img
+									className="img"
+									src="/Assets/images/jobpost/CreateNewJobPost.png"
+									alt="Create new job post"
+								/>
+								Tạo tin mới
+							</Button>
+						</Link>
+					)}
 				</div>
 			</div>
 
