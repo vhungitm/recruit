@@ -1,877 +1,1005 @@
+:root {
+  --cui-primary-rgb: 12, 85, 122;
+}
+
 /* Body */
 body {
-	margin: 0;
-	font-weight: 400;
-	font-size: 14px;
-	font-family: 'Nunito Sans', sans-serif !important;
-	-webkit-font-smoothing: antialiased;
-	-moz-osx-font-smoothing: grayscale;
-	a {
-		color: #108fcf;
-	}
-	.fade {
-		transition: opacity 0.7s linear;
-	}
+  margin: 0;
+  font-weight: 400;
+  font-size: 14px;
+  font-family: 'Nunito Sans', sans-serif !important;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  min-width: 760px;
+  overflow: unset !important;
+  padding: unset !important;
+
+  a {
+    color: #108fcf;
+  }
+  .fade {
+    transition: opacity 0.7s linear;
+  }
 }
 
 /* Tab */
 .title-tab {
-	font-weight: 700;
-	font-size: 24px;
-	line-height: 140%;
-	color: #042d41;
-	margin-bottom: 32px;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 140%;
+  color: #042d41;
+  margin-bottom: 32px;
 }
 .react-tabs {
-	.react-tabs__tab {
-		font-weight: 600 !important;
-		font-size: 16px !important;
-		line-height: 140%;
-		color: #a19f9f !important;
-		border: none;
-		background: #efefef;
-		border-radius: 4px 4px 0px 0px;
-		padding: 15px 34px;
-		margin-right: 8px;
-	}
-	.react-tabs__tab--selected {
-		color: #0c557a !important;
-		font-weight: 700 !important;
-		background: #ffffff;
-		box-shadow: 0px 4px 8px rgba(4, 45, 65, 0.1);
-	}
-	.react-tabs__tab-list {
-		border-bottom: none;
-		margin-bottom: 0;
-	}
+  .react-tabs__tab {
+    font-weight: 600 !important;
+    font-size: 16px !important;
+    line-height: 140%;
+    color: #a19f9f !important;
+    border: none;
+    background: #efefef;
+    border-radius: 4px 4px 0px 0px;
+    padding: 15px 34px;
+    margin-right: 8px;
+  }
+  .react-tabs__tab--selected {
+    color: #0c557a !important;
+    font-weight: 700 !important;
+    background: #ffffff;
+    box-shadow: 0px 4px 8px rgba(4, 45, 65, 0.1);
+  }
+  .react-tabs__tab-list {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
 }
 .react-tabs__tab-panel--selected {
-	padding: 16px;
+  padding: 16px;
 }
 
 code {
-	font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-		'Nunito Sans', monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    'Nunito Sans', monospace;
 }
 
 /* Toastify */
 .Toastify {
-	.Toastify__toast-container {
-		width: auto;
-		padding: 0;
+  .Toastify__toast-container {
+    width: auto;
+    padding: 0;
 
-		&.Toastify__toast-container--bottom-left {
-			bottom: 24px;
-			left: 24px;
-		}
+    &.Toastify__toast-container--bottom-left {
+      bottom: 24px;
+      left: 24px;
+    }
 
-		.Toastify__toast {
-			font-family: 'Nunito Sans';
-			font-style: normal;
-			font-weight: 400;
-			font-size: 16px;
-			padding: 16px 24px;
-			margin-bottom: 0;
-			margin-top: 24px;
-			min-height: auto !important;
+    .Toastify__toast {
+      font-family: 'Nunito Sans';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      padding: 16px 24px;
+      margin-bottom: 0;
+      margin-top: 24px;
+      min-height: auto !important;
 
-			.Toastify__toast-body {
-				padding: 0;
-			}
+      .Toastify__toast-body {
+        padding: 0;
+      }
 
-			.Toastify__close-button {
-				opacity: 100;
-				margin-left: 24px;
+      .Toastify__close-button {
+        opacity: 100;
+        margin-left: 24px;
 
-				svg {
-					width: 14px;
-					height: 14px;
-					background-image: url('../../public/Assets/images/admin/menu-close.png');
-					background-size: contain;
+        svg {
+          width: 14px;
+          height: 14px;
+          background-image: url('../../public/Assets/images/admin/menu-close.png');
+          background-size: contain;
 
-					path {
-						display: none;
-					}
-				}
-			}
-		}
-		.undo-btn {
-			text-decoration: underline;
-			padding: 0 0 0 24px;
-		}
-	}
+          path {
+            display: none;
+          }
+        }
+      }
+    }
+    .undo-btn {
+      text-decoration: underline;
+      padding: 0 0 0 24px;
+    }
+  }
 }
 
 /* Modal */
 .modal {
-	top: 10% !important;
-	text-align: center;
-	&.delete-modal {
-		.modal-content {
-			.modal-body {
-				.modal-title {
-					color: #ef3737;
-					font-weight: 700;
-					font-size: 32px;
-					line-height: 45px;
-					text-align: center;
-					margin-bottom: 8px;
-				}
-			}
-			.modal-footer {
-				.confirm-btn {
-					background: #ef3737 !important;
-					border: 1px solid #ef3737 !important;
-				}
-			}
-		}
-	}
+  top: 0% !important;
+  text-align: center;
+  &.delete-modal {
+    .modal-content {
+      .modal-body {
+        .modal-title {
+          color: #ef3737;
+          font-weight: 700;
+          font-size: 32px;
+          line-height: 45px;
+          text-align: center;
+          margin-bottom: 8px;
+        }
+      }
+      .modal-footer {
+        .confirm-btn {
+          background: #ef3737 !important;
+          border: 1px solid #ef3737 !important;
+        }
+      }
+    }
+  }
 
-	/* Approve modal */
-	&.approve-modal {
-		.modal-content {
-			width: 400px;
-			max-width: 400px;
-			.modal-body {
-				.react-select-container {
-					width: 200px;
-					margin: 24px auto 0 auto;
-				}
-			}
-		}
-	}
+  /* Approve modal */
+  &.approve-modal {
+    top: 25% !important;
+    .modal-content {
+      width: 402px !important;
+      max-width: 402px;
+      .modal-body {
+        .modal-title {
+          color: #0c557a !important;
+        }
+        .react-select-container {
+          width: 200px;
+          margin: 24px auto 0 auto;
+          text-align: left;
 
-	/* Interview approve modal */
-	&.interview-approve-modal {
-		.modal-content {
-			width: 520px;
-			max-width: 520px;
-			.modal-body {
-				.interview-info {
-					margin-top: 24px;
-					text-align: left;
-					.interview-item {
-						margin-bottom: 24px;
-						&.flex {
-							display: flex;
-							gap: 6px;
-							.interview-item-title {
-								margin-top: 10px;
-							}
-						}
-						.interview-item-title {
-							font-weight: bold;
-						}
-						.interview-item-content {
-							flex: 1;
-						}
-						&:last-child {
-							margin-bottom: 0;
-						}
-						.form-group {
-							margin-bottom: 0 !important;
-						}
-					}
-				}
-			}
-		}
-	}
+          .react-select__option {
+            padding: 4px;
+          }
+        }
+      }
+    }
+  }
+  &.un-block-modal {
+    top: 2% !important;
+    .modal-content {
+      width: 400px;
+      max-width: 400px;
+      .modal-body {
+        .modal-title {
+          color: #27ae60 !important;
+        }
+      }
+    }
+  }
 
-	/* Interview reject modal */
-	&.interview-reject-modal {
-		.modal-content {
-			width: 520px;
-			max-width: 520px;
-			.modal-body {
-				.modal-title {
-					color: #ef3737;
-				}
-				.interview-info {
-					margin-top: 24px;
-					text-align: left;
-					.interview-item {
-						margin-bottom: 24px;
-						&.flex {
-							display: flex;
-							gap: 6px;
-							.interview-item-title {
-								margin-top: 10px;
-							}
-						}
-						.interview-item-title {
-							font-weight: bold;
-						}
-						.interview-item-content {
-							flex: 1;
-						}
-						&:last-child {
-							margin-bottom: 0;
-						}
-						.form-group {
-							margin-bottom: 0 !important;
-						}
-					}
-				}
-			}
-		}
-	}
+  /* Interview approve modal */
+  &.interview-approve-modal {
+    .modal-content {
+      width: 520px;
+      max-width: 520px;
+      .modal-body {
+        .interview-info {
+          margin-top: 24px;
+          text-align: left;
+          .interview-item {
+            margin-bottom: 24px;
+            &.flex {
+              display: flex;
+              gap: 6px;
+              .interview-item-title {
+                margin-top: 10px;
+              }
+            }
+            .interview-item-title {
+              font-weight: bold;
+            }
+            .interview-item-content {
+              flex: 1;
+            }
+            &:last-child {
+              margin-bottom: 0;
+            }
+            .form-group {
+              margin-bottom: 0 !important;
+            }
+          }
+        }
+      }
+    }
+  }
 
-	/* Job post reject modal */
-	&.jobpost-reject-modal {
-		.modal-content {
-			width: 882px;
-			max-width: 882px;
-			.modal-body {
-				padding-bottom: 16px;
-				.modal-inform {
-					font-weight: 400;
-					font-size: 16px;
-				}
-				.modal-title {
-					font-weight: 700;
-					font-size: 32px;
-					line-height: 140%;
-					color: #ef3737;
-					margin: 8px 0;
-				}
-				ul {
-					padding-left: 0;
-					margin-bottom: 0;
-					li {
-						list-style-type: none;
-						text-align: left;
-						margin-bottom: 16px;
-						&:last-child {
-							margin-bottom: 0;
-						}
-						.form-check-label {
-							font-weight: 400;
-							font-size: 16px;
-							line-height: 22px;
-							color: #042d41;
-						}
-					}
-				}
-				.modal-title-reject {
-					font-weight: 700;
-					font-size: 32px;
-					line-height: 45px;
-					color: #0c557a;
-				}
-				.modal-inform-reject {
-					font-weight: 400;
-					font-size: 16px;
-					line-height: 22px;
-					color: #042d41;
-				}
-				.error-list {
-					margin-top: 24px;
-					display: grid;
-					grid-template-columns: 50% 50%;
+  /* Interview reject modal */
+  &.interview-reject-modal {
+    .modal-content {
+      width: 520px;
+      max-width: 520px;
+      .modal-body {
+        .modal-title {
+          color: #ef3737;
+        }
+        .interview-info {
+          margin-top: 24px;
+          text-align: left;
+          .interview-item {
+            margin-bottom: 24px;
+            &.flex {
+              display: flex;
+              gap: 6px;
+              .interview-item-title {
+                margin-top: 10px;
+              }
+            }
+            .interview-item-title {
+              font-weight: bold;
+            }
+            .interview-item-content {
+              flex: 1;
+            }
+            &:last-child {
+              margin-bottom: 0;
+            }
+            .form-group {
+              margin-bottom: 0 !important;
+            }
+          }
+        }
+      }
+    }
+  }
 
-					.normal-error {
-						padding-right: 32px;
-						border-right: 0.5px solid #a19f9f;
-						.title {
-							text-align: left;
-							font-weight: 700;
-							font-size: 16px;
-							line-height: 22px;
-							color: #0c557a;
-						}
-					}
-					.serious-error {
-						padding-left: 32px;
-						.title {
-							text-align: left;
-							font-weight: 700;
-							font-size: 16px;
-							line-height: 22px;
-							color: #ff9242;
-						}
-					}
-					input {
-						width: 20px;
-						height: 20px;
-					}
-					textarea {
-						box-shadow: none;
-						height: 144px;
-						font-weight: 400;
-						font-size: 14px;
-					}
-					.form-check-input:checked {
-						border-color: #108fcf;
-						background-color: #ffffff;
-						box-shadow: none;
-					}
-					.form-check-input:checked[type='radio'] {
-						background-image: url('../../public/Assets/images/jobpost/bg-radio.png');
-						background-position: center;
-						background-size: auto;
-					}
-				}
-				.note {
-					font-weight: 400;
-					font-size: 14px;
-					line-height: 20px;
-					color: #042d41;
-					margin-top: 24px;
-					text-align: center;
-				}
-			}
-			.modal-footer {
-				button {
-					max-width: 192px;
-				}
-			}
-		}
-	}
+  /* Job post reject modal */
+  &.jobpost-reject-modal {
+    .modal-dialog {
+      display: flex;
+      max-width: none;
+      align-items: center;
+      min-height: calc(100% - var(--cui-modal-margin) * 2);
 
-	/* Job post candidate modal */
-	&.jobpost-candidate-modal {
-		top: 5%;
-		.modal-content {
-			width: 756px !important;
-			max-height: 714px !important;
-			.modal-header {
-				.modal-title {
-					font-weight: 700;
-					font-size: 24px;
-					color: #042d41;
-				}
-			}
-			.modal-body {
-				padding: 0 1rem 1rem;
-				overflow: hidden;
-				.table-responsive {
-					overflow-y: auto;
-					max-height: 616px;
-					&::-webkit-scrollbar {
-						width: 16px;
-						background: #efefef;
-						border-left: 8px solid white;
-					}
-					&::-webkit-scrollbar-thumb {
-						background: #d9d6d6;
-						border-left: 8px solid white;
-					}
-				}
-			}
-		}
-	}
+      .modal-content {
+        width: 882px;
+        height: 741px;
+        max-width: 882px;
 
-	/* Account reject modal */
-	&.account-reject-modal {
-		.modal-content {
-			width: 520px;
-			max-width: 520px;
-			.modal-body {
-				.modal-inform {
-					font-weight: 400;
-					font-size: 16px;
-				}
-			}
-			.modal-title {
-				color: #ef3737 !important;
-			}
+        .modal-body {
+          padding-bottom: 16px;
 
-			.modal-body {
-				padding-top: 8px;
-				ul {
-					padding-left: 0px;
-					margin-bottom: 0;
-					li {
-						list-style-type: none;
-						text-align: left;
-						margin-bottom: 24px;
-						input {
-							width: 20px;
-							max-width: 20px;
-							min-width: 20px;
+          .modal-inform {
+            font-weight: 400;
+            font-size: 16px;
+          }
 
-							height: 20px;
-						}
-						label {
-							margin-left: 8px;
-						}
-						.control-group {
-							margin: 24px 0 0 0;
-							textarea {
-								height: 144px;
-								padding: 16px;
-							}
-						}
-						.form-check {
-							display: flex;
-							align-items: center;
+          .modal-title {
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 140%;
+            color: #ef3737;
+            margin: 8px 0;
+          }
 
-							.form-check-input {
-								margin-top: 0;
+          ul {
+            padding-left: 0;
+            margin-bottom: 0;
 
-								&:checked {
-									border-color: #108fcf;
-									background-color: #ffffff;
-									box-shadow: none;
-								}
+            li {
+              list-style-type: none;
+              text-align: left;
+              margin-bottom: 16px;
 
-								&:checked[type='radio'] {
-									background-image: url('../../public/Assets/images/jobpost/bg-radio.png');
-									background-position: center;
-									background-size: auto;
-								}
-							}
-						}
-					}
-					> li:last-child {
-						margin-bottom: 8px;
-					}
-				}
-				.note {
-					margin: 0;
-					text-align: left;
-					font-weight: 400;
-					font-size: 14px;
-				}
-			}
-			.modal-footer {
-				button {
-					max-width: 192px;
-				}
-			}
-		}
-	}
-	.modal-dialog {
-		max-width: none;
-		.modal-content {
-			background: #ffffff;
-			box-shadow: 0px 4px 8px rgba(4, 45, 65, 0.1);
-			border-radius: 4px;
-			width: 400px;
-			margin: auto;
+              &:last-child {
+                margin-bottom: 0;
+              }
 
-			.modal-header {
-				border: none;
-				align-items: baseline;
-				.btn-close {
-					color: #042d41;
-					opacity: 1;
-					&:hover,
-					&:checked,
-					&:focus,
-					&:active {
-						box-shadow: 0 0 0 0 !important;
-					}
-				}
-			}
+              .form-check-label {
+                font-weight: 400;
+                font-size: 16px;
+                line-height: 22px;
+                color: #042d41;
+              }
+            }
+          }
 
-			/* Modal body */
-			.modal-body {
-				padding: 0 56px 24px 56px;
-				.img-88 {
-					width: 80px !important;
-					height: 88px !important;
-				}
-				.modal-title {
-					color: #0c557a;
-					margin-bottom: 8px;
-					text-align: center;
-					font-weight: 700;
-					font-size: 32px;
-				}
-				.modal-inform {
-					font-weight: 400;
-					font-size: 14px;
-					color: #042d41;
-					margin-bottom: 24px;
-				}
-			}
+          .modal-title-reject {
+            font-weight: 700;
+            font-size: 32px;
+            line-height: 45px;
+            color: #0c557a;
+          }
 
-			/* Modal footer */
-			.modal-footer {
-				padding: 0 56px 56px 56px;
-				border: none;
-				display: flex;
-				justify-content: center !important;
-				gap: 24px;
-				button {
-					flex: 1 1;
-					height: 40px;
-					line-height: 140%;
-					margin: 0;
-					padding: 9.5px;
-					border-radius: 4px;
-					font-weight: 600;
-					font-size: 15px;
-					color: white;
-					box-sizing: border-box;
-					&.cancel-btn {
-						background: #ffffff !important;
-						color: #108fcf !important;
-						border: 1px solid #108fcf !important;
-					}
-				}
-			}
-		}
-	}
+          .modal-inform-reject {
+            font-weight: 400;
+            font-size: 16px;
+            line-height: 22px;
+            color: #042d41;
+          }
+
+          .error-list {
+            margin-top: 24px;
+            display: flex;
+
+            .normal-error {
+              padding-right: 32px;
+              flex: 1;
+              // border: 0.5px solid #a19f9f;
+              .title {
+                text-align: left;
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 22px;
+                color: #0c557a;
+              }
+            }
+            .line-error {
+              border: 0.0001px solid #a19f9f;
+              margin-bottom: 16px;
+            }
+            .serious-error {
+              padding-left: 32px;
+              flex: 1;
+              .title {
+                text-align: left;
+                font-weight: 700;
+                font-size: 16px;
+                line-height: 22px;
+                color: #ff9242;
+              }
+            }
+            input {
+              width: 20px;
+              height: 20px;
+            }
+            textarea {
+              box-shadow: none;
+              height: 144px;
+              font-weight: 400;
+              font-size: 14px;
+            }
+            .form-check-input:checked {
+              border-color: #108fcf;
+              background-color: #ffffff;
+              box-shadow: none;
+            }
+            .form-check-input:checked[type='radio'] {
+              background-image: url('../../public/Assets/images/jobpost/bg-radio.png');
+              background-position: center;
+              background-size: auto;
+            }
+          }
+          .note {
+            font-weight: 400;
+            font-size: 14px;
+            line-height: 20px;
+            color: #042d41;
+            margin-top: 24px;
+            text-align: center;
+          }
+        }
+        .modal-footer {
+          button {
+            max-width: 192px;
+          }
+        }
+      }
+    }
+  }
+  /* Job post update modal - Recuiter */
+  &.update-modal {
+    .modal-content {
+      .modal-body {
+        .modal-inform {
+          margin-bottom: 0 !important;
+        }
+      }
+    }
+  }
+
+  /* Job post candidate modal */
+  &.jobpost-candidate-modal {
+    .modal-content {
+      width: 756px !important;
+      max-height: 714px !important;
+      top: 11rem;
+      overflow-y: auto;
+      .modal-header {
+        padding: 24px 24px 16px 24px;
+
+        .modal-title {
+          font-weight: 700;
+          font-size: 24px;
+          color: #042d41;
+        }
+      }
+      .modal-body {
+        padding: 0 24px 24px 24px !important;
+        overflow: hidden;
+        .table-responsive {
+          overflow-y: auto;
+          max-height: 616px;
+          &::-webkit-scrollbar {
+            width: 16px;
+            background: #efefef;
+            border-left: 8px solid white;
+          }
+          &::-webkit-scrollbar-thumb {
+            background: #d9d6d6;
+            border-left: 8px solid white;
+          }
+        }
+      }
+    }
+  }
+
+  /* Account reject modal */
+  &.account-reject-modal {
+    .modal-dialog {
+      display: flex;
+      max-width: none;
+      align-items: center;
+      min-height: calc(100% - var(--cui-modal-margin) * 2);
+
+      .modal-content {
+        width: 520px;
+        max-width: 520px;
+        height: 748px;
+
+        .modal-body {
+          .modal-inform {
+            font-weight: 400;
+            font-size: 16px;
+          }
+        }
+
+        .modal-title {
+          color: #ef3737 !important;
+        }
+
+        .modal-body {
+          padding-top: 8px;
+
+          ul {
+            padding-left: 0px;
+            margin-bottom: 0;
+
+            li {
+              list-style-type: none;
+              text-align: left;
+              margin-bottom: 24px;
+
+              input {
+                width: 20px;
+                max-width: 20px;
+                min-width: 20px;
+
+                height: 20px;
+              }
+
+              label {
+                margin-left: 8px;
+              }
+
+              .control-group {
+                margin: 24px 0 0 0;
+
+                textarea {
+                  height: 144px;
+                  padding: 16px;
+                }
+              }
+
+              .form-check {
+                display: flex;
+                align-items: center;
+
+                .form-check-input {
+                  margin-top: 0;
+
+                  &:checked {
+                    border-color: #108fcf;
+                    background-color: #ffffff;
+                    box-shadow: none;
+                  }
+
+                  &:checked[type='radio'] {
+                    background-image: url('../../public/Assets/images/jobpost/bg-radio.png');
+                    background-position: center;
+                    background-size: auto;
+                  }
+                }
+              }
+            }
+
+            > li:last-child {
+              margin-bottom: 8px;
+            }
+          }
+
+          .note {
+            margin: 0;
+            text-align: left;
+            font-weight: 400;
+            font-size: 14px;
+          }
+        }
+
+        .modal-footer {
+          button {
+            max-width: 192px;
+          }
+        }
+      }
+    }
+  }
+
+  & .modal-dialog {
+    max-width: none;
+    .modal-content {
+      background: #ffffff;
+      box-shadow: 0px 4px 8px rgba(4, 45, 65, 0.1);
+      border-radius: 4px;
+      width: 400px;
+      margin: auto;
+
+      .modal-header {
+        border: none;
+        align-items: baseline;
+        .btn-close {
+          color: #042d41;
+          opacity: 1;
+          &:hover,
+          &:checked,
+          &:focus,
+          &:active {
+            box-shadow: 0 0 0 0 !important;
+          }
+        }
+      }
+
+      /* Modal body */
+      .modal-body {
+        padding: 0 56px 24px 56px;
+        .img-88 {
+          width: 80px !important;
+          height: 88px !important;
+        }
+        .modal-title {
+          color: #0c557a;
+          margin-bottom: 8px;
+          text-align: center;
+          font-weight: 700;
+          font-size: 32px;
+          &.color-green {
+            color: #27ae60;
+          }
+        }
+        .modal-inform {
+          font-weight: 400;
+          font-size: 14px;
+          color: #042d41;
+          margin-bottom: 24px;
+        }
+      }
+
+      /* Modal footer */
+      .modal-footer {
+        padding: 0 56px 56px 56px;
+        border: none;
+        display: flex;
+        justify-content: center !important;
+        gap: 24px;
+        button {
+          flex: 1 1;
+          height: 40px;
+          line-height: 140%;
+          margin: 0;
+          padding: 9.5px;
+          border-radius: 4px;
+          font-weight: 600;
+          font-size: 15px;
+          color: white;
+          box-sizing: border-box;
+          &.cancel-btn {
+            background: #ffffff !important;
+            color: #108fcf !important;
+            border: 1px solid #108fcf !important;
+          }
+        }
+      }
+    }
+  }
 }
 .modal-backdrop {
-	background-color: rgba(0, 0, 0, 0.2) !important;
+  background-color: rgba(0, 0, 0, 0.2) !important;
 }
 .modal-backdrop.show {
-	opacity: 0.8 !important;
+  opacity: 0.8 !important;
 }
 .MuiTooltip-popper[data-popper-placement*='bottom']
-	.css-1k51tf5-MuiTooltip-tooltip {
-	margin-top: 5px;
-	background: #042d41;
-	border-radius: 4px;
-	color: #ffffff;
-	font-size: 11px;
+  .css-1k51tf5-MuiTooltip-tooltip {
+  margin-top: 5px;
+  background: #042d41;
+  border-radius: 4px;
+  color: #ffffff;
+  font-size: 11px;
 }
 .css-kudwh-MuiTooltip-arrow {
-	color: #042d41;
+  color: #042d41;
 }
 
 /* React select */
 .react-select-container {
-	font-weight: 400;
-	font-size: 14px;
-	color: #042d41;
-	height: 40px;
-	.react-select__control {
-		min-height: 100%;
-		height: 100%;
-		border-color: #d9d6d6 !important;
-		&--is-focused {
-			border: 1px solid #108fcf !important;
-			box-shadow: none !important;
-		}
-		&--menu-is-open {
-			border-radius: 4px 4px 0 0 !important;
-			border-bottom: 0 !important;
-		}
+  font-weight: 400;
+  font-size: 14px;
+  color: #042d41;
+  height: 40px;
+  .react-select__control {
+    min-height: 100%;
+    height: 100%;
+    border-color: #d9d6d6 !important;
+    &--is-focused {
+      border: 1px solid #108fcf !important;
+      box-shadow: none !important;
+    }
+    &--menu-is-open {
+      border-radius: 4px 4px 0 0 !important;
 
-		.react-select__value-container {
-			width: 100%;
-			height: 100%;
-			position: absolute;
-			.react-select__single-value {
-				width: calc(100% - 20px);
-			}
-		}
-		.react-select__input-container {
-			position: absolute;
-			.react-select__input {
-				border: 0 !important;
-			}
-		}
-	}
-	.react-select__indicators {
-		height: 100%;
-		position: absolute;
-		right: 0;
-		.react-select__indicator-separator {
-			width: 0 !important;
-		}
-		.react-select__indicator {
-			height: 100%;
-			display: flex;
-			align-items: center;
-		}
-	}
-	.react-select__menu {
-		margin-top: 0;
-		border: 1px solid #108fcf !important;
-		border-radius: 0 0 4px 4px;
-		overflow-y: hidden;
-		box-shadow: none;
-		padding: 4px;
-		.react-select__menu-list {
-			padding: 0;
-			.react-select__option {
-				color: #042d41;
-				border-radius: 4px;
-				margin-bottom: 4px;
+      & ~ .react-select__menu {
+        border-top: 0 !important;
+        display: block !important;
+      }
+    }
 
-				&:last-child {
-					margin-bottom: 0;
-				}
+    .react-select__value-container {
+      width: 100%;
+      position: absolute;
+      .react-select__placeholder {
+        width: calc(100% - 20px);
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+      }
+      .react-select__single-value {
+        width: calc(100% - 20px);
+        color: #042d41;
+      }
+    }
+    .react-select__input-container {
+      position: absolute;
+      .react-select__input {
+        border: 0 !important;
+      }
+    }
+  }
+  .react-select__indicators {
+    height: 100%;
+    position: absolute;
+    right: 0;
+    .react-select__indicator-separator {
+      width: 0 !important;
+    }
+    .react-select__indicator {
+      height: 100%;
+      display: flex;
+      align-items: center;
+    }
+  }
+  .react-select__menu {
+    margin-top: 0;
+    border: 1px solid #108fcf !important;
+    border-radius: 0 0 4px 4px;
+    overflow-y: hidden;
+    box-shadow: none;
+    background: white;
+    padding: 4px;
+    .react-select__menu-list {
+      padding: 0;
+      .react-select__option {
+        color: #042d41;
+        border-radius: 4px;
+        margin-bottom: 4px;
 
-				&--is-selected {
-					background: #e2f2f9;
-				}
+        &:last-child {
+          margin-bottom: 0;
+        }
 
-				&--is-focused {
-					background: #edf5f8;
-				}
-			}
-			&::-webkit-scrollbar {
-				border-left: 4px solid white;
-				width: 12px;
-				background: #f5f5f5;
-			}
+        &--is-selected {
+          background: #e2f2f9;
+        }
 
-			&::-webkit-scrollbar-thumb {
-				background: #dddddd;
-				border-left: 4px solid white;
-			}
-		}
-	}
+        &--is-focused {
+          background: #edf5f8;
+        }
+      }
+      &::-webkit-scrollbar {
+        border-left: 4px solid white;
+        width: 12px;
+        background: #f5f5f5;
+      }
+
+      &::-webkit-scrollbar-thumb {
+        background: #dddddd;
+        border-left: 4px solid white;
+      }
+    }
+  }
+
+  &.is-invalid {
+    .react-select__control {
+      border-color: #e55353 !important;
+    }
+  }
 }
 
 /* Dropdown */
 .dropdown {
-	.dropdown-toggle {
-		&::after {
-			background: url('../../public/Assets/images/jobpost/angle-down.png') !important;
-			background-size: contain;
-			width: 20px;
-			height: 20px;
-			border: none;
-			content: '';
-			margin-left: 16px !important;
-		}
-	}
+  .dropdown-toggle {
+    &::after {
+      background: url('../../public/Assets/images/jobpost/angle-down.png') !important;
+      background-size: contain;
+      width: 20px;
+      height: 20px;
+      border: none;
+      content: '';
+      margin-left: 16px !important;
+    }
+  }
 }
 
 /* Check */
 .form-check {
-	display: flex !important;
-	align-items: center;
-	.form-check-input {
-		width: 20px;
-		height: 20px;
-		box-shadow: none;
-		margin-bottom: 4px;
-		box-shadow: none !important;
-		&:checked {
-			background-color: #ffffff;
-			border-color: #108fcf;
-			&[type='checkbox'] {
-				background-image: url('../../public/Assets/images/jobpost/checked.png') !important;
-				border-color: #108fcf;
-			}
-		}
-	}
-	.form-check-label {
-		margin-left: 10px;
-	}
+  display: flex !important;
+  align-items: center;
+  margin: 0;
+  .form-check-input {
+    width: 20px;
+    height: 20px;
+    box-shadow: none;
+    margin-bottom: 4px;
+    box-shadow: none !important;
+    &:checked {
+      background-color: #ffffff;
+      border-color: #108fcf;
+      &[type='checkbox'] {
+        background-image: url('../../public/Assets/images/jobpost/checked.png') !important;
+        border-color: #108fcf;
+      }
+    }
+  }
+  .form-check-label {
+    margin-left: 10px;
+  }
 }
 
 /* Calendar wrapper */
 .calendarWrapper {
-	.input {
-		.form-control {
-			cursor: pointer;
-		}
-		.close-btn {
-			background-color: red;
-			width: 16px;
-			height: 16px;
-			position: absolute;
-			top: 35px;
-			right: 10px;
-			background: url('../../public/Assets/images/jobpost/filter-close-btn.png');
-			background-size: contain;
-		}
-	}
-	position: relative;
-	> .rdrCalendarWrapper {
-		position: absolute;
-		z-index: 100;
-		border: 1px solid #d9d6d6;
-	}
-	&.right {
-		> .rdrCalendarWrapper {
-			right: 0;
-		}
-	}
+  min-width: 202px;
+  .input {
+    .inputBox {
+      min-width: 202px;
+
+      &::placeholder {
+        color: #a19f9f;
+      }
+    }
+    .form-control {
+      cursor: pointer;
+    }
+    .close-btn {
+      background-color: red;
+      width: 16px;
+      height: 16px;
+      position: absolute;
+      top: 35px;
+      right: 10px;
+      background: url('../../public/Assets/images/jobpost/filter-close-btn.png');
+      background-size: contain;
+    }
+  }
+  position: relative;
+  > .rdrCalendarWrapper {
+    position: absolute;
+    z-index: 100;
+    border: 1px solid #d9d6d6;
+  }
+  &.right {
+    > .rdrCalendarWrapper {
+      right: 0;
+    }
+  }
 }
 
 /* Background color */
 .bg-primary {
-	background-color: #108fcf !important;
+  background-color: #108fcf !important;
 }
 .bg-danger {
-	background-color: #f10e0e !important;
+  background-color: #f10e0e !important;
 }
 
 /* Button */
 .btn-group {
-	display: flex;
-	justify-content: space-between;
-	gap: 24px;
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
 }
 .btn {
-	border-radius: 4px !important;
-	border: 0;
-	font-weight: 600;
-	font-size: 15px;
+  border-radius: 4px !important;
+  border: 0;
+  font-weight: 600;
+  font-size: 15px;
 
-	&:hover,
-	&:checked,
-	&:focus,
-	&:active {
-		border: 0 !important;
-		box-shadow: 0 0 0 0 !important;
-	}
+  &:hover,
+  &:checked,
+  &:focus,
+  &:active {
+    border: 0 !important;
+    box-shadow: 0 0 0 0 !important;
+  }
 
-	&.btn-primary {
-		background-color: #108fcf !important;
-		color: white;
-	}
-	&.btn-success {
-		background: #27ae60 !important;
-		color: white;
-	}
-	&.btn-dark {
-		&:disabled {
-			background: #c9c9c9 !important;
-		}
-	}
-	&.btn-danger {
-		background-color: #f10e0e !important;
-		color: white !important;
-	}
-	&.btn-danger-outline {
-		border: 1px solid #f10e0e !important;
-		background: white !important;
-		color: #f10e0e !important;
-	}
-	&.btn-cancel,
-	&.btn-secondary {
-		border: 1px solid #108fcf !important;
-		box-shadow: 0 0 0 0 !important;
-		background: #fff !important;
-		color: #108fcf !important;
+  &.btn-primary {
+    background-color: #108fcf !important;
+    color: white;
+  }
+  &.btn-success {
+    background: #27ae60 !important;
+    color: white;
+  }
+  &.btn-dark {
+    &:disabled {
+      background: #c9c9c9 !important;
+    }
+  }
+  &.btn-danger {
+    background-color: #f10e0e !important;
+    color: white !important;
+  }
+  &.btn-danger-outline {
+    border: 1px solid #f10e0e !important;
+    background: white !important;
+    color: #f10e0e !important;
+  }
+  &.btn-cancel,
+  &.btn-secondary {
+    border: 1px solid #108fcf !important;
+    box-shadow: 0 0 0 0 !important;
+    background: #fff !important;
+    color: #108fcf !important;
 
-		a {
-			color: #108fcf !important;
-		}
-	}
+    a {
+      color: #108fcf !important;
+    }
+  }
 }
 
 /* Input */
 input,
 textarea {
-	padding: 9px 8px;
-	border-radius: 4px;
-	border: 1px solid #d9d6d6;
-	font-weight: 400 !important;
-	font-size: 14px !important;
-	color: #042d41 !important;
-	box-shadow: none !important;
-	height: 40px;
-	&:focus,
-	&:focus-visible {
-		border-color: #108fcf !important;
-		outline: 0;
-	}
-	&.form-control {
-		border: 1px solid #d9d6d6;
-		border-radius: 4px;
-		&.is-invalid {
-			border-color: #ef3737 !important;
-			background: none !important;
-			padding-right: 8px !important;
-		}
-	}
+  padding: 9px 8px;
+  border-radius: 4px;
+  border: 1px solid #d9d6d6;
+  font-weight: 400 !important;
+  font-size: 14px !important;
+  color: #042d41 !important;
+  box-shadow: none !important;
+  height: 40px;
+  &:focus,
+  &:focus-visible {
+    border-color: #108fcf !important;
+    outline: 0;
+  }
+  &.form-control {
+    border: 1px solid #d9d6d6;
+    border-radius: 4px;
+    &.is-invalid {
+      border-color: #ef3737 !important;
+      background: none !important;
+      padding-right: 8px !important;
+    }
+  }
 }
 
 /* From */
 .form-group {
-	margin-bottom: 16px;
-	.form-label {
-		font-weight: 600;
-		font-size: 13px;
-		color: #042d41;
-	}
-	.control-group {
-		position: relative;
-		display: flex;
-		align-items: center;
-		width: 100%;
-		.icon-end {
-			position: absolute;
-			right: 8px;
-			width: 20px;
-			height: 20px;
-			& ~ .form-control {
-				padding-right: 36px !important;
-			}
-			img {
-				position: absolute;
-				width: 20px;
-				height: 20px;
-			}
-		}
-		.icon-start {
-			position: absolute;
-			left: 8px;
-			width: 20px;
-			height: 20px;
-			& ~ .form-control {
-				padding-left: 36px !important;
-			}
-			img {
-				position: absolute;
-				width: 20px;
-				height: 20px;
-			}
-		}
-	}
+  margin-bottom: 16px;
+  .form-label {
+    font-weight: 600;
+    font-size: 13px;
+    color: #042d41;
+    margin-bottom: 4px;
+    min-width: 200px;
+  }
+  .control-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    width: 100%;
+    .icon-end {
+      position: absolute;
+      right: 8px;
+      width: 20px;
+      height: 20px;
+      & ~ .form-control {
+        padding-right: 36px !important;
+      }
+      img {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+      }
+    }
+    .icon-start {
+      position: absolute;
+      left: 8px;
+      width: 20px;
+      height: 20px;
+      & ~ .form-control {
+        padding-left: 36px !important;
+      }
+      img {
+        position: absolute;
+        width: 20px;
+        height: 20px;
+      }
+    }
+  }
 }
 
 /* Form invalid feedback */
 .invalid-feedback {
-	display: block !important;
+  display: block !important;
 }
 
 /* Table */
 table {
-	width: 100%;
-	text-align: left;
-	border-radius: 4px;
-	thead tr {
-		th {
-			padding: 18px;
-			height: 56px;
-			font-family: 'Nunito Sans';
-			font-style: normal;
-			color: #042d41;
-			font-weight: 700;
-			font-size: 14px;
-			background: #e2f2f9;
-			&:first-child {
-				border-radius: 4px 0 0 4px;
-			}
-			&:last-child {
-				border-radius: 0 4px 4px 0;
-			}
-		}
-	}
-	tbody tr {
-		&:nth-child(even) {
-			background: #fafafa;
-		}
-		td {
-			padding: 18px;
-			font-weight: 400;
-			font-size: 14px;
-			.img-20 {
-				width: 20px;
-				height: 20px;
-				cursor: pointer;
-			}
-			&:last-child {
-				width: 93px;
-			}
-		}
-	}
+  width: 100%;
+  text-align: left;
+  border-radius: 4px;
+  thead tr {
+    th {
+      padding: 18px;
+      height: 56px;
+      font-family: 'Nunito Sans';
+      font-style: normal;
+      color: #042d41;
+      font-weight: 700;
+      font-size: 14px;
+      background: #e2f2f9;
+      &:first-child {
+        border-radius: 4px 0 0 4px;
+      }
+      &:last-child {
+        border-radius: 0 4px 4px 0;
+      }
+    }
+  }
+  tbody tr {
+    &:nth-child(even) {
+      background: #fafafa;
+    }
+    td {
+      padding: 18px;
+      font-weight: 400;
+      font-size: 14px;
+      .img-20 {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+      }
+      &:last-child {
+        width: 93px;
+      }
+    }
+  }
 }
 
-/* Text */
-.text-primary {
-	color: #0c557a !important;
+// Loading
+.loading {
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+}
+
+.loading-shadow {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 2000;
 }

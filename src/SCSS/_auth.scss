@@ -1,188 +1,190 @@
 .wrap-auth {
-	font-family: 'Nunito Sans' !important;
-	.row {
-		--cui-gutter-x: 0;
-	}
-	.row > div {
-		padding: 0;
-	}
-	.wrap-auth-content {
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		width: 62.5%;
-		min-height: 100vh;
+  font-family: "Nunito Sans" !important;
+  .row {
+    --cui-gutter-x: 0;
+  }
+  .row > div {
+    padding: 0;
+  }
+  .wrap-auth-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 62.5%;
+    min-height: 100vh;
 
-		.auth-content {
-			align-items: center;
-			width: 500px;
-			max-width: 100%;
-			margin: 20px;
-			.waiting-verify-account {
-				width: 477px;
-				text-align: center;
-			}
-			.verify-account {
-				width: 530px;
-			}
-			.auth-header {
-				text-align: center;
-				margin-bottom: 32px;
-				.auth-title {
-					margin-top: 16px;
-					font-weight: 700;
-					font-size: 32px;
-					text-transform: uppercase;
-					color: #0c557a;
-					&.success {
-						color: #27ae60;
-					}
-					&.error {
-						color: #ef3737;
-					}
-				}
-				.auth-logo {
-					img {
-						width: 80px;
-						height: 88px;
-						margin-bottom: 8px;
-					}
-				}
-				.common-error {
-					color: #ef3737;
-					text-align: center;
-					margin-top: 8px;
-				}
-			}
-			.auth-body {
-				.auth-message {
-					margin-bottom: 24px;
-					font-weight: 400;
-					font-size: 16px;
-					color: #042d41;
+    .auth-content {
+      align-items: center;
+      width: 500px;
+      max-width: 100%;
+      margin: 20px;
+      .waiting-verify-account {
+        width: 477px;
+        text-align: center;
+      }
+      .verify-account {
+        width: 530px;
+      }
+      .auth-header {
+        text-align: center;
+        margin-bottom: 32px;
+        .auth-title {
+          margin-top: 16px;
+          font-weight: 700;
+          font-size: 32px;
+          text-transform: uppercase;
+          color: #0c557a;
+          &.success {
+            color: #27ae60;
+          }
+          &.error {
+            color: #ef3737;
+          }
+        }
+        .auth-logo {
+          img {
+            width: 80px;
+            height: 88px;
+            margin-bottom: 8px;
+          }
+        }
+        .common-error {
+          color: #ef3737;
+          text-align: center;
+          margin-top: 8px;
+        }
+      }
+      .auth-body {
+        .auth-message {
+          margin-bottom: 24px;
+          font-weight: 400;
+          font-size: 16px;
+          color: #042d41;
 
-					.primary {
-						color: #0c557a;
-					}
-				}
-				.password-regulation {
-					margin: -10px 0 12px 0;
-					border: 1px solid #108fcf;
-					border-radius: 4px;
-					padding: 16px 0;
-					&.invalid {
-						border-color: #ef3737;
-					}
-					.title {
-						font-size: 14px;
-						padding: 0 12px;
-					}
-					.body {
-						.items {
-							padding: 0 12px;
-							.item {
-								&.valid-feedback {
-									display: block !important;
-									.flag {
-										background: url('../../public/Assets/images/password/check.png');
-									}
-								}
-								&.invalid-feedback {
-									display: block !important;
-									.flag {
-										background: url('../../public/Assets/images/password/cancel.png');
-									}
-								}
-								.message {
-									padding-left: 12px;
-									font-size: 12px !important;
-								}
-								.flag {
-									display: inline-block;
-									background-size: contain;
-									width: 8px;
-									height: 8px;
-									margin-right: 4px;
-								}
-								.flag + .message {
-									padding-left: 0;
-								}
-							}
-						}
-					}
-					.note {
-						padding: 0 12px;
-					}
-				}
-				.remember-me {
-					.form-check-label {
-						font-weight: 400;
-						font-size: 14px;
-					}
-					.forgot-password {
-						font-weight: 600;
-						font-size: 14px;
-					}
-				}
-				.auth-button {
-					margin-top: 24px;
-				}
-				.btn {
-					width: 100%;
-					color: #fff;
-					font-weight: 600;
-					font-size: 15px;
-					padding: 9.5px;
-					border: 0;
-					&.btn-secondary {
-						background: #c9c9c9;
-					}
-					&.btn-primary {
-						a {
-							color: #fff;
-							font-weight: 600;
-							font-size: 15px;
-							text-decoration: none;
-							width: 100%;
-						}
-					}
-				}
-			}
-			.auth-footer {
-				text-align: center;
-				margin-top: 16px;
-				font-size: 14px;
-				line-height: 19px;
-				color: #000000;
-				a {
-					color: #108fcf !important;
-					font-weight: 600;
-					margin-left: 5px;
-				}
-			}
-		}
-	}
-	.wrap-auth-photo {
-		width: 37.5%;
-		padding: 80px;
-		background: #e2f2f9;
-		min-height: 100vh;
-		display: flex;
-		justify-content: center;
-		align-items: center;
-		.img-610 {
-			width: 100%;
-		}
-	}
+          .primary {
+            color: #0c557a;
+          }
+        }
+        .password-regulation {
+          margin: -10px 0 12px 0;
+          border: 1px solid #108fcf;
+          border-radius: 4px;
+          padding: 16px 0;
+          &.invalid {
+            border-color: #ef3737;
+          }
+          .title {
+            font-size: 14px;
+            padding: 0 12px;
+          }
+          .body {
+            .items {
+              padding: 0 12px;
+              .item {
+                &.valid-feedback {
+                  display: block !important;
+                  .flag {
+                    background: url("../../public/Assets/images/password/check.png");
+                  }
+                }
+                &.invalid-feedback {
+                  display: block !important;
+                  .flag {
+                    background: url("../../public/Assets/images/password/cancel.png");
+                  }
+                }
+                .message {
+                  padding-left: 12px;
+                  font-size: 12px !important;
+                }
+                .flag {
+                  display: inline-block;
+                  background-size: contain;
+                  width: 8px;
+                  height: 8px;
+                  margin-right: 4px;
+                }
+                .flag + .message {
+                  padding-left: 0;
+                }
+              }
+            }
+          }
+          .note {
+            padding: 0 12px;
+          }
+        }
+        .remember-me {
+          .form-check-label {
+            font-weight: 400;
+            font-size: 14px;
+            height: 19px;
+            line-height: 19px;
+          }
+          .forgot-password {
+            font-weight: 600;
+            font-size: 14px;
+          }
+        }
+        .auth-button {
+          margin-top: 20px;
+        }
+        .btn {
+          width: 100%;
+          color: #fff;
+          font-weight: 600;
+          font-size: 15px;
+          padding: 9.5px;
+          border: 0;
+          &.btn-secondary {
+            background: #c9c9c9;
+          }
+          &.btn-primary {
+            a {
+              color: #fff;
+              font-weight: 600;
+              font-size: 15px;
+              text-decoration: none;
+              width: 100%;
+            }
+          }
+        }
+      }
+      .auth-footer {
+        text-align: center;
+        margin-top: 16px;
+        font-size: 14px;
+        line-height: 19px;
+        color: #000000;
+        a {
+          color: #108fcf !important;
+          font-weight: 600;
+          margin-left: 5px;
+        }
+      }
+    }
+  }
+  .wrap-auth-photo {
+    width: 37.5%;
+    padding: 80px;
+    background: #e2f2f9;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .img-610 {
+      width: 100%;
+    }
+  }
 }
 
 @media screen and (max-width: 860px) {
-	.wrap-auth {
-		.wrap-auth-content {
-			width: 100%;
-		}
-		.wrap-auth-photo {
-			display: none;
-		}
-	}
+  .wrap-auth {
+    .wrap-auth-content {
+      width: 100%;
+    }
+    .wrap-auth-photo {
+      display: none;
+    }
+  }
 }

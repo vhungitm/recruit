@@ -1,100 +1,100 @@
 .notifications {
-	left: -180px !important;
+  left: -180px !important;
 
-	ul {
-		padding: 24px 8px 14px 8px;
-		position: relative;
-		width: 426px !important;
-		border-radius: 4px;
-		box-shadow: 4px -4px 40px 4px rgba(4, 45, 65, 0.03),
-			0px 4px 8px rgba(4, 45, 65, 0.1);
-		background: #ffffff;
+  ul {
+    padding: 24px 8px 14px 8px;
+    position: relative;
+    width: 426px !important;
+    border-radius: 4px;
+    box-shadow: 4px -4px 40px 4px rgba(4, 45, 65, 0.03),
+      0px 4px 8px rgba(4, 45, 65, 0.1);
+    background: #ffffff;
 
-		/* Notification header */
-		.notification-header {
-			display: flex;
-			justify-content: space-between;
-			margin: 0px 16px 16px 16px;
-			font-weight: 700;
-			font-size: 16px;
-			color: #042d41;
+    /* Notification header */
+    .notification-header {
+      display: flex;
+      justify-content: space-between;
+      margin: 0px 16px 16px 16px;
+      font-weight: 700;
+      font-size: 16px;
+      color: #042d41;
 
-			.check_all_read {
-				img {
-					width: 20px;
-					height: 20px;
-				}
+      .check_all_read {
+        img {
+          width: 20px;
+          height: 20px;
+        }
 
-				display: flex;
-				align-items: center;
-				gap: 8px;
-				font-weight: 400;
-				font-size: 14px;
-				cursor: pointer;
-			}
-		}
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 400;
+        font-size: 14px;
+        cursor: pointer;
+      }
+    }
 
-		/* Notificaiton items */
-		.notification-items {
-			max-height: 368px;
-			overflow-y: auto;
+    /* Notificaiton items */
+    .notification-items {
+      max-height: 368px;
+      overflow-y: auto;
 
-			/* Notification item */
-			li.notification-item {
-				display: flex;
-				flex-direction: column;
-				align-items: flex-start;
-				gap: 16px;
-				min-height: 90px;
-				margin-bottom: 4px;
-				border-bottom: 1px solid #e3e2e2;
-				background: #f4fcff;
-				padding: 8px 16px;
-				font-family: 'Nunito Sans';
-				font-style: normal;
-				color: #042d41;
-				white-space: pre-wrap;
+      /* Notification item */
+      li.notification-item {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 16px;
+        min-height: 90px;
+        margin-bottom: 4px;
+        border-bottom: 1px solid #e3e2e2;
+        background: #f4fcff;
+        padding: 8px 16px;
+        font-family: 'Nunito Sans';
+        font-style: normal;
+        color: #042d41;
+        white-space: pre-wrap;
 
-				/* Notification title */
-				.notification-title {
-					img {
-						width: 24px;
-						height: 24px;
-					}
+        /* Notification title */
+        .notification-title {
+          img {
+            width: 24px;
+            height: 24px;
+          }
 
-					display: flex;
-					gap: 8px;
-					font-size: 16px;
-				}
+          display: flex;
+          gap: 8px;
+          font-size: 16px;
+        }
 
-				/* Notification date */
-				.notification-date {
-					font-weight: 400;
-					font-size: 13px;
-					line-height: 140%;
-					margin-left: 32px;
-				}
+        /* Notification date */
+        .notification-date {
+          font-weight: 400;
+          font-size: 13px;
+          line-height: 140%;
+          margin-left: 32px;
+        }
 
-				&.is-readed {
-					background: white;
-				}
+        &.is-readed {
+          background: white;
+        }
 
-				&:hover {
-					background: #e2f2f9;
-				}
-			}
+        &:hover {
+          background: #e2f2f9;
+        }
+      }
 
-			/* Notification custom scrollbar */
-			&::-webkit-scrollbar {
-				border-left: 4px solid white;
-				width: 12px;
-				background: #f5f5f5;
-			}
+      /* Notification custom scrollbar */
+      &::-webkit-scrollbar {
+        border-left: 4px solid white;
+        width: 12px;
+        background: #f5f5f5;
+      }
 
-			&::-webkit-scrollbar-thumb {
-				background: #dddddd;
-				border-left: 4px solid white;
-			}
-		}
-	}
+      &::-webkit-scrollbar-thumb {
+        background: #dddddd;
+        border-left: 4px solid white;
+      }
+    }
+  }
 }

@@ -1,99 +1,119 @@
-.header {
-	font-family: 'Nunito Sans';
-	margin: 0 !important;
-	padding: 18px 24px !important;
-	background: #ffffff;
-	box-shadow: 0px 4px 12px rgba(4, 45, 65, 0.08);
+.admin-header {
+  position: fixed;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
 
-	.header-divider {
-		display: none;
-		.icon-sidebar {
-			width: 24px;
-			height: 24px;
-			margin-right: 16px;
-			margin-top: -5px;
-			background: #042d41;
-		}
-	}
+  width: calc(100% - 64px);
+  height: 80px;
 
-	/* Header nav item */
-	.header-nav .nav-item {
-		display: flex;
-		align-items: center;
-	}
+  padding: 20px 40px 20px 24px;
+  background: #ffffff;
+  box-shadow: 0px 4px 12px rgba(4, 45, 65, 0.08);
 
-	/* Header notifictaion */
-	.notifications-btn {
-		margin-right: 32px;
-		.MuiBadge-badge.MuiBadge-colorError {
-			top: -10px;
-			right: 10px;
-			background: #f10e0e;
-			font-weight: 700;
-			font-size: 17px;
-		}
-		img {
-			width: 40px;
-			height: 40px;
-		}
-	}
+  transition: width 0.2s ease;
 
-	/* User */
-	.user {
-		.dropdown-toggle {
-			display: flex;
-			align-items: center;
-			margin-right: 16px;
-			padding: 0;
+  .header-logo {
+    height: 40px;
+  }
 
-			.username {
-				margin-bottom: 5px;
-				font-weight: 700;
-				font-size: 16px;
-				color: #042d41;
-				margin-bottom: 0;
-			}
-			.user-role {
-				font-weight: 400;
-				font-size: 16px;
-				color: #042d41;
-			}
-		}
+  .header-items {
+    display: flex;
+    align-items: center;
+    gap: 32px;
 
-		.dropdown-menu {
-			top: 15px !important;
-			width: 132px;
-			border-radius: 4px;
-			padding-bottom: 0;
-			transform: translate(-34px, 52px) !important;
+    .header-item {
+      /* Header notifictaion */
+      .notifications-btn {
+        padding: 0;
+        .MuiBadge-badge.MuiBadge-colorError {
+          top: -10px;
+          right: 10px;
+          background: #f10e0e;
+          font-weight: 700;
+          font-size: 17px;
+        }
+        img {
+          width: 40px;
+          height: 40px;
+        }
+      }
 
-			li {
-				.dropdown-item {
-					border-bottom: 1px solid #efefef !important;
-					padding: 16px 24px;
-					font-weight: 400;
-					font-size: 14px;
-					cursor: pointer;
+      /* User */
+      .header-user-container {
+        position: relative;
+        font-weight: 400;
+        font-size: 16px;
+        line-height: 140%;
+        cursor: pointer;
 
-					&:hover {
-						background: #e2f2f9;
-						color: #042d41;
-					}
-				}
+        .header-user {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 16px;
+          color: #042d41;
 
-				&:nth-child(1) {
-					.dropdown-item {
-						border-radius: 4px 4px 0 0;
-					}
-				}
+          .header-user-content {
+            .header-username {
+              font-weight: 700;
+            }
+          }
 
-				&:nth-last-child(1) {
-					.dropdown-item {
-						border: 0 !important;
-						border-radius: 0 0 4px 4px;
-					}
-				}
-			}
-		}
-	}
+          &:after {
+            width: 20px;
+            height: 20px;
+
+            background: url('../../public/Assets/images/admin/arrow-down.png');
+            background-size: contain;
+            content: '';
+          }
+        }
+
+        .header-user-menu {
+          display: none;
+        }
+
+        &.show {
+          .header-user-menu {
+            position: absolute;
+            right: 0;
+            display: flex;
+            flex-direction: column;
+            border-radius: 4px;
+            width: 132px;
+            margin-top: 8px;
+            box-shadow: 0px 2px 8px rgba(4, 45, 65, 0.08);
+
+            .header-user-menu-item {
+              padding: 16px 24px;
+              border-bottom: 1px solid #efefef;
+              height: 52px;
+              background: #ffffff;
+
+              font-weight: 400;
+              font-size: 14px;
+              line-height: 140%;
+              color: #042d41;
+              text-decoration: unset;
+
+              &:hover {
+                background: #e2f2f9;
+              }
+
+              &:nth-child(1) {
+                border-radius: 4px 4px 0 0;
+              }
+
+              &:nth-last-child(1) {
+                border-radius: 0 0 4px 4px;
+                border-bottom: unset;
+              }
+            }
+          }
+        }
+      }
+    }
+  }
 }

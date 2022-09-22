@@ -14,7 +14,7 @@
       display: flex;
       justify-content: space-between;
       Input {
-        font-family: "Nunito Sans", "FontAwesome" !important;
+        font-family: 'Nunito Sans', 'FontAwesome' !important;
         background: #ffffff;
         border: 1px solid #d9d6d6;
         box-sizing: border-box;
@@ -28,7 +28,7 @@
       .css-ercmji:before,
       .css-ercmji:after {
         border-bottom: none;
-        content: "";
+        content: '';
       }
       .grey {
         border-radius: 4px;
@@ -209,9 +209,9 @@
             height: 20px;
             box-shadow: none;
           }
-          .form-check-input:checked[type="checkbox"] {
+          .form-check-input:checked[type='checkbox'] {
             border-radius: 3px;
-            background-image: url("../../public/Assets/images/jobpost/checked.png");
+            background-image: url('../../public/Assets/images/jobpost/checked.png');
           }
         }
         .action {
@@ -246,28 +246,28 @@
           color: #c9c9c9;
         }
         .gray::before {
-          content: url("../../public/Assets/images/jobpost/inactive-bullet.png");
+          content: url('../../public/Assets/images/jobpost/inactive-bullet.png');
           margin-right: 8px;
         }
         .orange {
           color: #ff9242;
         }
         .orange::before {
-          content: url("../../public/Assets/images/jobpost/active-bullet.png");
+          content: url('../../public/Assets/images/jobpost/active-bullet.png');
           margin-right: 8px;
         }
         .green {
           color: #27ae60;
         }
         .green::before {
-          content: url("../../public/Assets/images/jobpost/ready-bullet.png");
+          content: url('../../public/Assets/images/jobpost/ready-bullet.png');
           margin-right: 8px;
         }
         .blue {
           color: #108fcf;
         }
         .blue::before {
-          content: url("../../public/Assets/images/jobpost/accepted-bullet.png");
+          content: url('../../public/Assets/images/jobpost/accepted-bullet.png');
           margin-right: 8px;
         }
         .block {
@@ -279,7 +279,7 @@
       }
     }
     .wrap-pagination {
-      font-family: "Nunito Sans";
+      font-family: 'Nunito Sans';
       font-weight: 400;
       font-style: normal;
       display: flex;

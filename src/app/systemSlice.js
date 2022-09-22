@@ -1,28 +1,28 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = JSON.parse(localStorage.getItem('system')) || {
-	connection: null,
-	sidebar: {
-		narrow: null
-	}
+  connection: null,
+  sidebar: {
+    show: false
+  }
 };
 
 const systemSlice = createSlice({
-	name: 'system',
-	initialState,
-	reducers: {
-		setConnection: (state, action) => {
-			state.connection = action.payload;
+  name: 'system',
+  initialState,
+  reducers: {
+    setConnection: (state, action) => {
+      state.connection = action.payload;
 
-			return state;
-		},
-		setNarrowSidebar: state => {
-			state.sidebar.narrow = !state.sidebar.narrow;
-			localStorage.setItem('system', JSON.stringify(state));
+      return state;
+    },
+    setShowSidebar: state => {
+      state.sidebar.show = !state.sidebar.show;
+      localStorage.setItem('system', JSON.stringify(state));
 
-			return state;
-		}
-	}
+      return state;
+    }
+  }
 });
 
 // Selections

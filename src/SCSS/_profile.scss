@@ -1,120 +1,127 @@
 .wrap-management {
-	.wrap-management-header {
-		.wrap-management-header-buttons {
-			display: flex;
-			gap: 16px;
+  .wrap-management-header {
+    .wrap-management-header-buttons {
+      display: flex;
+      gap: 16px;
 
-			.btn {
-				height: 40px !important;
-				align-items: center;
+      .btn {
+        height: 40px !important;
+        align-items: center;
 
-				&.btn-cancel {
-					width: 120px;
-					font-weight: 600;
-					font-size: 15px;
-				}
+        &.btn-cancel {
+          width: 120px;
+          font-weight: 600;
+          font-size: 15px;
+        }
 
-				&.btn-update,
-				&.btn-save {
-					justify-content: center;
-					gap: 8px;
-					width: 120px;
-				}
+        &.btn-update,
+        &.btn-save {
+          justify-content: center;
+          gap: 8px;
+          width: 120px;
+        }
 
-				&.btn-request-extension {
-					width: 154px;
-					align-items: center;
-					border: 0;
-					background: #ff9242;
-					color: white;
-				}
+        &.btn-request-extension {
+          width: 154px;
+          align-items: center;
+          border: 0;
+          background: #ff9242;
+          color: white;
+        }
 
-				&.btn-requested-extension {
-					width: 177px;
-					align-items: center;
-					border: 0;
-					background: #27ae60;
+        &.btn-requested-extension {
+          width: 177px;
+          align-items: center;
+          border: 0;
+          background: #27ae60;
 
-					color: white;
-				}
-			}
-		}
-	}
+          color: white;
+        }
+      }
+    }
+  }
 
-	.wrap-management-body {
-		background: #ffffff;
-		box-shadow: 0px 4px 8px rgba(4, 45, 65, 0.1);
-		border-radius: 4px;
-		padding: 32px;
-		padding-bottom: 0;
+  .wrap-management-body.detail {
+    background: #ffffff;
+    box-shadow: 0px 4px 8px rgba(4, 45, 65, 0.1);
+    border-radius: 4px;
+    padding: 32px 24px 40px 24px;
 
-		.profile-gray {
-			display: flex;
-			border: 1px solid #efefef;
-			border-radius: 4px;
-			background: #fafafa;
-			padding: 16px;
+    .profile-gray {
+      display: flex;
+      align-items: flex-start;
+      border: 1px solid #efefef;
+      border-radius: 4px;
+      background: #fafafa;
+      padding: 16px;
+      .content-profile-item {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        width: 20%;
+        .img-sub-title {
+          width: 1px;
+          height: 40px;
+          background: #a19f9f;
+          margin-right: 16px;
+        }
+        .profile-item {
+          .profile-item-title {
+            margin-bottom: 12px;
+            font-weight: 700;
+            font-size: 13px;
+            color: #042d41;
+          }
 
-			.profile-item {
-				width: 20%;
-				border-left: 1px solid #a19f9f;
-				padding: 0 16px;
+          .profile-item-value {
+            .is-expired {
+              font-weight: 700;
+              font-size: 14px;
+              color: #ff9242;
+            }
+          }
 
-				.profile-item-title {
-					margin-bottom: 12px;
-					font-weight: 700;
-					font-size: 13px;
-					color: #042d41;
-				}
+          &:nth-child(1) {
+            border-left: 0;
+            padding-left: 0;
+          }
+        }
+      }
+    }
 
-				.profile-item-value {
-					.is-expired {
-						font-weight: 700;
-						font-size: 14px;
-						color: #ff9242;
-					}
-				}
+    .profile {
+      padding: 32px 16px 0 16px;
 
-				&:nth-child(1) {
-					border-left: 0;
-					padding-left: 0;
-				}
-			}
-		}
+      .profile-item {
+        margin-bottom: 36px;
 
-		.profile {
-			padding: 32px 16px;
+        .profile-item-title {
+          margin-bottom: 8px;
+          font-weight: 700;
+          font-size: 13px;
+          color: #042d41;
+        }
 
-			.profile-item {
-				margin-bottom: 36px;
+        .profile-item-value {
+          font-weight: 400;
+          font-size: 14px;
+          color: #042d41;
+        }
 
-				.profile-item-title {
-					margin-bottom: 8px;
-					font-weight: 700;
-					font-size: 13px;
-					color: #042d41;
-				}
+        .form-control {
+          &[name="nguoidaidien"] {
+            width: 250px;
+          }
 
-				.profile-item-value {
-					font-weight: 400;
-					font-size: 14px;
-					color: #042d41;
-				}
+          &[name="diachi"] {
+            width: 349px;
+          }
+        }
 
-				.form-control {
-					&[name='nguoidaidien'] {
-						width: 250px;
-					}
-
-					&[name='diachi'] {
-						width: 349px;
-					}
-				}
-
-				&:nth-last-child(1) {
-					margin-bottom: 0;
-				}
-			}
-		}
-	}
+        &:nth-last-child(1) {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
 }

@@ -4,233 +4,250 @@ import { format, subDays } from 'date-fns';
 import { useEffect, useState } from 'react';
 
 export const ChartList = () => {
-	// Jobpost chart data
-	const [chartJobpostingDate, setChartJobpostingDate] = useState({
-		startDate: subDays(new Date(), 31),
-		endDate: new Date()
-	});
-	const [chartJobpostingData, setChartJobpostingData] = useState();
-	const [chartJobpostingType, setChartJobpostingType] = useState(0);
+  // Jobpost chart data
+  const [chartJobpostingDate, setChartJobpostingDate] = useState({
+    startDate: subDays(new Date(), 31),
+    endDate: new Date()
+  });
+  const [chartJobpostingData, setChartJobpostingData] = useState();
+  const [chartJobpostingType, setChartJobpostingType] = useState(0);
+  const [chartJobpostingLoading, setChartJobpostingLoading] = useState(true);
 
-	// Effect update jobpost chart data
-	useEffect(() => {
-		const getChartJobpostingData = async () => {
-			try {
-				const { startDate, endDate } = chartJobpostingDate;
+  // Effect update jobpost chart data
+  useEffect(() => {
+    const getChartJobpostingData = async () => {
+      try {
+        setChartJobpostingLoading(true);
+        const { startDate, endDate } = chartJobpostingDate;
 
-				const res = await homePageAPI.getChartJobposting(
-					format(startDate, 'yyyy-MM-dd'),
-					format(endDate, 'yyyy-MM-dd'),
-					chartJobpostingType
-				);
+        const res = await homePageAPI.getChartJobposting(
+          format(startDate, 'yyyy-MM-dd'),
+          format(endDate, 'yyyy-MM-dd'),
+          chartJobpostingType
+        );
 
-				if (res.succeeded) {
-					const chartItem = res.data.chartItem;
-					const labels = chartItem.map(item => item.timeline);
-					const approvedData = chartItem.map(item => item.approved);
-					const waitingData = chartItem.map(item => item.waiting);
-					const expiredData = chartItem.map(item => item.expired);
-					const blockedData = chartItem.map(item => item.blocked);
+        if (res.succeeded) {
+          const chartItem = res.data.chartItem;
+          const labels = chartItem.map(item => item.timeline);
+          const approvedData = chartItem.map(item => item.approved);
+          const waitingData = chartItem.map(item => item.waiting);
+          const expiredData = chartItem.map(item => item.expired);
+          const blockedData = chartItem.map(item => item.blocked);
 
-					const newData = {
-						labels,
-						datasets: [
-							{
-								label: 'Đã duyệt',
-								data: approvedData,
-								backgroundColor: ['#27AE60'],
-								stack: '1',
-								barThickness: 16
-							},
-							{
-								label: 'Chờ duyệt',
-								data: waitingData,
-								backgroundColor: ['#108FCF'],
-								stack: '1',
-								barThickness: 16
-							},
-							{
-								label: 'Hết hạn',
-								data: expiredData,
-								backgroundColor: ['#EF3737'],
-								stack: '1',
-								barThickness: 16
-							},
-							{
-								label: 'Đã khóa',
-								data: blockedData,
-								backgroundColor: ['#A19F9F'],
-								stack: '1',
-								barThickness: 16
-							}
-						]
-					};
+          const newData = {
+            labels,
+            datasets: [
+              {
+                label: 'Đã duyệt',
+                data: approvedData,
+                backgroundColor: ['#27AE60'],
+                stack: '1',
+                barThickness: 16
+              },
+              {
+                label: 'Chờ duyệt',
+                data: waitingData,
+                backgroundColor: ['#108FCF'],
+                stack: '1',
+                barThickness: 16
+              },
+              {
+                label: 'Hết hạn',
+                data: expiredData,
+                backgroundColor: ['#A19F9F'],
+                stack: '1',
+                barThickness: 16
+              },
+              {
+                label: 'Không duyệt',
+                data: blockedData,
+                backgroundColor: ['#EF3737'],
+                stack: '1',
+                barThickness: 16
+              }
+            ]
+          };
 
-					setChartJobpostingData(newData);
-				} else {
-					setChartJobpostingData(null);
-				}
-			} catch (error) {
-				setChartJobpostingData(null);
-			}
-		};
+          setChartJobpostingData(newData);
+        } else {
+          setChartJobpostingData(null);
+        }
+      } catch (error) {
+        setChartJobpostingData(null);
+      } finally {
+        setChartJobpostingLoading(false);
+      }
+    };
 
-		getChartJobpostingData();
-	}, [chartJobpostingDate, chartJobpostingType]);
+    getChartJobpostingData();
+  }, [chartJobpostingDate, chartJobpostingType]);
 
-	// Recruiter account chart data
-	const [chartRecruiterAccountDate, setChartRecruiterAccountDate] = useState({
-		startDate: subDays(new Date(), 31),
-		endDate: new Date()
-	});
-	const [chartRecruiterAccountType, setChartRecruiterAccountType] = useState(0);
-	const [chartRecruiterAccountData, setChartRecruiterAccountData] = useState();
+  // Recruiter account chart data
+  const [chartRecruiterAccountDate, setChartRecruiterAccountDate] = useState({
+    startDate: subDays(new Date(), 31),
+    endDate: new Date()
+  });
+  const [chartRecruiterAccountType, setChartRecruiterAccountType] = useState(0);
+  const [chartRecruiterAccountData, setChartRecruiterAccountData] = useState();
+  const [chartRecruiterAccountLoading, setChartRecruiterAccountLoading] =
+    useState(false);
 
-	// Effect update recruiter account chart data
-	useEffect(() => {
-		const getChartRecruiterAccountData = async () => {
-			try {
-				const { startDate, endDate } = chartRecruiterAccountDate;
-				const res = await homePageAPI.getChartRecruiterAccount(
-					format(startDate, 'yyyy-MM-dd'),
-					format(endDate, 'yyyy-MM-dd'),
-					chartRecruiterAccountType
-				);
+  // Effect update recruiter account chart data
+  useEffect(() => {
+    const getChartRecruiterAccountData = async () => {
+      try {
+        setChartRecruiterAccountLoading(true);
+        const { startDate, endDate } = chartRecruiterAccountDate;
+        const res = await homePageAPI.getChartRecruiterAccount(
+          format(startDate, 'yyyy-MM-dd'),
+          format(endDate, 'yyyy-MM-dd'),
+          chartRecruiterAccountType
+        );
 
-				if (res.succeeded) {
-					const chartItem = res.data.chartItem;
-					const labels = chartItem.map(item => item.timeline);
-					const approvedData = chartItem.map(item => item.approved);
-					const waitingData = chartItem.map(item => item.waiting);
-					const expiredData = chartItem.map(item => item.expired);
-					const blockedData = chartItem.map(item => item.blocked);
+        if (res.succeeded) {
+          const chartItem = res.data.chartItem;
+          const labels = chartItem.map(item => item.timeline);
+          const approvedData = chartItem.map(item => item.approved);
+          const waitingData = chartItem.map(item => item.waiting);
+          const expiredData = chartItem.map(item => item.expired);
+          const blockedData = chartItem.map(item => item.blocked);
 
-					const newData = {
-						labels,
-						datasets: [
-							{
-								label: 'Đã duyệt',
-								data: approvedData,
-								backgroundColor: ['#27AE60'],
-								stack: '1',
-								barThickness: 16
-							},
-							{
-								label: 'Chờ duyệt',
-								data: waitingData,
-								backgroundColor: ['#108FCF'],
-								stack: '1',
-								barThickness: 16
-							},
-							{
-								label: 'Hết hạn',
-								data: expiredData,
-								backgroundColor: ['#EF3737'],
-								stack: '1',
-								barThickness: 16
-							},
-							{
-								label: 'Đã khóa',
-								data: blockedData,
-								backgroundColor: ['#A19F9F'],
-								stack: '1',
-								barThickness: 16
-							}
-						]
-					};
+          const newData = {
+            labels,
+            datasets: [
+              {
+                label: 'Đã duyệt',
+                data: approvedData,
+                backgroundColor: ['#27AE60'],
+                stack: '1',
+                barThickness: 16
+              },
+              {
+                label: 'Chờ duyệt',
+                data: waitingData,
+                backgroundColor: ['#108FCF'],
+                stack: '1',
+                barThickness: 16
+              },
+              {
+                label: 'Hết hạn',
+                data: expiredData,
+                backgroundColor: ['#A19F9F'],
+                stack: '1',
+                barThickness: 16
+              },
+              {
+                label: 'Bị khóa',
+                data: blockedData,
+                backgroundColor: ['#EF3737'],
+                stack: '1',
+                barThickness: 16
+              }
+            ]
+          };
 
-					setChartRecruiterAccountData(newData);
-				} else {
-					setChartRecruiterAccountData(null);
-				}
-			} catch (error) {
-				setChartRecruiterAccountData(null);
-			}
-		};
+          setChartRecruiterAccountData(newData);
+        } else {
+          setChartRecruiterAccountData(null);
+        }
+      } catch (error) {
+        setChartRecruiterAccountData(null);
+      } finally {
+        setChartRecruiterAccountLoading(false);
+      }
+    };
 
-		getChartRecruiterAccountData();
-	}, [chartRecruiterAccountDate, chartRecruiterAccountType]);
+    getChartRecruiterAccountData();
+  }, [chartRecruiterAccountDate, chartRecruiterAccountType]);
 
-	// Recruiter account chart data
-	const [chartCandidateRegisterDate, setChartCandidateRegisterDate] = useState({
-		startDate: subDays(new Date(), 31),
-		endDate: new Date()
-	});
-	const [chartCandidateRegisterData, setChartCandidateRegisterData] =
-		useState();
-	const [chartCandidateRegisterType, setChartCandidateRegisterType] =
-		useState(0);
+  // Recruiter account chart data
+  const [chartCandidateRegisterDate, setChartCandidateRegisterDate] = useState({
+    startDate: subDays(new Date(), 31),
+    endDate: new Date()
+  });
+  const [chartCandidateRegisterData, setChartCandidateRegisterData] =
+    useState();
+  const [chartCandidateRegisterType, setChartCandidateRegisterType] =
+    useState(0);
+  const [chartCandidateRegisterLoading, setChartCandidateRegisterLoading] =
+    useState(0);
 
-	// Effect update recruiter account chart data
-	useEffect(() => {
-		const getChartCandidateRegisterData = async () => {
-			try {
-				const { startDate, endDate } = chartCandidateRegisterDate;
-				const res = await homePageAPI.getChartCandidateRegister(
-					format(startDate, 'yyyy-MM-dd'),
-					format(endDate, 'yyyy-MM-dd'),
-					chartCandidateRegisterType
-				);
+  // Effect update recruiter account chart data
+  useEffect(() => {
+    const getChartCandidateRegisterData = async () => {
+      try {
+        setChartCandidateRegisterLoading(true);
+        const { startDate, endDate } = chartCandidateRegisterDate;
+        const res = await homePageAPI.getChartCandidateRegister(
+          format(startDate, 'yyyy-MM-dd'),
+          format(endDate, 'yyyy-MM-dd'),
+          chartCandidateRegisterType
+        );
 
-				if (res.succeeded) {
-					const chartItem = res.data.chartItem;
-					const labels = chartItem.map(item => item.timeline);
-					const totals = chartItem.map(item => item.total);
+        if (res.succeeded) {
+          const chartItem = res.data.chartItem;
+          const labels = chartItem.map(item => item.timeline);
+          const totals = chartItem.map(item => item.total);
 
-					const newData = {
-						labels,
-						datasets: [
-							{
-								label: 'Đã duyệt',
-								data: totals,
-								backgroundColor: ['#0C557A'],
-								stack: '1',
-								barThickness: 16
-							}
-						]
-					};
+          const newData = {
+            labels,
+            datasets: [
+              {
+                label: 'Đã duyệt',
+                data: totals,
+                backgroundColor: ['#0C557A'],
+                stack: '1',
+                barThickness: 16
+              }
+            ]
+          };
 
-					setChartCandidateRegisterData(newData);
-				} else {
-					setChartCandidateRegisterData(null);
-				}
-			} catch (error) {
-				setChartCandidateRegisterData(null);
-			}
-		};
+          setChartCandidateRegisterData(newData);
+        } else {
+          setChartCandidateRegisterData(null);
+        }
+      } catch (error) {
+        setChartCandidateRegisterData(null);
+      } finally {
+        setChartCandidateRegisterLoading(false);
+      }
+    };
 
-		getChartCandidateRegisterData();
-	}, [chartCandidateRegisterDate, chartCandidateRegisterType]);
+    getChartCandidateRegisterData();
+  }, [chartCandidateRegisterDate, chartCandidateRegisterType]);
 
-	return (
-		<div className="charts">
-			<BarChart
-				title="Biểu đồ cột thể hiện số lượng tin đăng tuyển"
-				data={chartJobpostingData}
-				date={chartJobpostingDate}
-				setDate={setChartJobpostingDate}
-				type={chartJobpostingType}
-				setType={setChartJobpostingType}
-			/>
-			<BarChart
-				title="Biểu đồ thể hiện số lượng nhà tuyển dụng đăng ký"
-				data={chartRecruiterAccountData}
-				date={chartRecruiterAccountDate}
-				setDate={setChartRecruiterAccountDate}
-				type={chartRecruiterAccountType}
-				setType={setChartRecruiterAccountType}
-			/>
+  return (
+    <div className="charts">
+      <BarChart
+        title="Biểu đồ cột thể hiện số lượng tin đăng tuyển"
+        data={chartJobpostingData}
+        loading={chartJobpostingLoading}
+        date={chartJobpostingDate}
+        setDate={setChartJobpostingDate}
+        type={chartJobpostingType}
+        setType={setChartJobpostingType}
+      />
+      <BarChart
+        title="Biểu đồ thể hiện số lượng nhà tuyển dụng đăng ký"
+        data={chartRecruiterAccountData}
+        loading={chartRecruiterAccountLoading}
+        date={chartRecruiterAccountDate}
+        setDate={setChartRecruiterAccountDate}
+        type={chartRecruiterAccountType}
+        setType={setChartRecruiterAccountType}
+      />
 
-			<BarChart
-				title="Biểu đồ cột thể hiện số lượng ứng viên đăng ký"
-				data={chartCandidateRegisterData}
-				date={chartCandidateRegisterDate}
-				setDate={setChartCandidateRegisterDate}
-				type={chartCandidateRegisterType}
-				setType={setChartCandidateRegisterType}
-			/>
-		</div>
-	);
+      <BarChart
+        title="Biểu đồ cột thể hiện số lượng ứng viên đăng ký"
+        data={chartCandidateRegisterData}
+        loading={chartCandidateRegisterLoading}
+        date={chartCandidateRegisterDate}
+        setDate={setChartCandidateRegisterDate}
+        type={chartCandidateRegisterType}
+        setType={setChartCandidateRegisterType}
+      />
+    </div>
+  );
 };
 
 export default ChartList;

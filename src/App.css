@@ -1,3 +1,7 @@
+:root {
+  --toastify-color-dark: #042D41;
+}
+
 .App {
   text-align: center;
 }

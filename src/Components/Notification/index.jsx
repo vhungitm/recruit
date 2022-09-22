@@ -1,3 +1,3 @@
-import AppNotification from './AppNotification'
+import AppNotification from './AppNotification';
 
-export { AppNotification }
+export { AppNotification };

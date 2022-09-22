@@ -1,4 +1,4 @@
-export * from './JobPostApproveModal';
+export * from './JobPostApproveOrRestoreModal';
 export * from './JobPostCancelUpdateModal';
 export * from './JobPostCandidateModal';
 export * from './JobPostDeleteModal';

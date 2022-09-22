@@ -3,29 +3,28 @@ import { AppContent, AppHeader, AppSidebar } from 'Components/index';
 import { useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
+import 'SCSS/_layout.scss';
 
 const DefaultLayout = ({ element, connection }) => {
-	const currentUser = useSelector(selectCurrentUser);
-	const navigate = useNavigate();
+  const currentUser = useSelector(selectCurrentUser);
+  const navigate = useNavigate();
 
-	useEffect(() => {
-		if (!currentUser) navigate('/login');
-	}, [currentUser, navigate]);
+  useEffect(() => {
+    if (!currentUser) navigate('/login');
+  }, [currentUser, navigate]);
 
-	return (
-		currentUser && (
-			<div className="admin">
-				<AppSidebar />
-				<div className="wrapper d-flex flex-column min-vh-100 bg-light">
-					<AppHeader connection={connection} />
-					<div className="body flex-grow-1">
-						<AppContent element={element} connection={connection} />
-					</div>
-					{/* <AppFooter /> */}
-				</div>
-			</div>
-		)
-	);
+  return (
+    currentUser && (
+      <div className="admin">
+        <AppSidebar />
+        <div className="admin-content-container">
+          <AppHeader connection={connection} />
+          <AppContent element={element} connection={connection} />
+          {/* <AppFooter /> */}
+        </div>
+      </div>
+    )
+  );
 };
 
 export default DefaultLayout;

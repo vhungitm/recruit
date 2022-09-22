@@ -1,9 +1,9 @@
-import { Tooltip } from "@mui/material";
-import { selectCurrentUser } from "app/authSlice";
-import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
-import { Header } from "Views/datatable";
-export const ManageCandidateList = (props) => {
+import { Tooltip } from '@mui/material';
+import { selectCurrentUser } from 'app/authSlice';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
+import { Header } from 'Views/datatable';
+export const ManageCandidateList = props => {
   const {
     tabId,
     headers,
@@ -13,18 +13,18 @@ export const ManageCandidateList = (props) => {
     handleSort,
 
     //Handle
-    handleShowModal,
+    handleShowModal
   } = props;
 
-  const isAdmin = useSelector(selectCurrentUser).roles.includes("SuperAdmin");
+  const isAdmin = useSelector(selectCurrentUser).roles.includes('SuperAdmin');
 
   return (
-    <div className="datatable">
-      <table>
+    <div className="datatable scroll">
+      <table className="w-1500">
         <Header headers={headers} onSorting={handleSort} />
         <tbody>
           {isAdmin
-            ? data.map((item) => (
+            ? data.map((item, index) => (
                 <tr key={item.candidateId}>
                   <td>{item.hoten}</td>
                   <td>{item.email}</td>
@@ -34,7 +34,13 @@ export const ManageCandidateList = (props) => {
                   <td>{item.capbac}</td>
                   <td>{item.ngaytaotaikhoan}</td>
                   <td>
-                    <div className="controls">
+                    <div
+                      className={
+                        index % 2 === 0
+                          ? 'controls bg-white'
+                          : 'controls bg-gray'
+                      }
+                    >
                       <Tooltip arrow title="Chi tiết">
                         <Link to={`/ManageCandidateDetail/${item.candidateId}`}>
                           <img
@@ -47,12 +53,17 @@ export const ManageCandidateList = (props) => {
                           />
                         </Link>
                       </Tooltip>
-                      <Tooltip arrow title="Khóa tài khoản">
+                      <Tooltip
+                        arrow
+                        title={
+                          tabId === 1 ? 'Khóa tài khoản' : 'Mở khóa tài khoản'
+                        }
+                      >
                         <img
                           onClick={() => handleShowModal(item)}
                           className="action-detail "
                           src={`/Assets/images/candidate/${
-                            tabId === 1 ? "block.png" : "unblock.png"
+                            tabId === 1 ? 'block.png' : 'unblock.png'
                           }`}
                           alt="Block"
                         />
@@ -61,7 +72,7 @@ export const ManageCandidateList = (props) => {
                   </td>
                 </tr>
               ))
-            : data.map((item) => (
+            : data.map((item, index) => (
                 <tr key={item.candidateId}>
                   <td>{item.hoten}</td>
                   <td>{item.vitriungtuyen}</td>
@@ -70,7 +81,13 @@ export const ManageCandidateList = (props) => {
                   <td>{item.mucluongmongmuon}</td>
                   <td>{item.hocvan}</td>
                   <td>
-                    <div className="controls">
+                    <div
+                      className={
+                        index % 2 === 0
+                          ? 'controls bg-white'
+                          : 'controls bg-gray'
+                      }
+                    >
                       <Tooltip arrow title="Chi tiết">
                         <Link to={`/CandidateDetails/${item.candidateId}`}>
                           <img

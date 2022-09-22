@@ -29,6 +29,8 @@
     .title {
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      flex-direction: row;
       margin: 24px 0px;
       .title-page {
         font-weight: 700;
@@ -36,8 +38,12 @@
         color: #042d41;
       }
       .title-action {
-        display: grid;
-        grid-template-columns: auto auto auto;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+        align-items: center;
+        gap: 8px;
         button {
           background: #ffffff;
           box-sizing: border-box;
@@ -46,8 +52,10 @@
           font-weight: 600;
           font-size: 15px;
           line-height: 21px;
-          padding: 10px 35px;
-          margin-right: 16px;
+          padding: 10px 32px;
+          width: 138px;
+          height: 40px;
+          margin-left: 8px;
         }
         button:last-child {
           margin-right: 0;
@@ -58,10 +66,9 @@
           font-weight: 600;
           font-size: 15px;
           line-height: 140%;
-          height: 40px;
-
           /* Red */
-          background: #ef3737;
+          background: #fafafa;
+          border: 1px solid #ef3737;
           color: #ef3737;
           padding: 9px 17px 9px 17px;
         }
@@ -69,10 +76,7 @@
           color: #108fcf;
           border: 1px solid #108fcf;
         }
-        .btn-block {
-          background: #fafafa;
-          border: 1px solid #ef3737;
-        }
+
         .edit {
           background: #108fcf;
           color: #ffffff;
@@ -90,12 +94,23 @@
         }
       }
     }
+    .card-detail {
+      .item-infor {
+        padding-bottom: 24px;
+      }
+    }
   }
   .body-detail {
     display: flex;
     justify-content: space-between;
     > div:last-child {
       flex: 10%;
+    }
+    .left-detail{
+      flex: 3;
+    }
+    .right-detail{
+      flex: 2;
     }
     .body-right-detail {
       .card-recruit {
@@ -105,7 +120,6 @@
         flex: 0%;
         padding: 24px;
         margin-bottom: 30px;
-        // height: 420px;
         .sub-title {
           padding-left: 12px !important;
           font-style: Bold;
@@ -244,14 +258,17 @@
       background: #ffffff;
       .table-detail {
         color: #042d41;
+        .bg-white {
+          background-color: white !important;
+        }
+        .bg-gray {
+          background-color: #fafafa !important;
+        }
         tr:first-child {
           font-size: 14px;
           line-height: 30px;
           font-weight: 700;
           border-bottom: 1px solid #e3e2e2;
-        }
-        tr:nth-child(even) td {
-          background: #fafafa;
         }
         .table-detail-td {
           border-bottom: none;
@@ -303,7 +320,9 @@
       padding: 24px;
       margin-right: 20px;
       color: #042d41;
-      width: 1020px;
+      width: 100%;
+      min-width: 550px;
+      margin-bottom: 30px;
       .candidate-info {
         padding-bottom: 30px;
         display: flex;
@@ -412,6 +431,8 @@
           line-height: 18.2px;
           color: #042d41;
           padding: 11px;
+          padding-right: 0;
+          width: 100%;
         }
         .timelineWork {
           font-family: "Nunito Sans";
@@ -425,11 +446,17 @@
           color: #0c557a;
           .timelineDescription {
             display: flex;
-            .timelineDescriptionInfRight {
-              max-width: 81%;
+            .description-left {
+              width: 36%;
             }
-            .timelineDescriptionInf {
-              padding-left: 5px;
+            .description-right {
+              width: 64%;
+            }
+            .timelineWork-description-left {
+              width: 15%;
+            }
+            .timelineWork-description-right {
+              width: 85%;
             }
           }
         }
@@ -483,6 +510,10 @@
       padding-bottom: 40px;
       .left-timeline {
         width: 120%;
+        flex: 4;
+      }
+      .right-timeline {
+        flex: 6;
       }
     }
     .export-url {
@@ -514,14 +545,11 @@
     padding-top: 24px;
   }
   .card-detail {
-    //position: absolute;
-    //width: 100%;
     background: #ffffff;
     box-shadow: 0px 4px 8px rgba(4, 45, 65, 0.1);
     border-radius: 4px;
     color: #042d41;
     margin: 24px 0px 0px;
-    //margin: 24px;
     .item-title {
       font-weight: 700;
       font-size: 13px;
@@ -530,12 +558,13 @@
       margin: 0px;
       padding: 24px 0 4px 24px;
     }
+
     .item-infor {
       font-weight: 400;
       font-size: 14px;
       line-height: 140%;
       letter-spacing: 0.02em;
-      padding: 0px 0px 24px 24px;
+      padding: 0px 0px 8px 24px;
       margin: 0px;
     }
     .content-sub-title {
@@ -558,11 +587,14 @@
     }
     .recruit-action {
       cursor: pointer;
-      text-align: right;
       display: flex;
+      .item-infor {
+        width: 140px;
+        padding-bottom: 24px;
+      }
       .view-detail {
         display: flex;
-        padding-left: 4rem;
+        padding-left: 30px;
         img {
           height: 24px;
           width: 24px;
@@ -578,13 +610,6 @@
 #btn-block {
   background-color: #ef3737 !important;
   border: 1px solid #ef3737 !important;
-}
-
-.fade.modal.show {
-  top: 0 !important;
-}
-.approve-modal {
-  padding-top: 14rem;
 }
 canvas.react-pdf__Page__canvas {
   height: auto !important;

@@ -1,319 +1,364 @@
 import interviewAPI from 'API/interviewAPI';
 import { useEffect, useState } from 'react';
+import { Spinner } from 'react-bootstrap';
 import { toast } from 'react-toastify';
 import 'SCSS/_management.scss';
-import { excelFunction } from 'utils';
+import { excelFunction, timeOutToast } from 'utils';
 import { DataTableFilter, DataTablePagination } from 'Views/datatable';
 import {
-	ManageInterviewApproveModal,
-	ManageInterviewList,
-	ManageInterviewRejectModal
+  ManageInterviewApproveModal,
+  ManageInterviewList,
+  ManageInterviewRejectModal
 } from './components';
 import { allFilters, allTableHeaders, defaultFilter } from './datas';
 
 const ManageInterview = () => {
-	// Search
-	const [search, setSearch] = useState('');
-	const [notFound, setNotFound] = useState(false);
+  //Check data to export to Excel
+  const [dataExport, setDataExport] = useState([]);
 
-	// Handle search
-	const handleSearch = e => setSearch(e.target.value);
+  // Search
+  const [search, setSearch] = useState('');
+  const [notFound, setNotFound] = useState(false);
 
-	// Filter
-	const [filters, setFilters] = useState([]);
-	const [filter, setFilter] = useState(defaultFilter);
-	const [filterQuantity, setFilterQuantity] = useState(0);
-	const [filterControlsCol, setFilterControlsCol] = useState(12);
+  // Handle search
+  const handleSearch = e => setSearch(e.target.value);
 
-	// Handle filter, reset filter
-	const handleFilter = e => setFilter(e);
-	const handleResetFilter = () => setFilter(defaultFilter);
+  // Filter
+  const [filters, setFilters] = useState([]);
+  const [filter, setFilter] = useState(defaultFilter);
+  const [filterQuantity, setFilterQuantity] = useState(0);
+  const [filterControlsCol, setFilterControlsCol] = useState(12);
 
-	// Sorting
-	const [sorting, setSorting] = useState({ field: '', order: '' });
-	const handleSort = (field, order) => setSorting({ field, order });
+  // Handle filter, reset filter
+  const handleFilter = e => setFilter(e);
+  const handleResetFilter = () => setFilter(defaultFilter);
 
-	// Pagination
-	const [totalItems, setTotalItems] = useState(0);
-	const [currentPage, setcurrentPage] = useState(1);
-	const [itemsPerPage, setItemsPerPage] = useState(10);
+  // Sorting
+  const [sorting, setSorting] = useState({ field: '', order: '' });
+  const handleSort = (field, order) => setSorting({ field, order });
 
-	// Handle change page
-	const handleChangePage = (itemPerPage, currentPage) => {
-		setItemsPerPage(itemPerPage);
-		setcurrentPage(currentPage);
-	};
+  // Pagination
+  const [totalItems, setTotalItems] = useState(0);
+  const [currentPage, setcurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
-	// Data
-	const [load, setLoad] = useState(true);
-	const [allData, setAllData] = useState([]);
-	const [data, setData] = useState([]);
+  // Handle change page
+  const handleChangePage = (itemPerPage, currentPage) => {
+    setItemsPerPage(itemPerPage);
+    setcurrentPage(currentPage);
+  };
 
-	// Effect update all data
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const res = await interviewAPI.fetchList();
+  // Data
+  const [loading, setLoading] = useState(true);
+  const [allData, setAllData] = useState([]);
+  const [data, setData] = useState([]);
 
-				if (res.succeeded) setAllData(res.data.interviewlist);
-				else setAllData([]);
-			} catch (error) {
-				setAllData([]);
-			} finally {
-				setLoad(false);
-			}
-		};
+  // Effect update all data
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await interviewAPI.fetchList();
 
-		if (load) fetchData();
-	}, [load]);
+        if (res.succeeded) setAllData(res.data.interviewlist);
+        else setAllData([]);
+      } catch (error) {
+        setAllData([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-	// Update all data -> update filters
-	useEffect(() => {
-		const newFilters = [...allFilters];
+    if (loading) fetchData();
+  }, [loading]);
 
-		// Handle update filter options
-		const setFiltersOptions = (name, value) => {
-			const index = newFilters.findIndex(item => item.name === name);
+  // Update all data -> update filters
+  useEffect(() => {
+    const newFilters = [...allFilters];
 
-			if (index >= 0) {
-				const optionIndex = newFilters[index].options.findIndex(
-					item => item.value === value
-				);
+    // Handle update filter options
+    const setFiltersOptions = (name, value) => {
+      const index = newFilters.findIndex(item => item.name === name);
 
-				if (optionIndex < 0)
-					newFilters[index] = {
-						...newFilters[index],
-						options: [
-							...newFilters[index].options,
-							{ value: value, label: value }
-						]
-					};
-			}
-		};
+      if (index >= 0) {
+        const optionIndex = newFilters[index].options.findIndex(
+          item => item.value === value
+        );
 
-		// Update filter options
-		allData.forEach(item => {
-			setFiltersOptions('id', item.id);
-			setFiltersOptions('vitriphongvan', item.vitriphongvan);
-		});
+        if (optionIndex < 0)
+          newFilters[index] = {
+            ...newFilters[index],
+            options: [
+              ...newFilters[index].options,
+              { value: value, label: value }
+            ]
+          };
+      }
+    };
 
-		// Update filter controls col
-		setFilterControlsCol(8);
+    // Update filter options
+    allData.forEach(item => {
+      setFiltersOptions('id', item.id);
+      setFiltersOptions('vitriphongvan', item.vitriphongvan);
+    });
 
-		// Update new filters
-		setFilters(newFilters);
-	}, [allData]);
+    // Update filter controls col
+    setFilterControlsCol(8);
 
-	// Effect update data
-	useEffect(() => {
-		let newData = [...allData];
+    // Update new filters
+    setFilters(newFilters);
+  }, [allData]);
 
-		// Search
-		newData = newData.filter(
-			item =>
-				item.id.toString().toLowerCase().includes(search.toLowerCase()) ||
-				item.hoten.toLowerCase().includes(search.toLowerCase()) ||
-				item.email.toLowerCase().includes(search.toLowerCase()) ||
-				item.sodienthoai.toLowerCase().includes(search.toLowerCase()) ||
-				item.thoigian.toLowerCase().includes(search.toLowerCase()) ||
-				item.hinhthuclamviec.toLowerCase().includes(search.toLowerCase()) ||
-				item.kenhphongvan.toLowerCase().includes(search.toLowerCase()) ||
-				item.trangthai.toLowerCase().includes(search.toLowerCase()) ||
-				item.taikhoan.toLowerCase().includes(search.toLowerCase())
-		);
+  // Effect update data
+  useEffect(() => {
+    let newData = [...allData];
 
-		// Update filter quantity
-		let newFilterQuantity = 0;
+    // Search
+    newData = newData.filter(
+      item =>
+        item.id.toString().toLowerCase().includes(search.toLowerCase()) ||
+        item.hoten.toLowerCase().includes(search.toLowerCase()) ||
+        item.email.toLowerCase().includes(search.toLowerCase()) ||
+        item.sodienthoai.toLowerCase().includes(search.toLowerCase()) ||
+        item.thoigian.toLowerCase().includes(search.toLowerCase()) ||
+        item.hinhthuclamviec.toLowerCase().includes(search.toLowerCase()) ||
+        item.kenhphongvan.toLowerCase().includes(search.toLowerCase()) ||
+        item.trangthai.toLowerCase().includes(search.toLowerCase()) ||
+        item.taikhoan.toLowerCase().includes(search.toLowerCase())
+    );
 
-		Object.values(filter).forEach(item => {
-			if (item !== '') newFilterQuantity++;
-		});
-		setFilterQuantity(newFilterQuantity);
+    setDataExport(newData);
 
-		// Filter
-		if (newFilterQuantity) {
-			newData = newData.filter(
-				item =>
-					(filter.interviewId
-						? item.interviewId === filter.interviewId
-						: true) &&
-					(filter.vitriphongvan
-						? item.vitriphongvan === filter.vitriphongvan
-						: true)
-			);
-		}
+    // Update filter quantity
+    let newFilterQuantity = 0;
 
-		// Update show not found
-		if ((search || newFilterQuantity > 0) && newData.length === 0) {
-			setNotFound(true);
-		} else setNotFound(false);
+    Object.values(filter).forEach(item => {
+      if (item !== '') newFilterQuantity++;
+    });
+    setFilterQuantity(newFilterQuantity);
 
-		// Sorting
-		if (sorting.field) {
-			const reversed = sorting.order === 'asc' ? 1 : -1;
-			newData = [...newData].sort(
-				(a, b) =>
-					reversed *
-					a[sorting.field].toString().localeCompare(b[sorting.field].toString())
-			);
-		}
+    // Filter
+    if (newFilterQuantity) {
+      newData = newData.filter(
+        item =>
+          (filter.interviewId
+            ? item.interviewId === filter.interviewId
+            : true) &&
+          (filter.vitriphongvan
+            ? item.vitriphongvan === filter.vitriphongvan
+            : true)
+      );
+    }
 
-		// Pagination
-		setTotalItems(newData.length);
-		newData = newData.slice(
-			(currentPage - 1) * itemsPerPage,
-			(currentPage - 1) * itemsPerPage + itemsPerPage
-		);
+    // Update show not found
+    if ((search || newFilterQuantity > 0) && newData.length === 0) {
+      setNotFound(true);
+    } else setNotFound(false);
 
-		// Update new data
-		setData(newData);
-	}, [allData, search, filter, sorting, currentPage, itemsPerPage]);
+    // Sorting
+    if (sorting.field) {
+      const reversed = sorting.order === 'asc' ? 1 : -1;
+      newData = [...newData].sort(
+        (a, b) =>
+          reversed *
+          a[sorting.field]
+            .toString()
+            .trim()
+            .localeCompare(b[sorting.field].toString().trim())
+      );
+    }
 
-	// Approve
-	const [showApproveModal, setShowApproveModal] = useState(false);
-	const [approvedInterview, setApprovedInterview] = useState({});
+    // Pagination
+    setTotalItems(newData.length);
+    newData = newData.slice(
+      (currentPage - 1) * itemsPerPage,
+      (currentPage - 1) * itemsPerPage + itemsPerPage
+    );
 
-	// Handle show, close approve modal
-	const handleShowApproveModal = interview => {
-		setApprovedInterview(interview);
-		setShowApproveModal(true);
-	};
-	const handleCloseApproveModal = () => {
-		setShowApproveModal(false);
-		setApprovedInterview({});
-	};
+    // Update new data
+    setData(newData);
+  }, [allData, search, filter, sorting, currentPage, itemsPerPage]);
 
-	// Handle approve
-	const handleApprove = async ({ interviewLinkURL }) => {
-		try {
-			const res = await interviewAPI.approve({
-				interviewId: approvedInterview.interviewId,
-				interviewLinkURL
-			});
+  // Approve
+  const [showApproveModal, setShowApproveModal] = useState(false);
+  const [approvedInterview, setApprovedInterview] = useState({});
 
-			if (res.succeeded) {
-				toast('Đã duyệt thành công lịch phỏng vấn nhanh');
-			} else {
-				toast('Không duyệt thành công lịch phỏng vấn nhanh');
-			}
-		} catch (error) {
-			toast('Không duyệt thành công lịch phỏng vấn nhanh');
-		}
-	};
+  // Handle show, close approve modal
+  const handleShowApproveModal = interview => {
+    setApprovedInterview(interview);
+    setShowApproveModal(true);
+  };
+  const handleCloseApproveModal = () => {
+    setShowApproveModal(false);
+    setApprovedInterview({});
+  };
 
-	// Reject
-	const [showRejectModal, setShowRejectModal] = useState(false);
-	const [rejectedInterview, setRejectedInterview] = useState({});
+  // Handle approve
+  const handleApprove = async ({ interviewLinkURL }) => {
+    try {
+      const res = await interviewAPI.approve({
+        interviewId: approvedInterview.interviewId,
+        interviewLinkURL
+      });
 
-	// handle show, close reject modal
-	const handleShowRejectModal = interview => {
-		setRejectedInterview(interview);
-		setShowRejectModal(true);
-	};
-	const handleCloseRejectModal = () => {
-		setShowRejectModal(false);
-		setRejectedInterview({});
-	};
+      if (res.succeeded) {
+        toast('Đã duyệt thành công lịch phỏng vấn nhanh', {
+          autoClose: timeOutToast
+        });
+      } else {
+        toast('Không duyệt thành công lịch phỏng vấn nhanh', {
+          autoClose: timeOutToast
+        });
+      }
+    } catch (error) {
+      toast('Không duyệt thành công lịch phỏng vấn nhanh', {
+        autoClose: timeOutToast
+      });
+    }
+  };
 
-	// Handle reject
-	const handleReject = async () => {
-		try {
-			const res = await interviewAPI.reject(rejectedInterview.interviewId);
+  // Reject
+  const [showRejectModal, setShowRejectModal] = useState(false);
+  const [rejectedInterview, setRejectedInterview] = useState({});
 
-			if (res.succeeded) {
-				toast('Đã từ chối lịch phỏng vấn nhanh');
-			} else {
-				toast('Từ chối lịch phỏng vấn nhanh không thành công');
-			}
-		} catch (error) {
-			toast('Từ chối lịch phỏng vấn nhanh không thành công');
-		}
-	};
+  // handle show, close reject modal
+  const handleShowRejectModal = interview => {
+    setRejectedInterview(interview);
+    setShowRejectModal(true);
+  };
+  const handleCloseRejectModal = () => {
+    setShowRejectModal(false);
+    setRejectedInterview({});
+  };
 
-	// Handle export to excel file
-	const handleExportToExcel = () => {
-		excelFunction.export(
-			'Danh sách đặt lịch phỏng vấn ngay',
-			'Danh sách đặt lịch phỏng vấn ngay',
-			allTableHeaders,
-			data.map(item => ({
-				...item,
-				trangthai:
-					item.trangthai === '<span class="green">Đã duyệt</span>'
-						? 'Đã duyệt'
-						: item.trangthai === '<span class="red">Từ chối</span>'
-						? 'Từ chối'
-						: 'chờ duyệt'
-			}))
-		);
-	};
+  // Handle reject
+  const handleReject = async () => {
+    try {
+      const res = await interviewAPI.reject(rejectedInterview.interviewId);
 
-	// Return JSX
-	return (
-		<div className="wrap-management">
-			<div className="management-title">DANH SÁCH ĐẶT LỊCH PHỎNG VẤN NGAY</div>
+      if (res.succeeded) {
+        toast('Đã từ chối lịch phỏng vấn nhanh', { autoClose: timeOutToast });
+      } else {
+        toast('Từ chối lịch phỏng vấn nhanh không thành công', {
+          autoClose: timeOutToast
+        });
+      }
+    } catch (error) {
+      toast('Từ chối lịch phỏng vấn nhanh không thành công', {
+        autoClose: timeOutToast
+      });
+    }
+  };
 
-			<div className="react-tabs">
-				<div className="tab-content react-tabs__tab-panel--selected">
-					<DataTableFilter
-						// Search
-						search={search}
-						handleSearch={handleSearch}
-						// Filter
-						filters={filters}
-						filterQuantity={filterQuantity}
-						filterControlsCol={filterControlsCol}
-						filter={filter}
-						handleFilter={handleFilter}
-						handleResetFilter={handleResetFilter}
-						// Export to excel file
-						handleExportToExcel={handleExportToExcel}
-					/>
-					<ManageInterviewList
-						headers={allTableHeaders}
-						data={data}
-						// Sort
-						setSorting={setSorting}
-						handleSort={handleSort}
-						// Handle approve and reject
-						handleShowApproveModal={handleShowApproveModal}
-						handleShowRejectModal={handleShowRejectModal}
-					/>
+  // Handle export to excel file
+  const handleExportToExcel = () => {
+    if (dataExport === null) {
+      setDataExport(allData);
+    }
 
-					{notFound && (
-						<div className={`notFound`}>
-							<img src="Assets/images/jobpost/notFound.png" alt="notFound" />
-							<p>Không có kết quả trùng khớp</p>
-						</div>
-					)}
+    excelFunction.export(
+      'Danh sách đặt lịch phỏng vấn ngay',
+      'Danh sách đặt lịch phỏng vấn ngay',
+      allTableHeaders,
+      dataExport.map(item => ({
+        ...item,
+        trangthai:
+          item.trangthai === '<span class="green">Đã duyệt</span>'
+            ? 'Đã duyệt'
+            : item.trangthai === '<span class="red">Từ chối</span>'
+            ? 'Từ chối'
+            : 'chờ duyệt'
+      }))
+    );
+  };
 
-					{!notFound && (
-						<DataTablePagination
-							className="pagination"
-							// pagination
-							totalItems={totalItems}
-							currentPage={currentPage}
-							handleChangePage={handleChangePage}
-						/>
-					)}
-				</div>
-			</div>
+  // Return JSX
+  return (
+    <div className="wrap-management">
+      <div className="wrap-management-header">
+        <div className="wrap-management-header-title">
+          DANH SÁCH ĐẶT LỊCH PHỎNG VẤN NGAY
+        </div>
+      </div>
 
-			{/* MODAL */}
-			<ManageInterviewApproveModal
-				show={showApproveModal}
-				interview={approvedInterview}
-				onClose={handleCloseApproveModal}
-				onSubmit={handleApprove}
-			/>
-			<ManageInterviewRejectModal
-				show={showRejectModal}
-				interview={rejectedInterview}
-				onClose={handleCloseRejectModal}
-				onSubmit={handleReject}
-			/>
-		</div>
-	);
+      <div className="react-tabs">
+        {/* Management body */}
+        {!loading && (
+          <div className="wrap-management-body">
+            {/* Filter */}
+            <DataTableFilter
+              // Search
+              search={search}
+              handleSearch={handleSearch}
+              // Filter
+              filters={filters}
+              filterQuantity={filterQuantity}
+              filterControlsCol={filterControlsCol}
+              filter={filter}
+              handleFilter={handleFilter}
+              handleResetFilter={handleResetFilter}
+              // Export to excel file
+              handleExportToExcel={handleExportToExcel}
+            />
+
+            {/* List */}
+            <ManageInterviewList
+              headers={allTableHeaders}
+              data={data}
+              // Sort
+              setSorting={setSorting}
+              handleSort={handleSort}
+              // Handle approve and reject
+              handleShowApproveModal={handleShowApproveModal}
+              handleShowRejectModal={handleShowRejectModal}
+            />
+
+            {/* Not found */}
+            {notFound && (
+              <div className={`notFound`}>
+                <img src="Assets/images/jobpost/notFound.png" alt="notFound" />
+                <p>Không có kết quả trùng khớp</p>
+              </div>
+            )}
+
+            {/* Pagination */}
+            {!notFound && (
+              <DataTablePagination
+                className="pagination"
+                // pagination
+                totalItems={totalItems}
+                currentPage={currentPage}
+                handleChangePage={handleChangePage}
+              />
+            )}
+
+            {/* MODAL */}
+            <ManageInterviewApproveModal
+              show={showApproveModal}
+              interview={approvedInterview}
+              onClose={handleCloseApproveModal}
+              onSubmit={handleApprove}
+            />
+            <ManageInterviewRejectModal
+              show={showRejectModal}
+              interview={rejectedInterview}
+              onClose={handleCloseRejectModal}
+              onSubmit={handleReject}
+            />
+          </div>
+        )}
+
+        {/* Loading */}
+        {loading && (
+          <div className="wrap-management-body">
+            <div className="loading">
+              <Spinner animation="border" />
+            </div>
+            <div className="loading-shadow"></div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default ManageInterview;

@@ -1,9 +1,9 @@
-import { CFormCheck } from "@coreui/react";
-import { Tooltip } from "@mui/material";
-import { Link } from "react-router-dom";
-import { Header } from "Views/datatable";
+import { CFormCheck } from '@coreui/react';
+import { Tooltip } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { Header } from 'Views/datatable';
 
-export const ManageRecruiterList = (props) => {
+export const ManageRecruiterList = props => {
   const {
     tabId,
     headers,
@@ -20,12 +20,12 @@ export const ManageRecruiterList = (props) => {
     handleSort,
 
     // Handle approve/extend
-    handleShowExtendModal,
+    handleShowExtendModal
   } = props;
 
   return (
-    <div className="datatable">
-      <table>
+    <div className="datatable scroll">
+      <table className="w-1500">
         <Header
           headers={
             tabId === 2
@@ -36,13 +36,13 @@ export const ManageRecruiterList = (props) => {
               ? headers.expired
               : headers.blocked
           }
-          tab={tabId === 1 ? "true" : "false"}
+          tab={tabId === 1 ? 'true' : 'false'}
           checkedAll={checkedAll}
           setCheckedAll={setCheckedAll}
           onSorting={handleSort}
         />
         <tbody>
-          {recruiterAccountsData.map((item) => (
+          {recruiterAccountsData.map((item, index) => (
             <tr key={item.recruiterId}>
               {tabId === 1 && (
                 <td className="checkBox">
@@ -51,7 +51,7 @@ export const ManageRecruiterList = (props) => {
                       value={item.recruiterId.toString()}
                       checked={
                         checkedIdList.findIndex(
-                          (recruiterId) =>
+                          recruiterId =>
                             recruiterId === item.recruiterId.toString()
                         ) >= 0
                       }
@@ -60,12 +60,12 @@ export const ManageRecruiterList = (props) => {
                   </div>
                 </td>
               )}
-              <td className={`${tabId === 2 ? "pl-16" : ""}`}>{item.id}</td>
+              <td className={`${tabId === 2 ? 'pl-16' : ''}`}>{item.id}</td>
               <td>{item.tencongty}</td>
               <td>{item.email}</td>
               <td>{item.sodienthoai}</td>
               {tabId !== 1 && (
-                <td className={`${tabId === 0 ? "width-320" : ""}`}>
+                <td className={`${tabId === 0 ? 'width-320' : ''}`}>
                   {item.sotindang}
                 </td>
               )}
@@ -87,7 +87,11 @@ export const ManageRecruiterList = (props) => {
                 </>
               )}
               <td>
-                <div className="controls">
+                <div
+                  className={
+                    index % 2 === 0 ? 'controls bg-white' : 'controls bg-gray'
+                  }
+                >
                   <Tooltip arrow title="Chi tiết">
                     <Link to={`/manageRecruiter/detail/${item.recruiterId}`}>
                       <img
@@ -115,8 +119,8 @@ export const ManageRecruiterList = (props) => {
                         className="action-detail"
                         src={
                           item.yeucaugiahan
-                            ? "/Assets/images/recruiter/expired-icon.png"
-                            : "/Assets/images/recruiter/expired-disable-icon.png"
+                            ? '/Assets/images/recruiter/expired-icon.png'
+                            : '/Assets/images/recruiter/expired-disable-icon.png'
                         }
                         alt="Extend"
                         onClick={() => {

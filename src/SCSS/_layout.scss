@@ -1,95 +1,16 @@
-.sidebar {
-	--cui-sidebar-width: 336px;
-	margin-left: 0 !important;
-	& + .wrapper {
-		--cui-sidebar-occupy-start: 336px !important;
-		padding-left: var(--cui-sidebar-occupy-start);
-	}
-	&.sidebar-narrow {
-		--cui-sidebar-width: 64px !important;
-		padding-bottom: 0 !important;
-		.sidebar-brand {
-			.btn-narrow-sidebar {
-				background: url('../../public/Assets/images/admin/menu-open.png');
-				background-size: contain;
-				cursor: pointer;
-			}
-		}
-		& + .wrapper {
-			--cui-sidebar-occupy-start: 64px !important;
-			padding-left: var(--cui-sidebar-occupy-start);
-		}
-		.sidebar-nav {
-			.nav-link,
-			.nav-item:hover {
-				overflow: hidden;
-				width: 48px;
-				border-radius: 4px;
-			}
-		}
-	}
-	.sidebar-brand {
-		background: #108fcf;
-		justify-content: start;
-		padding: 28px 20px 44px 20px;
-		.btn-narrow-sidebar {
-			width: 24px;
-			height: 24px;
-			background: url('../../public/Assets/images/admin/menu-close.png');
-			background-size: contain;
-		}
-	}
-	.sidebar-nav {
-		background: #108fcf;
-		.nav-link {
-			font-weight: 400;
-			font-size: 16px;
-			line-height: 120%;
-			letter-spacing: 0.02em;
-			color: #e1f3fb !important;
-			padding: 12px;
-			height: 48px;
-		}
-		.active {
-			font-weight: 700 !important;
-			color: #ffffff !important;
-			background: #0c557a !important;
-			box-shadow: 4px 0px 16px rgba(4, 45, 65, 0.1);
-			border-radius: 6px 0 0 6px;
-		}
-		.nav-item {
-			margin: 0 0 8px 8px;
-			height: 48px;
-		}
-		.nav-item:hover {
-			border-radius: 6px 0 0 6px;
-			background: #0c557a !important;
-		}
+.admin {
+  display: flex;
+  width: 100%;
 
-		&::-webkit-scrollbar {
-			width: 0;
-		}
-	}
-	.sidebar-toggler {
-		background: #108fcf;
-		.icon:not(.icon-c-s):not(.icon-custom-size).icon-lg {
-			width: 1.7rem;
-			height: 1.7rem;
-			color: #f8f9fb;
-		}
-	}
-	.sidebar-toggler:before {
-		content: none;
-	}
-	.icon-sidebar {
-		width: 24px;
-		height: 24px;
-		margin-right: 16px;
-		margin-top: -5px;
-	}
-}
-.wrapper {
-	.body {
-		background-color: #fafafa;
-	}
+  .admin-content-container {
+    padding-left: 64px;
+    width: 100%;
+    transition: padding-left calc(0.2s) ease;
+
+    .admin-content {
+      background: #fafafa;
+      padding-top: 80px;
+      min-height: 100vh;
+    }
+  }
 }

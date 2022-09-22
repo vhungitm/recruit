@@ -6,138 +6,203 @@ import { useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import 'SCSS/_chart.scss';
 import 'SCSS/_home.scss';
-import { Card, ChartList, LatestJobList, TableTop } from './components';
+import {
+  ChartList,
+  LatestJobList,
+  TableTop,
+  TotalHeaderList
+} from './components';
 import { headerTopCandidateTable, headerTopPostTable } from './Datas';
 
 const Home = () => {
-	// Effect update navigate
-	const navigate = useNavigate();
+  // Effect update navigate
+  const navigate = useNavigate();
 
-	useEffect(() => {
-		if (window.location.pathname === '/') navigate('/home');
-	}, [navigate]);
+  useEffect(() => {
+    if (window.location.pathname === '/') navigate('/home');
+  }, [navigate]);
 
-	// IsAdmin
-	const isAdmin = useSelector(selectCurrentUser).roles.includes('SuperAdmin');
+  // IsAdmin
+  const isAdmin = useSelector(selectCurrentUser).roles.includes('SuperAdmin');
 
-	// Effect update list total
-	const [listTotalHeader, setListTotalHeader] = useState([]);
+  // Effect update list total
+  const [listTotalHeader, setListTotalHeader] = useState([]);
+  const [listTotalHeaderLoading, setListTotalHeaderLoading] = useState(true);
 
-	useEffect(() => {
-		const getListTotalHeader = async () => {
-			const res = await homePageAPI.getListTotal();
-			setListTotalHeader(res.data?.totalItem || []);
-		};
+  useEffect(() => {
+    const getListTotalHeader = async () => {
+      try {
+        setListTotalHeaderLoading(true);
+        const res = await homePageAPI.getListTotal();
 
-		getListTotalHeader();
-	}, []);
+        if (res.succeeded) setListTotalHeader(res.data.totalItem);
+        else setListTotalHeader([]);
+      } catch (error) {
+        setListTotalHeader([]);
+      } finally {
+        setListTotalHeaderLoading(false);
+      }
+    };
 
-	// Effect update top job post applied
-	const [listJobOnBoard, setListJobOnBoard] = useState([]);
+    getListTotalHeader();
+  }, []);
 
-	useEffect(() => {
-		const getListJobOnBoard = async () => {
-			const resp = await homePageAPI.getListJobApplied();
-			setListJobOnBoard(resp.data?.jobItem || []);
-		};
+  // Effect update top job post applied
+  const [listJobOnBoard, setListJobOnBoard] = useState([]);
+  const [listJobOnBoardLoading, setListJobOnBoardLoading] = useState(true);
 
-		if (isAdmin) getListJobOnBoard();
-	}, [isAdmin]);
+  useEffect(() => {
+    const getListJobOnBoard = async () => {
+      try {
+        setListJobOnBoardLoading(true);
+        const res = await homePageAPI.getListJobApplied();
 
-	// Effect update top position posted
-	const [listPositionOnBoard, setListPositionOnBoard] = useState([]);
+        if (res.succeeded) setListJobOnBoard(res.data.jobItem);
+        else setListJobOnBoard([]);
+      } catch (error) {
+        setListJobOnBoard([]);
+      } finally {
+        setListJobOnBoardLoading(false);
+      }
+    };
 
-	useEffect(() => {
-		const getListPositionOnBoard = async () => {
-			const resp = await homePageAPI.getListJobRecruited();
-			setListPositionOnBoard(resp.data?.jobItem || []);
-		};
+    if (isAdmin) getListJobOnBoard();
+  }, [isAdmin]);
 
-		if (isAdmin) getListPositionOnBoard();
-	}, [isAdmin]);
+  // Effect update top position posted
+  const [listPositionOnBoard, setListPositionOnBoard] = useState([]);
+  const [listPositionOnBoardLoading, setListPositionOnBoardLoading] =
+    useState(false);
 
-	// Effect update list job latest
-	const [listJobLatest, setListJobLatest] = useState([]);
+  useEffect(() => {
+    const getListPositionOnBoard = async () => {
+      try {
+        const res = await homePageAPI.getListJobRecruited();
 
-	useEffect(() => {
-		const getListJobLatest = async () => {
-			const res = await homePageAPI.getListJobLatest(9);
+        if (res.succeeded) setListPositionOnBoard(res.data.jobItem);
+        else setListPositionOnBoard([]);
+      } catch (error) {
+        setListPositionOnBoard([]);
+      } finally {
+        setListPositionOnBoardLoading(false);
+      }
+    };
 
-			setListJobLatest(res.data?.jobItem || []);
-		};
+    if (isAdmin) getListPositionOnBoard();
+  }, [isAdmin]);
 
-		if (!isAdmin) getListJobLatest();
-	}, [isAdmin]);
+  // Effect update list job latest
+  const [listJobLatest, setListJobLatest] = useState([]);
+  const [listJobLatestLoading, setListJobLatestLoading] = useState(false);
 
-	// Return JSX
-	return (
-		<div className="wrap-management">
-			<div className="wrap-management-header">
-				<div className="wrap-management-header-title">TRANG CHỦ</div>
+  useEffect(() => {
+    const getListJobLatest = async () => {
+      try {
+        setListJobLatestLoading(true);
+        const res = await homePageAPI.getListJobLatest(9);
 
-				{!isAdmin && (
-					<div className="wrap-management-header-buttons">
-						<Link to="/jobPost/CreateNew">
-							<Button className="add-new-jobpost">
-								<img
-									src="/Assets/images/home/add-jobpost.png"
-									width={16}
-									height={16}
-									alt="add jobpost"
-								/>
-								<span>Thêm mới</span>
-							</Button>
-						</Link>
-					</div>
-				)}
-			</div>
-			<div className="wrap-content">
-				<div className={!isAdmin ? 'wrap-left w-100' : 'wrap-left '}>
-					<div className="card-header-left ">
-						<div className="total-items">
-							{listTotalHeader.map((data, index) => (
-								<Card key={index} data={data} />
-							))}
-						</div>
-					</div>
+        if (res.succeeded) setListJobLatest(res.data.jobItem);
+        else setListJobLatest([]);
+      } catch (error) {
+        setListJobLatest([]);
+      } finally {
+        setListJobLatestLoading(false);
+      }
+    };
 
-					{/* Chart */}
-					{isAdmin && <ChartList />}
+    if (!isAdmin) getListJobLatest();
+  }, [isAdmin]);
 
-					{/* List job latest */}
-					{!isAdmin && <LatestJobList data={listJobLatest} />}
-				</div>
-				{isAdmin && (
-					<div className="wrap-right">
-						<div className="card-header-right">
-							<TableTop
-								headers={headerTopCandidateTable}
-								topLists={listJobOnBoard}
-								titleTopTable={
-									<p>
-										{'Bảng xếp hạng các tin được '}
-										<span className="text-orange">ứng tuyển</span>
-										{'  nhiều nhất'}
-									</p>
-								}
-							/>
-							<TableTop
-								headers={headerTopPostTable}
-								topLists={listPositionOnBoard}
-								titleTopTable={
-									<p>
-										{'Bảng xếp hạng các vị trí được '}
-										<span className="text-orange">đăng tuyển</span>
-										{'  nhiều nhất'}
-									</p>
-								}
-							/>
-						</div>
-					</div>
-				)}
-			</div>
-		</div>
-	);
+  const loading =
+    (isAdmin && (listJobOnBoardLoading || listPositionOnBoardLoading)) ||
+    (!isAdmin && listJobLatestLoading) ||
+    listTotalHeaderLoading;
+
+  // Return JSX
+  return (
+    <div className="wrap-management">
+      <div className="wrap-management-header">
+        <div className="wrap-management-header-title">TRANG CHỦ</div>
+
+        {!isAdmin && (
+          <div className="wrap-management-header-buttons">
+            <Link to="/jobPost/CreateNew">
+              <Button className="add-new-jobpost">
+                <img
+                  src="/Assets/images/home/add-jobpost.png"
+                  width={16}
+                  height={16}
+                  alt="add jobpost"
+                />
+                <span>Tạo tin mới</span>
+              </Button>
+            </Link>
+          </div>
+        )}
+      </div>
+      <div className="wrap-content row">
+        <div
+          className={
+            !isAdmin
+              ? 'col-lg-12 col-xl-8 wrap-left content-recruiter w-100'
+              : 'col-lg-12 col-xl-8 wrap-left '
+          }
+        >
+          <div className="card-header-left ">
+            <TotalHeaderList
+              data={listTotalHeader}
+              loading={listTotalHeaderLoading}
+            />
+          </div>
+
+          {/* Chart */}
+          {isAdmin && <ChartList />}
+
+          {/* List job latest */}
+          {!isAdmin && (
+            <LatestJobList
+              data={listJobLatest}
+              loading={listJobLatestLoading}
+            />
+          )}
+        </div>
+        {isAdmin && (
+          <div className="col-lg-12 col-xl-4 wrap-right">
+            <div className="card-header-right">
+              <TableTop
+                flagTable="jobpost"
+                headers={headerTopCandidateTable}
+                topLists={listJobOnBoard}
+                loading={listJobOnBoardLoading}
+                titleTopTable={
+                  <p>
+                    {'Bảng xếp hạng các tin được '}
+                    <span className="text-orange">ứng tuyển</span>
+                    {'  nhiều nhất'}
+                  </p>
+                }
+              />
+              <TableTop
+                flagTable="position"
+                headers={headerTopPostTable}
+                topLists={listPositionOnBoard}
+                titleTopTable={
+                  <p>
+                    {'Bảng xếp hạng các vị trí được '}
+                    <span className="text-orange">đăng tuyển</span>
+                    {'  nhiều nhất'}
+                  </p>
+                }
+              />
+            </div>
+          </div>
+        )}
+      </div>
+
+      {/* Loading */}
+      {loading && <div className="loading-shadow" />}
+    </div>
+  );
 };
 
 export default Home;

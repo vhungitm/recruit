@@ -1,7 +1,9 @@
 import recruiterAccountAPI from 'API/recruiterAccountAPI.js';
 import React, { useEffect, useState } from 'react';
+import { Spinner } from 'react-bootstrap';
 import { useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { timeOutToast } from 'utils';
 import 'SCSS/_management.scss';
 import { excelFunction } from 'utils';
 import { DataTableFilter, DataTablePagination } from 'Views/datatable/index';
@@ -9,347 +11,405 @@ import { ManageRecruiterExtendModal, ManageRecruiterList } from './components';
 import { allFilters, allTableHeaders, defaultFilter, tabs } from './datas';
 
 const ManageRecruiter = () => {
-	// Search
-	const [search, setSearch] = useState('');
-	const [notFound, setNotFound] = useState(false);
+  //Check data to export to Excel
+  const [dataExport, setDataExport] = useState([]);
 
-	// Handle search
-	const handleSearch = e => setSearch(e.target.value);
+  // Search
+  const [search, setSearch] = useState('');
+  const [notFound, setNotFound] = useState(false);
 
-	// Filter
-	const filters = [...allFilters];
-	const [filter, setFilter] = useState(defaultFilter);
-	const [filterQuantity, setFilterQuantity] = useState(0);
-	const [filterControlsCol] = useState(10);
+  // Handle search
+  const handleSearch = e => setSearch(e.target.value);
 
-	// Handle filter, reset filter
-	const handleFilter = e => setFilter(e);
-	const handleResetFilter = () => setFilter(defaultFilter);
+  // Filter
+  const filters = [...allFilters];
+  const [filter, setFilter] = useState(defaultFilter);
+  const [filterQuantity, setFilterQuantity] = useState(0);
+  const [filterControlsCol] = useState(10);
 
-	// Sort
-	const [sorting, setSorting] = useState({ field: '', order: '' });
-	const handleSort = (field, order) => setSorting({ field, order });
+  // Handle filter, reset filter
+  const handleFilter = e => setFilter(e);
+  const handleResetFilter = () => setFilter(defaultFilter);
 
-	// Pagination
-	const [totalItems, setTotalItems] = useState(0);
-	const [currentPage, setcurrentPage] = useState(1);
-	const [itemsPerPage, setItemsPerPage] = useState(10);
+  // Sort
+  const [sorting, setSorting] = useState({ field: '', order: '' });
+  const handleSort = (field, order) => setSorting({ field, order });
 
-	// Handle change page
-	const handleChangePage = (itemPerPage, currentPage) => {
-		setItemsPerPage(itemPerPage);
-		setcurrentPage(currentPage);
-	};
+  // Pagination
+  const [totalItems, setTotalItems] = useState(0);
+  const [currentPage, setcurrentPage] = useState(1);
+  const [itemsPerPage, setItemsPerPage] = useState(10);
 
-	// Data
-	const [params] = useSearchParams('id');
-	const [tabId, settabId] = useState(parseInt(params.get('id') || 2));
-	const [load, setLoad] = useState(true);
-	const [allData, setAllData] = useState([]);
-	const [recruiters, setData] = useState([]);
+  // Handle change page
+  const handleChangePage = (itemPerPage, currentPage) => {
+    setItemsPerPage(itemPerPage);
+    setcurrentPage(currentPage);
+  };
 
-	// Effect update all data
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const res = await recruiterAccountAPI.fetchList(tabId);
+  // Data
+  const [params] = useSearchParams('id');
+  const [tabId, settabId] = useState(parseInt(params.get('id') || 2));
+  const [loading, setLoading] = useState(true);
+  const [allData, setAllData] = useState([]);
+  const [recruiters, setData] = useState([]);
 
-				if (res.succeeded) setAllData(res.data.recruiterlist);
-				else setAllData([]);
-			} catch (error) {
-				setAllData([]);
-			} finally {
-				setLoad(false);
-			}
-		};
+  // Effect update all data
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await recruiterAccountAPI.fetchList(tabId);
 
-		if (load) fetchData();
-	}, [tabId, load]);
+        if (res.succeeded) setAllData(res.data.recruiterlist);
+        else setAllData([]);
+      } catch (error) {
+        setAllData([]);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-	// Effect update data
-	useEffect(() => {
-		let newData = [...allData];
+    if (loading) fetchData();
+  }, [tabId, loading]);
 
-		// Search
-		newData = newData.filter(
-			item =>
-				item.id.toLowerCase().includes(search.toLowerCase()) ||
-				item.tencongty.toLowerCase().includes(search.toLowerCase()) ||
-				item.ngaytaotaikhoan.toLowerCase().includes(search.toLowerCase()) ||
-				item.ngayhethan.toLowerCase().includes(search.toLowerCase()) ||
-				item.sodienthoai.toLowerCase().includes(search.toLowerCase()) ||
-				item.email.toLowerCase().includes(search.toLowerCase())
-		);
+  // Effect update data
+  useEffect(() => {
+    let newData = [...allData];
 
-		// Count filter
-		let newFilterQuantity = 0;
+    // Search
+    newData = newData.filter(
+      item =>
+        item.id.toLowerCase().includes(search.toLowerCase()) ||
+        item.tencongty.toLowerCase().includes(search.toLowerCase()) ||
+        item.ngaytaotaikhoan.toLowerCase().includes(search.toLowerCase()) ||
+        item.ngayhethan.toLowerCase().includes(search.toLowerCase()) ||
+        item.sodienthoai.toLowerCase().includes(search.toLowerCase()) ||
+        item.email.toLowerCase().includes(search.toLowerCase())
+    );
 
-		Object.values(filter).forEach(item => {
-			if (item !== '') newFilterQuantity++;
-		});
-		setFilterQuantity(newFilterQuantity);
+    setDataExport(newData);
 
-		// Filter
-		if (newFilterQuantity) {
-			newData = newData.filter(item => item.yeucaugiahan === false);
-		}
+    // Count filter
+    let newFilterQuantity = 0;
 
-		// Update show not found
-		if ((search || newFilterQuantity) && newData.length === 0) {
-			setNotFound(true);
-		} else setNotFound(false);
+    Object.values(filter).forEach(item => {
+      if (item !== '') newFilterQuantity++;
+    });
+    setFilterQuantity(newFilterQuantity);
 
-		// Sorting
-		if (sorting.field) {
-			const reversed = sorting.order === 'asc' ? 1 : -1;
-			newData = [...newData].sort(
-				(a, b) =>
-					reversed *
-					a[sorting.field].toString().localeCompare(b[sorting.field].toString())
-			);
-		}
+    // Filter
+    if (newFilterQuantity) {
+      newData = newData.filter(item => item.yeucaugiahan === false);
+    }
 
-		// Pagination
-		setTotalItems(newData.length);
-		newData = newData.slice(
-			(currentPage - 1) * itemsPerPage,
-			(currentPage - 1) * itemsPerPage + itemsPerPage
-		);
+    // Update show not found
+    if ((search || newFilterQuantity) && newData.length === 0) {
+      setNotFound(true);
+    } else setNotFound(false);
 
-		// Update new data
-		setData(newData);
-	}, [allData, currentPage, search, filter, sorting, itemsPerPage]);
+    // Sorting
+    if (sorting.field) {
+      const reversed = sorting.order === 'asc' ? 1 : -1;
+      if (sorting.field === 'sotindang' || sorting.field === 'solangiahan') {
+        newData = [...newData].sort(
+          (a, b) => reversed * (a[sorting.field] - b[sorting.field])
+        );
+      } else if (
+        sorting.field === 'ngaytaotaikhoan' ||
+        sorting.field === 'ngayhethan'
+      ) {
+        newData = [...newData].sort(
+          (a, b) =>
+            reversed *
+            (new Date(...a[sorting.field].split('/').reverse()) -
+              new Date(...b[sorting.field].split('/').reverse()))
+        );
+      } else {
+        newData = [...newData].sort(
+          (a, b) =>
+            reversed *
+            a[sorting.field]
+              .toString()
+              .trim()
+              .localeCompare(b[sorting.field].toString().trim())
+        );
+      }
+    }
 
-	// Handle change tab
-	const handleChangeTab = tab => {
-		if (tab.id === tabId) return;
+    // Pagination
+    setTotalItems(newData.length);
+    newData = newData.slice(
+      (currentPage - 1) * itemsPerPage,
+      (currentPage - 1) * itemsPerPage + itemsPerPage
+    );
 
-		settabId(tab.id);
-		setSearch('');
-		setFilter(defaultFilter);
-		setcurrentPage(1);
-		setLoad(true);
+    // Update new data
+    setData(newData);
+  }, [allData, currentPage, search, filter, sorting, itemsPerPage]);
 
-		// update link
-		let link = `/manageRecruiter`;
-		link += tab.id !== 2 ? `?id=${tab.id}` : '';
+  // Handle change tab
+  const handleChangeTab = tab => {
+    if (tab.id === tabId) return;
 
-		window.history.pushState({}, '', link);
-	};
+    settabId(tab.id);
+    setSearch('');
+    setFilter(defaultFilter);
+    setcurrentPage(1);
+    setLoading(true);
 
-	// Checked item
-	const [checkedAll, setCheckedAll] = useState(false);
-	const [checkedIdList, setCheckedIdList] = React.useState([]);
+    // update link
+    let link = `/manageRecruiter`;
+    link += tab.id !== 2 ? `?id=${tab.id}` : '';
 
-	// Handle check item
-	const handleCheckItem = event => {
-		const { value, checked } = event.target;
+    window.history.pushState({}, '', link);
+  };
 
-		if (checked) {
-			if (checkedIdList.findIndex(recruiterId => recruiterId === value) === -1)
-				setCheckedIdList([...checkedIdList, value]);
-		} else {
-			setCheckedIdList(
-				checkedIdList.filter(recruiterId => recruiterId !== value)
-			);
-		}
-	};
+  // Checked item
+  const [checkedAll, setCheckedAll] = useState(false);
+  const [checkedIdList, setCheckedIdList] = React.useState([]);
 
-	// Effect update checked items
-	useEffect(() => {
-		if (checkedAll) {
-			let newCheckedId = [];
+  // Handle check item
+  const handleCheckItem = event => {
+    const { value, checked } = event.target;
 
-			for (let item of recruiters) {
-				newCheckedId.push(item.recruiterId.toString());
-			}
+    if (checked) {
+      if (checkedIdList.findIndex(recruiterId => recruiterId === value) === -1)
+        setCheckedIdList([...checkedIdList, value]);
+    } else {
+      setCheckedIdList(
+        checkedIdList.filter(recruiterId => recruiterId !== value)
+      );
+    }
+  };
 
-			setCheckedIdList(newCheckedId);
-		} else {
-			setCheckedIdList([]);
-		}
-	}, [checkedAll, recruiters]);
+  // Effect update checked items
+  useEffect(() => {
+    if (checkedAll) {
+      let newCheckedId = [];
 
-	// Approve
-	const [showExtendModal, setShowExtendModal] = useState(false);
-	const [extendedAccount, setExtendedAccount] = useState(null);
+      for (let item of recruiters) {
+        newCheckedId.push(item.recruiterId.toString());
+      }
 
-	// Handle show, close approve/extend modal
-	const handleShowExtendModal = account => {
-		setExtendedAccount(account);
-		setShowExtendModal(true);
-	};
+      setCheckedIdList(newCheckedId);
+    } else {
+      setCheckedIdList([]);
+    }
+  }, [checkedAll, recruiters]);
 
-	const handleCloseExtendModal = () => setShowExtendModal(false);
+  // Approve
+  const [showExtendModal, setShowExtendModal] = useState(false);
+  const [extendedAccount, setExtendedAccount] = useState(null);
 
-	// Handle approve/extend
-	const handleExtend = async formValues => {
-		const approveAccountQuantity = checkedIdList.length;
+  // Handle show, close approve/extend modal
+  const handleShowExtendModal = account => {
+    setExtendedAccount(account);
+    setShowExtendModal(true);
+  };
 
-		try {
-			const { durationInMonth } = formValues;
-			const response =
-				tabId === 1
-					? await recruiterAccountAPI.approve({
-							recruiterIdList:
-								extendedAccount !== null
-									? [extendedAccount.recruiterId.toString()]
-									: checkedIdList
-					  })
-					: await recruiterAccountAPI.extend({
-							recruiterIdList: [extendedAccount.recruiterId.toString()],
-							durationInMonth: durationInMonth
-					  });
+  const handleCloseExtendModal = () => setShowExtendModal(false);
 
-			if (response.succeeded) {
-				toast(
-					tabId === 3 ? (
-						`Đã gia hạn thành công tài khoản số ${extendedAccount.id}`
-					) : extendedAccount ? (
-						`Đã duyệt thành công tài khoản số ${extendedAccount.id}`
-					) : (
-						<>Đã duyệt thành công {approveAccountQuantity} tài khoản</>
-					)
-				);
-				setLoad(true);
-			} else {
-				toast(
-					tabId === 3 ? (
-						`Gia hạn không thành công tài khoản số ${extendedAccount.id}`
-					) : extendedAccount ? (
-						`Duyệt không thành công tài khoản số ${extendedAccount.id}`
-					) : (
-						<>Duyệt không thành công {approveAccountQuantity} tài khoản</>
-					)
-				);
-			}
-		} catch (error) {
-			toast(
-				tabId === 3 ? (
-					`Gia hạn không thành công tài khoản số ${extendedAccount.id}`
-				) : extendedAccount ? (
-					`Duyệt không thành công tài khoản số ${extendedAccount.id}`
-				) : (
-					<>Duyệt không thành công {approveAccountQuantity} tài khoản</>
-				)
-			);
-		} finally {
-			setShowExtendModal(false);
-			setShowExtendModal(false);
-			setCheckedIdList([]);
-			setExtendedAccount(null);
-			settabId(tabId);
-		}
-	};
+  // Handle approve/extend
+  const handleExtend = async formValues => {
+    const approveAccountQuantity = checkedIdList.length;
 
-	// Handle export to excel file
-	const handleExportToExcel = async () => {
-		let header =
-			tabId === 2
-				? allTableHeaders.approved
-				: tabId === 1
-				? allTableHeaders.waiting
-				: tabId === 3
-				? allTableHeaders.expired
-				: allTableHeaders.deleted;
+    try {
+      const { durationInMonth } = formValues;
+      const response =
+        tabId === 1
+          ? await recruiterAccountAPI.approve({
+              recruiterIdList:
+                extendedAccount !== null
+                  ? [extendedAccount.recruiterId.toString()]
+                  : checkedIdList
+            })
+          : await recruiterAccountAPI.extend({
+              recruiterIdList: [extendedAccount.recruiterId.toString()],
+              durationInMonth: durationInMonth
+            });
 
-		excelFunction.export(
-			'Danh sách tài khoản nhà tuyển dụng',
-			'Danh sách tài khoản nhà tuyển dụng',
-			header,
-			recruiters.map(item => ({
-				...item
-			}))
-		);
-	};
+      if (response.succeeded) {
+        toast(
+          tabId === 3 ? (
+            `Đã gia hạn thành công tài khoản số ${extendedAccount.id}`
+          ) : extendedAccount ? (
+            `Đã duyệt thành công tài khoản số ${extendedAccount.id}`
+          ) : (
+            <>Đã duyệt thành công {approveAccountQuantity} tài khoản</>
+          ),
+          {
+            autoClose: timeOutToast
+          }
+        );
+        setLoading(true);
+      } else {
+        toast(
+          tabId === 3 ? (
+            `Gia hạn không thành công tài khoản số ${extendedAccount.id}`
+          ) : extendedAccount ? (
+            `Duyệt không thành công tài khoản số ${extendedAccount.id}`
+          ) : (
+            <>Duyệt không thành công {approveAccountQuantity} tài khoản</>
+          ),
+          {
+            autoClose: timeOutToast
+          }
+        );
+      }
+    } catch (error) {
+      toast(
+        tabId === 3 ? (
+          `Gia hạn không thành công tài khoản số ${extendedAccount.id}`
+        ) : extendedAccount ? (
+          `Duyệt không thành công tài khoản số ${extendedAccount.id}`
+        ) : (
+          <>Duyệt không thành công {approveAccountQuantity} tài khoản</>
+        ),
+        {
+          autoClose: timeOutToast
+        }
+      );
+    } finally {
+      setShowExtendModal(false);
+      setShowExtendModal(false);
+      setCheckedIdList([]);
+      setExtendedAccount(null);
+      settabId(tabId);
+    }
+  };
 
-	// Return JSX
-	return (
-		<div className="wrap-management">
-			<p className="title-tab">QUẢN LÝ TÀI KHOẢN NHÀ TUYỂN DỤNG</p>
-			<div className="react-tabs">
-				<ul className="react-tabs__tab-list">
-					{tabs.map(tab => (
-						<li
-							key={tab.id}
-							className={
-								tabId === tab.id
-									? 'react-tabs__tab react-tabs__tab--selected'
-									: 'react-tabs__tab'
-							}
-							onClick={() => handleChangeTab(tab)}
-						>
-							{tab.title}
-						</li>
-					))}
-				</ul>
-				<div className="tab-content react-tabs__tab-panel--selected">
-					{/* <div className="feature"> */}
-					<DataTableFilter
-						// search
-						search={search}
-						handleSearch={handleSearch}
-						// filter
-						filters={filters}
-						filterQuantity={filterQuantity}
-						filterControlsCol={filterControlsCol}
-						filter={filter}
-						showFilter={tabId === 3}
-						handleFilter={handleFilter}
-						handleResetFilter={handleResetFilter}
-						// Export
-						handleExportToExcel={handleExportToExcel}
-						// approve
-						showApproveAll={tabId === 1 && checkedIdList.length}
-						numberChecked={checkedIdList.length}
-						handleApprove={handleExtend}
-					/>
-					{/* </div> */}
+  // Handle export to excel file
+  const handleExportToExcel = async () => {
+    if (dataExport === null) {
+      setDataExport(allData);
+    }
 
-					<ManageRecruiterList
-						tabId={tabId}
-						headers={allTableHeaders}
-						recruiterAccountsData={recruiters}
-						// Checked item
-						checkedAll={checkedAll}
-						checkedIdList={checkedIdList}
-						setCheckedAll={setCheckedAll}
-						handleCheckItem={handleCheckItem}
-						// Sort
-						handleSort={handleSort}
-						// Handle approve/extend
-						handleShowExtendModal={handleShowExtendModal}
-					/>
+    let header =
+      tabId === 2
+        ? allTableHeaders.approved
+        : tabId === 1
+        ? allTableHeaders.waiting
+        : tabId === 3
+        ? allTableHeaders.expired
+        : allTableHeaders.deleted;
 
-					{notFound && (
-						<div className={`notFound`}>
-							<img src="Assets/images/jobpost/notFound.png" alt="notFound" />
-							<p>Không có kết quả trùng khớp</p>
-						</div>
-					)}
+    excelFunction.export(
+      'Danh sách tài khoản nhà tuyển dụng',
+      'Danh sách tài khoản nhà tuyển dụng',
+      header,
+      dataExport.map(item => ({
+        ...item
+      }))
+    );
+  };
 
-					{!notFound && (
-						<DataTablePagination
-							className="pagination"
-							// pagination
-							totalItems={totalItems}
-							currentPage={currentPage}
-							handleChangePage={handleChangePage}
-						/>
-					)}
-				</div>
-			</div>
+  // Return JSX
+  return (
+    <div className="wrap-management">
+      <div className="wrap-management-header">
+        <div className="wrap-management-header-title">
+          QUẢN LÝ TÀI KHOẢN NHÀ TUYỂN DỤNG
+        </div>
+      </div>
 
-			{/* MODAL */}
-			{/* Extend/Approve modal */}
-			<ManageRecruiterExtendModal
-				isExtend={tabId === 3}
-				show={showExtendModal}
-				onClose={handleCloseExtendModal}
-				onSubmit={handleExtend}
-			/>
-		</div>
-	);
+      <div className="react-tabs">
+        <ul className="react-tabs__tab-list">
+          {tabs.map(tab => (
+            <li
+              key={tab.id}
+              className={
+                tabId === tab.id
+                  ? 'react-tabs__tab react-tabs__tab--selected'
+                  : 'react-tabs__tab'
+              }
+              onClick={() => handleChangeTab(tab)}
+            >
+              {tab.title}
+            </li>
+          ))}
+        </ul>
+
+        {/* Management body */}
+        {!loading && (
+          <div className="wrap-management-body">
+            {/* Search and filter */}
+            <DataTableFilter
+              // search
+              search={search}
+              handleSearch={handleSearch}
+              // filter
+              filters={filters}
+              filterQuantity={filterQuantity}
+              filterControlsCol={filterControlsCol}
+              filter={filter}
+              showFilter={tabId === 3}
+              handleFilter={handleFilter}
+              handleResetFilter={handleResetFilter}
+              // Export
+              handleExportToExcel={handleExportToExcel}
+              // approve
+              showApproveAll={tabId === 1 && checkedIdList.length}
+              numberChecked={checkedIdList.length}
+              handleApprove={handleExtend}
+            />
+
+            {/* List */}
+            <ManageRecruiterList
+              tabId={tabId}
+              headers={allTableHeaders}
+              recruiterAccountsData={recruiters}
+              // Checked item
+              checkedAll={checkedAll}
+              checkedIdList={checkedIdList}
+              setCheckedAll={setCheckedAll}
+              handleCheckItem={handleCheckItem}
+              // Sort
+              handleSort={handleSort}
+              // Handle approve/extend
+              handleShowExtendModal={handleShowExtendModal}
+            />
+
+            {/* Not found*/}
+            {notFound && (
+              <div className={`notFound`}>
+                <img src="Assets/images/jobpost/notFound.png" alt="notFound" />
+                <p>Không có kết quả trùng khớp</p>
+              </div>
+            )}
+
+            {/* Padding */}
+            {!notFound && (
+              <DataTablePagination
+                className="pagination"
+                // pagination
+                totalItems={totalItems}
+                currentPage={currentPage}
+                handleChangePage={handleChangePage}
+              />
+            )}
+
+            {/* MODAL */}
+            {/* Extend/Approve modal */}
+            <ManageRecruiterExtendModal
+              isExtend={tabId === 3}
+              show={showExtendModal}
+              onClose={handleCloseExtendModal}
+              onSubmit={handleExtend}
+            />
+          </div>
+        )}
+
+        {/* Loading */}
+        {loading && (
+          <div className="wrap-management-body">
+            <div className="loading">
+              <Spinner animation="border" />
+            </div>
+            <div className="loading-shadow"></div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
 };
 
 export default ManageRecruiter;

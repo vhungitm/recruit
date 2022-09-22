@@ -3,12 +3,12 @@ import authReducer from './authSlice';
 import systemReducer from './systemSlice';
 
 const rootReducer = {
-	auth: authReducer,
-	system: systemReducer
+  auth: authReducer,
+  system: systemReducer
 };
 
 const store = configureStore({
-	reducer: rootReducer
+  reducer: rootReducer
 });
 
 export default store;

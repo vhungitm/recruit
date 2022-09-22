@@ -1,0 +1,122 @@
+.admin .admin-sidebar {
+  position: fixed;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+
+  width: 64px;
+  height: 100vh;
+
+  padding: 28px 0px;
+  background: #108fcf;
+
+  transition: width 0.2s ease;
+
+  .sidebar-button {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    gap: 3.66px;
+
+    width: 24px;
+    height: 24px;
+
+    margin: 0 20px;
+    padding: 4px 1px;
+
+    cursor: pointer;
+
+    .sidebar-button-line {
+      width: 22px;
+      height: 2.75px;
+      background-color: #fafafa;
+      transition: all 0.2s ease;
+    }
+  }
+
+  .sidebar-menu {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 44px 8px 0 8px;
+
+    .sidebar-menu-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+
+      height: 48px;
+      padding: 12px;
+
+      font-weight: 400;
+      text-decoration: none;
+
+      .sidebar-menu-icon {
+        width: 24px;
+        height: 24px;
+      }
+
+      .sidebar-menu-title {
+        opacity: 0;
+        transition: opacity 0.2s ease;
+        white-space: nowrap;
+      }
+
+      &.active,
+      &:hover {
+        background: #0c557a;
+        border-radius: 4px;
+
+        .sidebar-menu-title {
+          font-weight: 700 !important ;
+        }
+      }
+    }
+  }
+
+  &.show {
+    width: 336px;
+
+    .sidebar-button {
+      .sidebar-button-line {
+        &.line-1 {
+          transform: rotate(45deg) translate(4px, 7px);
+        }
+
+        &.line-2 {
+          opacity: 0;
+        }
+
+        &.line-3 {
+          transform: rotate(-45deg) translate(2px, -5px);
+        }
+      }
+    }
+
+    .sidebar-menu {
+      margin-right: 0;
+
+      .sidebar-menu-item {
+        border-radius: 4px 0 0 4px;
+
+        .sidebar-menu-title {
+          font-weight: 400;
+          font-size: 16px;
+          line-height: 120%;
+          color: #b5d9e9;
+          opacity: 1;
+          transition: opacity 0.2s ease;
+        }
+      }
+    }
+
+    & ~ .admin-content-container {
+      padding-left: 336px;
+      transition: padding-left 0.2s ease;
+
+      .admin-header {
+        width: calc(100% - 336px);
+      }
+    }
+  }
+}

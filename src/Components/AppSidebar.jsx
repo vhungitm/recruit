@@ -1,45 +1,38 @@
-import { CSidebar, CSidebarBrand, CSidebarNav } from '@coreui/react';
-import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import SimpleBar from 'simplebar-react';
-import 'simplebar/dist/simplebar.min.css';
-import { AppSidebarNav } from './AppSidebarNav';
-import { selectSystemSidebar, systemActions } from 'app/systemSlice';
-import navigation from '_nav';
 import { selectCurrentUser } from 'app/authSlice';
+import { selectSystemSidebar, systemActions } from 'app/systemSlice';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import 'SCSS/_appSidebar.scss';
+import navigation from '_nav';
 
-const AppSidebar = () => {
-	const sidebar = useSelector(selectSystemSidebar);
-	const dispatch = useDispatch();
-	const currentUser = useSelector(selectCurrentUser);
+export const AppSidebar = () => {
+  const currentUser = useSelector(selectCurrentUser);
+  const userRole = currentUser.roles[0];
 
-	const handleNarrowSidebar = () => dispatch(systemActions.setNarrowSidebar());
+  const dispatch = useDispatch();
+  const sidebar = useSelector(selectSystemSidebar);
+  const handleShowSidebar = () => dispatch(systemActions.setShowSidebar());
 
-	return (
-		<CSidebar
-			position="fixed"
-			unfoldable={sidebar.unfoldable}
-			narrow={sidebar.narrow}
-		>
-			<CSidebarBrand>
-				<div
-					className={`btn-narrow-sidebar${sidebar.narrow ? ' narrow' : ''}`}
-					onClick={handleNarrowSidebar}
-				></div>
-			</CSidebarBrand>
-			<CSidebarNav>
-				<SimpleBar>
-					<AppSidebarNav
-						items={
-							currentUser?.roles?.find(item => item === 'SuperAdmin')
-								? navigation.SuperAdmin
-								: navigation.Basic
-						}
-					/>
-				</SimpleBar>
-			</CSidebarNav>
-		</CSidebar>
-	);
+  return (
+    <div className={sidebar.show ? 'admin-sidebar show' : 'admin-sidebar'}>
+      <div className="sidebar-button" onClick={handleShowSidebar}>
+        <div className="sidebar-button-line line-1"></div>
+        <div className="sidebar-button-line line-2"></div>
+        <div className="sidebar-button-line line-3"></div>
+      </div>
+
+      <div className="sidebar-menu">
+        {navigation[userRole].map(item => (
+          <NavLink key={item.name} className="sidebar-menu-item" to={item.path}>
+            <img
+              src={`/Assets/images/admin/menu-${item.name}.png`}
+              className="sidebar-menu-icon"
+              alt={item.name}
+            />
+            <div className="sidebar-menu-title">{item.title}</div>
+          </NavLink>
+        ))}
+      </div>
+    </div>
+  );
 };
-
-export default React.memo(AppSidebar);
