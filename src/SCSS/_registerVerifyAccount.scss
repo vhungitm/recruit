@@ -1,0 +1,41 @@
+.register-verify-account.is-success {
+  width: 530px;
+  text-align: center;
+
+  .register-verify-account-header {
+    margin-bottom: 16px;
+
+    .register-verify-account-header-logo {
+      width: 80px;
+      height: 88px;
+    }
+
+    .register-verify-account-header-title {
+      margin: 16px;
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 140%;
+      text-align: center;
+      text-transform: uppercase;
+      color: #27ae60;
+    }
+  }
+
+  .register-verify-account-body {
+    .register-verify-account-body-message {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 22px;
+      color: #042d41;
+    }
+    .btn.btn-primary {
+      margin-top: 24px;
+      width: 100%;
+      height: 40px;
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 140%;
+      color: #ffffff;
+    }
+  }
+}

@@ -1,0 +1,118 @@
+.login {
+  width: 500px;
+  margin: 40px;
+  text-align: center;
+
+  .login-header {
+    margin-bottom: 32px;
+
+    .login-header-logo {
+      width: 80px;
+      height: 88px;
+    }
+
+    .login-header-title {
+      margin-top: 8px;
+      font-style: normal;
+      font-weight: 700;
+      font-size: 32px;
+      line-height: 140%;
+      text-transform: uppercase;
+      color: #0c557a;
+    }
+
+    .login-header-error {
+      margin-top: 8px;
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 22px;
+      color: #ef3737;
+    }
+  }
+
+  .login-body {
+    text-align: left;
+
+    .email-group {
+      margin-bottom: 16px;
+    }
+
+    .password-group {
+      margin-bottom: 24px;
+      .icon-end {
+        cursor: pointer;
+      }
+    }
+
+    .login-flex {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 24px;
+
+      .remember-me {
+        .form-check-label {
+          font-weight: 400;
+          font-size: 14px;
+          line-height: 19px;
+        }
+      }
+
+      .forgot-password {
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 19px;
+        text-decoration-line: underline;
+        color: #108fcf !important;
+      }
+    }
+
+    .btn.btn-primary {
+      width: 100%;
+      height: 40px;
+
+      font-weight: 600;
+      font-size: 15px;
+      line-height: 140%;
+    }
+  }
+
+  .login-footer {
+    margin-top: 24px;
+    font-weight: 300;
+    font-size: 14px;
+    color: #042d41;
+
+    a {
+      font-weight: 600;
+      color: #108fcf !important;
+    }
+  }
+}
+
+.login.is-blocked {
+  .login-header {
+    .login-header-title {
+      width: 334px;
+      margin: 16px auto 0 auto;
+      color: #ef3737;
+    }
+  }
+
+  .login-body {
+    .login-message {
+      font-weight: 400;
+      font-size: 16px;
+      line-height: 140%;
+      color: #042d41;
+
+      .login-message-bold {
+        color: #0c557a;
+        font-weight: bold;
+      }
+    }
+
+    .btn.btn-primary {
+      margin-top: 24px;
+    }
+  }
+}

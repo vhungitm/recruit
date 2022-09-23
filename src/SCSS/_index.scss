@@ -10,7 +10,6 @@ body {
   font-family: 'Nunito Sans', sans-serif !important;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  min-width: 760px;
   overflow: unset !important;
   padding: unset !important;
 
@@ -738,31 +737,6 @@ code {
       content: '';
       margin-left: 16px !important;
     }
-  }
-}
-
-/* Check */
-.form-check {
-  display: flex !important;
-  align-items: center;
-  margin: 0;
-  .form-check-input {
-    width: 20px;
-    height: 20px;
-    box-shadow: none;
-    margin-bottom: 4px;
-    box-shadow: none !important;
-    &:checked {
-      background-color: #ffffff;
-      border-color: #108fcf;
-      &[type='checkbox'] {
-        background-image: url('../../public/Assets/images/jobpost/checked.png') !important;
-        border-color: #108fcf;
-      }
-    }
-  }
-  .form-check-label {
-    margin-left: 10px;
   }
 }
 

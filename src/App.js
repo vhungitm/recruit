@@ -12,6 +12,7 @@ import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import routes from 'routes';
 import 'SCSS/style.scss';
 import 'SCSS/_index.scss';
+import 'SCSS/_formCheck.scss';
 import './App.css';
 
 const App = () => {
