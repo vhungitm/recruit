@@ -12,7 +12,7 @@ import { convertToSingleText } from 'utils';
 import * as yup from 'yup';
 
 const Register = () => {
-  const [isSuccess, setIsSuccess] = useState(true);
+  const [isSuccess, setIsSuccess] = useState(false);
 
   // Form default value
   const defaultValues = {

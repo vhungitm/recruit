@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 import { useSearchParams } from 'react-router-dom';
 import 'react-tabs/style/react-tabs.css';
 import { toast } from 'react-toastify';
-import 'bootstrap/dist/css/bootstrap.min.css';
 import 'SCSS/_management.scss';
 import { delay, excelFunction } from 'utils';
 import { DataTableFilter, DataTablePagination } from 'Views/datatable/index';

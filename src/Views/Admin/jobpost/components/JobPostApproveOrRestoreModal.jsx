@@ -9,35 +9,53 @@ import {
 export const JobPostApproveOrRestoreModal = props => {
   const { isApprove, show, onClose, onSubmit } = props;
 
-  return (
-    <Modal className="approve-modal" show={show} onHide={onClose}>
+  // Approve Modal JSX
+  const approveModal = (
+    <Modal show={show} onHide={onClose} centered>
       <ModalHeader closeButton={true}></ModalHeader>
       <ModalBody>
         <img
-          className="img-88"
-          src={
-            process.env.PUBLIC_URL + `/Assets/images/jobpost/success-icon.png`
-          }
-          alt="success-icon"
+          className="modal-logo"
+          src="/Assets/images/jobpost/logo-success.png"
+          alt="Approve JobPost"
         />
-        <p className="modal-title">
-          {isApprove ? 'Xác nhận duyệt tin' : 'Xác nhận khôi phục'}
-        </p>
-        <span className="modal-inform">
-          {isApprove
-            ? 'Tin tuyển dụng sau khi duyệt sẽ được đăng lên trang tma.vn'
-            : 'Tin sau khi được khôi phục sẽ  chuyển đến danh sách tin chờ duyệt'}
-        </span>
+        <div className="modal-title">Xác nhận duyệt tin</div>
+        <div className="modal-message">
+          Tin tuyển dụng sau khi duyệt sẽ được đăng lên trang tma.vn
+        </div>
       </ModalBody>
       <ModalFooter>
-        <Button className="cancel-btn" onClick={onClose}>
+        <Button variant="secondary" onClick={onClose}>
           Hủy
         </Button>
-
-        <Button className="confirm-btn" onClick={onSubmit}>
-          Xác nhận
-        </Button>
+        <Button onClick={onSubmit}>Xác nhận</Button>
       </ModalFooter>
     </Modal>
   );
+
+  // Restore Modal JSX
+  const restoreModal = (
+    <Modal show={show} onHide={onClose} centered>
+      <ModalHeader closeButton={true}></ModalHeader>
+      <ModalBody>
+        <img
+          className="modal-logo"
+          src="/Assets/images/jobpost/logo-success.png"
+          alt="Restore JobPost"
+        />
+        <p className="modal-title">Xác nhận khôi phục</p>
+        <div className="modal-message">
+          Tin sau khi được khôi phục sẽ chuyển đến danh sách tin chờ duyệt
+        </div>
+      </ModalBody>
+      <ModalFooter>
+        <Button variant="secondary" onClick={onClose}>
+          Hủy
+        </Button>
+        <Button onClick={onSubmit}>Xác nhận</Button>
+      </ModalFooter>
+    </Modal>
+  );
+
+  return isApprove ? approveModal : restoreModal;
 };

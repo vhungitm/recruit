@@ -1,6 +1,3 @@
-//importing bootstrap 5 css
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.min.js';
 export const CandidateProfile = props => {
   return (
     <div className="App">

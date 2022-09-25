@@ -7,7 +7,7 @@ export const JobPostCandidateModal = props => {
   return (
     <Modal className="jobpost-candidate-modal" show={show} onHide={onClose}>
       <ModalHeader closeButton>
-        <p className="modal-title">SỐ ỨNG VIÊN: {candidateList.length}</p>
+        <div className="modal-title">SỐ ỨNG VIÊN: {candidateList.length}</div>
       </ModalHeader>
       <ModalBody>
         <div className="table-responsive">
@@ -31,11 +31,8 @@ export const JobPostCandidateModal = props => {
                       <Link to={`/ManageCandidateDetail/${item.candidateId}`}>
                         <img
                           className="img-20"
-                          src={
-                            process.env.PUBLIC_URL +
-                            `/Assets/images/jobpost/view-detail.png`
-                          }
-                          alt="view-detail-icon"
+                          src="/Assets/images/jobpost/view-detail.png"
+                          alt="View detail"
                         />
                       </Link>
                     </td>

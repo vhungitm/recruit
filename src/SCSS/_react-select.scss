@@ -1,0 +1,128 @@
+.react-select-container {
+  width: 100%;
+  color: #042d41;
+
+  .react-select__control {
+    border: 1px solid #d9d6d6;
+    border-radius: 4px;
+
+    height: 40px;
+    box-shadow: unset;
+
+    .react-select__value-container {
+      padding-right: 0;
+
+      .react-select__single-value {
+        margin: 0;
+        color: unset;
+      }
+
+      .react-select__input-container {
+        margin: 0;
+        color: unset;
+      }
+
+      .react-select__placeholder {
+        color: #a19f9f;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+
+      .react-select__input-container {
+        overflow: hidden;
+      }
+    }
+
+    .react-select__indicators {
+      .react-select__indicator-separator {
+        display: none;
+      }
+
+      .react-select__indicator {
+        padding-left: 0;
+
+        svg {
+          width: 20px;
+          height: 20px;
+
+          background: url('../../public/Assets/images/icon/arrow-down.png');
+          background-size: contain;
+
+          content: '';
+
+          path {
+            display: none;
+          }
+        }
+      }
+    }
+
+    &:hover {
+      border: 1px solid #d9d6d6;
+    }
+
+    &--menu-is-open {
+      border: 1px solid #108fcf;
+      border-radius: 4px 4px 0 0;
+
+      &:hover {
+        border: 1px solid #108fcf;
+      }
+    }
+  }
+
+  .react-select__menu {
+    margin-top: 0;
+    border-radius: 0 0 4px 4px;
+    border: 1px solid #108fcf;
+    border-top: 0;
+    padding: 4px;
+
+    box-shadow: unset;
+
+    .react-select__menu-list {
+      max-height: 200px;
+      padding: 0px;
+      overflow-y: auto;
+
+      .react-select__option {
+        border-radius: 4px;
+        margin-bottom: 4px;
+        padding: 4px;
+
+        color: unset;
+        word-wrap: break-word;
+
+        &:last-child {
+          margin-bottom: 0px;
+        }
+
+        &:hover {
+          background: #e2f2f9;
+        }
+
+        &--is-selected {
+          background: #e2f2f9;
+          color: unset;
+        }
+      }
+
+      &::-webkit-scrollbar {
+        width: 12px;
+        border-left: 4px solid white;
+        background: #f5f5f5;
+
+        &-thumb {
+          border-left: 4px solid white;
+          background: #dddddd;
+        }
+      }
+    }
+  }
+
+  &.is-invalid {
+    .react-select__control {
+      border: 1px solid #ef3737;
+    }
+  }
+}

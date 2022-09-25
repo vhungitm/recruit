@@ -1,0 +1,47 @@
+.Toastify {
+  .Toastify__toast-container {
+    width: auto;
+    padding: 0;
+
+    &.Toastify__toast-container--bottom-left {
+      bottom: 24px;
+      left: 24px;
+    }
+
+    .Toastify__toast {
+      font-family: 'Nunito Sans';
+      font-style: normal;
+      font-weight: 400;
+      font-size: 16px;
+      padding: 16px 24px;
+      margin-bottom: 0;
+      margin-top: 24px;
+      min-height: auto !important;
+
+      .Toastify__toast-body {
+        padding: 0;
+      }
+
+      .Toastify__close-button {
+        opacity: 100;
+        margin-left: 24px;
+
+        svg {
+          width: 14px;
+          height: 14px;
+          background-image: url('../../public/Assets/images/admin/menu-close.png');
+          background-size: contain;
+
+          path {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .undo-btn {
+      text-decoration: underline;
+      padding: 0 0 0 24px;
+    }
+  }
+}

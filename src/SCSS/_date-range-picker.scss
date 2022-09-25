@@ -1,0 +1,44 @@
+.calendarWrapper {
+  position: relative;
+  min-width: 202px;
+
+  .input {
+    .inputBox {
+      min-width: 202px;
+
+      &::placeholder {
+        color: #a19f9f;
+      }
+    }
+
+    .form-control {
+      cursor: pointer;
+    }
+
+    .close-btn {
+      width: 16px;
+      height: 16px;
+
+      position: absolute;
+      top: 35px;
+      right: 10px;
+
+      background: url('../../public/Assets/images/jobpost/filter-close-btn.png');
+      background-size: contain;
+
+      background-color: red;
+    }
+  }
+
+  > .rdrCalendarWrapper {
+    position: absolute;
+    z-index: 100;
+
+    border: 1px solid #d9d6d6;
+  }
+  &.right {
+    > .rdrCalendarWrapper {
+      right: 0;
+    }
+  }
+}

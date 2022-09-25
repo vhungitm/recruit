@@ -4,23 +4,16 @@ export const JobPostCancelUpdateModal = props => {
   const { show, onClose, onCancel, onSubmit } = props;
 
   return (
-    <Modal
-      className="update-modal"
-      show={show}
-      onHide={onClose}
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
+    <Modal show={show} onHide={onClose} centered>
       <Modal.Header closeButton></Modal.Header>
       <Modal.Body>
         <img
-          className="img-88"
+          className="modal-logo"
           src="/Assets/images/recruiter/leave.png"
           alt="Cancel Update"
         />
-
         <div className="modal-title">Xác nhận rời khỏi?</div>
-        <div className="modal-inform">
+        <div className="modal-message">
           Lưu ý: Tin đăng tuyển chưa hoàn thiện có thể lưu ở mục lưu nháp
         </div>
       </Modal.Body>

@@ -10,10 +10,9 @@ import { Suspense, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import routes from 'routes';
-import 'SCSS/style.scss';
-import 'SCSS/_index.scss';
-import 'SCSS/_formCheck.scss';
-import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle';
+import 'SCSS/_style.scss';
 
 const App = () => {
   const currentUser = useSelector(selectCurrentUser);

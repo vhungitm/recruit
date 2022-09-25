@@ -1,0 +1,33 @@
+.form-check {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  margin-bottom: unset;
+  padding-left: unset;
+  min-height: unset;
+
+  .form-check-input {
+    width: 20px;
+    height: 20px;
+
+    margin: unset;
+    border: 1px solid #d9d6d6;
+    border-radius: 2px;
+
+    box-shadow: unset !important;
+
+    &:hover,
+    &:focus,
+    &:active {
+      border: 1px solid #108fcf;
+    }
+
+    &:checked {
+      border: unset;
+
+      background: url('../../public/Assets/images/icon/checkbox-checked.png');
+      background-size: contain;
+    }
+  }
+}

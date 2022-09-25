@@ -10,34 +10,41 @@ export const JobPostDeleteModal = props => {
   const { isDeleted, show, onClose, onSubmit } = props;
 
   return (
-    <Modal
-      show={show}
-      onHide={onClose}
-      className="delete-modal"
-      aria-labelledby="contained-modal-title-vcenter"
-      centered
-    >
+    <Modal show={show} onHide={onClose} centered>
       <ModalHeader closeButton={true}></ModalHeader>
       <ModalBody>
         <img
-          className="img-88"
-          src={process.env.PUBLIC_URL + `/Assets/images/jobpost/big-delete.png`}
-          alt="delete-icon"
+          className="modal-logo"
+          src="/Assets/images/jobpost/logo-delete.png"
+          alt="Delete JobPost"
         />
-        <p className="modal-title">
-          {isDeleted ? 'Xác nhận xóa vĩnh viễn' : 'Xác nhận xóa tin'}
-        </p>
-        <span className="modal-inform">
-          {isDeleted
-            ? 'Tin sau khi xóa vĩnh viễn sẽ mất hoàn toàn trên hệ thống và không thể khôi phục'
-            : 'Tin sau khi xóa vẫn được lưu trữ ở danh sách tin đã xóa'}
-        </span>
+
+        {isDeleted ? (
+          <div>
+            <div className="modal-title text-danger">
+              <div>Xác nhận</div>
+              <div>xóa vĩnh viễn</div>
+            </div>
+            <div className="modal-message">
+              Tin sau khi xóa vĩnh viễn sẽ biến mất hoàn toàn trên hệ thống và
+              không thể khôi phục
+            </div>
+          </div>
+        ) : (
+          <div>
+            <div className="modal-title text-danger">Xác nhận xóa tin</div>
+            <div className="modal-message">
+              <div>Tin sau khi xóa vẫn được lưu trữ ở danh</div>
+              <div>sách tin đã xóa'</div>
+            </div>
+          </div>
+        )}
       </ModalBody>
-      <ModalFooter className="d-flex">
-        <Button className="cancel-btn" onClick={onClose}>
+      <ModalFooter>
+        <Button variant="secondary" onClick={onClose}>
           Hủy
         </Button>
-        <Button variant="danger" className="confirm-btn" onClick={onSubmit}>
+        <Button variant="danger" onClick={onSubmit}>
           Xác nhận
         </Button>
       </ModalFooter>

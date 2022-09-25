@@ -12,7 +12,7 @@ const RegisterVerifyAccount = () => {
           className="register-verify-account-header-logo"
         />
         <div className="register-verify-account-header-title">
-          Tài khoản đã được kích hoạt VÀ đang chờ duyệt
+          Tài khoản đã được kích hoạt và đang chờ duyệt
         </div>
       </div>
       <div className="register-verify-account-body">
